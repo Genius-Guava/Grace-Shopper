@@ -1,8 +1,15 @@
 import axios from 'axios'
 
+const FETCH_PLANT = 'FETCH_PLANT'
 const ADD_PLANT = 'ADD_PLANT'
 const REMOVE_PLANT = 'REMOVE_PLANT'
 
+const fetchedPlants = plants => {
+  return {
+    type: FETCH_PLANT,
+    plants
+  }
+}
 const addPlant = plant => {
   return {
     type: ADD_PLANT,
@@ -14,6 +21,17 @@ const removePlant = plantId => {
   return {
     type: REMOVE_PLANT,
     plantId
+  }
+}
+
+export const fetchPlants = () => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get('/plants')
+      dispatch(fetchedPlants(data))
+    } catch (err) {
+      console.error(err)
+    }
   }
 }
 
@@ -42,6 +60,8 @@ const initialState = []
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case FETCH_PLANT:
+      return action.plants
     case ADD_PLANT:
       return [...state, action.plant]
     case REMOVE_PLANT:
