@@ -3,11 +3,22 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const User = db.define('user', {
+  // firstName: {
+  //   type: Sequelize.STRING
+  // },
+  // lastName: {
+  //   type: Sequelize.STRING
+  // },
   email: {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false
   },
+  // username: {
+  //   type: Sequelize.STRING,
+  //   unique: true,
+  //   allowNull: false
+  // },
   password: {
     type: Sequelize.STRING,
     // Making `.password` act like a func hides it when serializing to JSON.
@@ -27,6 +38,9 @@ const User = db.define('user', {
   googleId: {
     type: Sequelize.STRING
   }
+  // adminStatus: {
+  //   type: Sequelize.ENUM('user', 'admin'),
+  // },
 })
 
 module.exports = User
