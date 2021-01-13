@@ -20,6 +20,8 @@ script:
 before_deploy: # omit node_modules, since we set skip_cleanup below
   - rm -rf node_modules
 deploy: # see README for details on these keys
+  on:
+    branch: travis
   # prevents travis from deleting the build
   skip_cleanup: true
   provider: heroku
