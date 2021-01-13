@@ -15,6 +15,9 @@ let OrderItem = db.define('orderItem', {
   description: {
     type: Sequelize.TEXT
   },
+  status: {
+    type: Sequelize.ENUM('In Cart', 'Past')
+  },
   light: {
     type: Sequelize.ENUM('lowlight', 'brightlight')
   },
