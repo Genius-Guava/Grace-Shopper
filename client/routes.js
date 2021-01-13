@@ -6,6 +6,7 @@ import {Login, Signup, UserHome} from './components'
 import AllPlants from './components/AllPlants'
 import NewPlant from './components/NewPlant'
 import {me} from './store'
+import Home from './components/Home'
 
 /**
  * COMPONENT
@@ -24,11 +25,12 @@ class Routes extends Component {
         <Route path="/plants/addplant" component={NewPlant} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/home" component={Home} />
+        <Route exact path="/" component={Home} />
+        <AllPlants path="/plants" component={AllPlants} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
-            <AllPlants path="/plants" component={AllPlants} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
