@@ -22,7 +22,7 @@ before_deploy: # omit node_modules, since we set skip_cleanup below
 deploy: # see README for details on these keys
   # prevents travis from deleting the build
   on:
-    branch: travis
+    branch: master
   skip_cleanup: true
   provider: heroku
   # app should be your heroku app name; see README

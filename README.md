@@ -1,3 +1,7 @@
+# Grace-Shopper
+
+[![Build Status](https://travis-ci.com/Genius-Guava/Grace-Shopper.svg?branch=master)](https://travis-ci.com/Genius-Guava/Grace-Shopper)
+
 # Boilermaker
 
 Doc with Schema: https://docs.google.com/drawings/d/1Q_CbhdA2xAGvzwykEQakEyAWm9KzYVe2_h23lnqjy5I/edit?usp=sharing
