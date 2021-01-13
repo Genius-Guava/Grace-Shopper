@@ -27,7 +27,7 @@ const removePlant = plantId => {
 export const fetchPlants = () => {
   return async dispatch => {
     try {
-      const {data} = await axios.get('/plants')
+      const {data} = await axios.get('/api/plants')
       dispatch(fetchedPlants(data))
     } catch (err) {
       console.error(err)

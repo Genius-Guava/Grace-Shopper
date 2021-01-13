@@ -3,18 +3,27 @@ import {connect} from 'react-redux'
 import {fetchPlants} from '../store/plants'
 
 export class AllPlants extends React.Component {
-  constructor() {
-    super()
-  }
-
   componentDidMount() {
     this.props.fetchPlants()
   }
 
   render() {
+    const {plants} = this.props
+    console.log()
     return (
       <div>
         <h3>Plants</h3>
+        <div id="plant-container">
+          {plants.map(plant => {
+            return (
+              <div className="plant-option" key={plant.id}>
+                <img src={plant.imageUrl} />
+                <h4>{plant.name}</h4>
+                <p>${plant.price}</p>
+              </div>
+            )
+          })}
+        </div>
       </div>
     )
   }
