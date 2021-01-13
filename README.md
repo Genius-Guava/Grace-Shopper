@@ -1,5 +1,7 @@
 # Boilermaker
 
+Doc with Schema: https://docs.google.com/drawings/d/1Q_CbhdA2xAGvzwykEQakEyAWm9KzYVe2_h23lnqjy5I/edit?usp=sharing
+
 _Good things come in pairs_
 
 Looking to mix up a backend with `express`/`sequelize` and a frontend with
