@@ -55,6 +55,7 @@ const PlantForm = props => {
         value={props.state.quantity}
         onChange={props.handleChange}
       />
+      <br />
       <button type="submit">Submit</button>
     </form>
   )

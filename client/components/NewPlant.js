@@ -31,11 +31,14 @@ export class NewPlant extends Component {
 
   render() {
     return (
-      <PlantForm
-        handleSubmit={this.handleSubmit}
-        handleChange={this.handleChange}
-        state={this.state}
-      />
+      <div className="newPlantContainer">
+        <h3>Add a new plant:</h3>
+        <PlantForm
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+          state={this.state}
+        />
+      </div>
     )
   }
 }
