@@ -110,8 +110,33 @@ REpresentation
 State
 Transfer
 
+### REACT
 
+* Conditional rendering?
+``` javascript
 
+class ProductList {
+
+    render() {
+       return (
+            <div>
+                {
+                    products.map(prod => {
+                        <div>
+                            <h2>{prod.name}</h2>
+                            <img src={prod.img} />
+                            {
+                                this.state.user.isAdmin ? <button>Delete </button> : null
+                            }
+                        </div>
+                    })
+                }
+            <div>
+            )
+    }
+
+}
+```
 ## Goals
 
 * For our next CR: Deployed MVP (Tier I)
