@@ -79,7 +79,8 @@ id      name
 2       fern
 3       pothos
 
-line-item
+line-item (define in many-to-many as : 'line-item')
+Also define Schema w/ identical name, adding quant property
 
 id         o_id     p_id        quant
 0           1       3               5
