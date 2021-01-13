@@ -2,6 +2,15 @@ const router = require('express').Router()
 const {Plant} = require('../db/models')
 module.exports = router
 
+router.get('/', async (req, res, next) => {
+  try {
+    const plants = await Plant.findAll()
+    res.json(plants)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.post('/', async (req, res, next) => {
   try {
     const plant = await Plant.create(req.body)
