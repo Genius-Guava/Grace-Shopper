@@ -2,6 +2,16 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+import {
+  Button,
+  Form,
+  Icon,
+  Field,
+  Control,
+  Label,
+  Input,
+  Columns
+} from 'react-bulma-components'
 
 /**
  * COMPONENT
@@ -11,6 +21,8 @@ const AuthForm = props => {
 
   return (
     <div>
+      <Button>su</Button>
+
       <form onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor="email">
@@ -70,7 +82,6 @@ const mapDispatch = dispatch => {
 }
 
 export const Login = connect(mapLogin, mapDispatch)(AuthForm)
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
 
 /**
  * PROP TYPES
