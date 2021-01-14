@@ -2,12 +2,13 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome} from './components'
+import {Login, UserHome} from './components'
 import AllPlants from './components/AllPlants'
 import NewPlant from './components/NewPlant'
 import {me} from './store'
 import Home from './components/Home'
 import SinglePlant from './components/SinglePlant'
+import SignUp from './components/SignUp'
 
 /**
  * COMPONENT
@@ -25,7 +26,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/plants/addplant" component={NewPlant} />
         <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+        <Route path="/signup" component={SignUp} />
         <Route path="/home" component={Home} />
         <Route exact path="/" component={Home} />
         <AllPlants exact path="/plants" component={AllPlants} />
