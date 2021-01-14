@@ -7,6 +7,7 @@ import AllPlants from './components/AllPlants'
 import NewPlant from './components/NewPlant'
 import {me} from './store'
 import Home from './components/Home'
+import SinglePlant from './components/SinglePlant'
 import SignUp from './components/SignUp'
 
 /**
@@ -28,7 +29,8 @@ class Routes extends Component {
         <Route path="/signup" component={SignUp} />
         <Route path="/home" component={Home} />
         <Route exact path="/" component={Home} />
-        <AllPlants path="/plants" component={AllPlants} />
+        <AllPlants exact path="/plants" component={AllPlants} />
+        <SinglePlant path="/plants/:plantId" component={SinglePlant} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

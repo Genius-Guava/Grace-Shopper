@@ -37,6 +37,8 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+// router.get('/:plantId', async (req, res, next)){}
+
 router.delete('/:plantId', async (req, res, next) => {
   try {
     await Plant.destroy({

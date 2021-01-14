@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-const FETCH_PLANT = 'FETCH_PLANT'
+const FETCH_PLANTS = 'FETCH_PLANTS'
 const ADD_PLANT = 'ADD_PLANT'
 const REMOVE_PLANT = 'REMOVE_PLANT'
 
 const fetchedPlants = plants => {
   return {
-    type: FETCH_PLANT,
+    type: FETCH_PLANTS,
     plants
   }
 }
@@ -60,7 +60,7 @@ const initialState = []
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_PLANT:
+    case FETCH_PLANTS:
       return action.plants
     case ADD_PLANT:
       return [...state, action.plant]
