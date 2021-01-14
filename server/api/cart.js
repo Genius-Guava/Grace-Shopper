@@ -1,85 +1,60 @@
 const router = require('express').Router()
-const {Order, OrderItem, Plant, User} = require('../db/models')
+const {Order, LineItem, Plant, User} = require('../db/models')
 module.exports = router
 
-router.get('/:userId', async (req, res, next) => {
-  try {
-    const user = await User.findAll({
-      where: {
-        id: req.params.userId
-      },
-      include: [
-        {
-          model: Order
-          // where: {status: 'In Cart'},
-        }
-      ]
-    })
-    res.json(user)
-  } catch (err) {
-    next(err)
-  }
-})
+const isLoggedIn = (req, res, next) =>
+  req.user ? next() : res.send('Please log in')
 
-router.post('/:userId', async (req, res, next) => {
-  try {
-    const {
-      name,
-      imageUrl,
-      price,
-      description,
-      light,
-      petFriendly,
-      quantity
-    } = req.body
-    // find user
-
-    const user = await User.findAll({
-      where: {
-        id: req.params.userId
-      },
-      include: [
-        {
-          model: Order
-          // where: {status: 'In Cart'},
-        }
-      ]
-    })
-    // {user, [order]}
-    const existingOrder = user[0].orders[0]
-    // create new item
-    const newItem = await OrderItem.create({
-      name,
-      imageUrl,
-      price,
-      description,
-      light,
-      petFriendly,
-      quantity
-    })
-    // find if user has order in cart
-    if (existingOrder.id !== undefined) {
-      await newItem.addOrders(existingOrder)
-    } else {
-      const newOrder = await Order.create({userId: req.params.userId})
-      await newItem.addOrders(newOrder)
+router.get('/', isLoggedIn, async (req, res, next) => {
+  // console.log(req.user)
+  const cart = await Order.findOne({
+    include: {
+      model: Plant
+    },
+    where: {
+      status: 'In Cart',
+      userId: req.user.id
     }
-    res.json(newItem)
-  } catch (err) {
-    next(err)
+  })
+  // console.log('CART',cart)
+  if (cart) {
+    res.json(cart)
+  } else {
+    res.json('Cart is currently empty.')
   }
 })
 
-// router.get('/:userId', async (req, res, next) => {
+// router.post('/', async (req, res, next) => {
+
 //   try {
-//     const cart = Order.findAll({
+//     // find a cart
+//     // see if item is in cart
+//     // if item in cart, increase quantity
+//     // if item not in cart, add item to cart
+//     const cart = await Order.findOne({
+//       include: {
+//         model: Plant
+//       },
 //       where: {
 //         status: 'In Cart',
-//         userId: req.params.userId,
-//       },
+//         userId: req.user.id
+//       }
 //     })
-//     res.json(cart)
-//   } catch (err) {
-//     console.error(err)
+//     const item = await LineItem.findOne({
+//       where: {
+//         plantId: req.body.plantId,
+//         orderId: cart.id
+//       }
+//     })
+//     if (item) {
+//       item.quantity ++;
+//     } else {
+//       await LineItem.create({
+//         plantId: req.body.plantId,
+//         orderId: cart.id
+//       })
+//     }
+//   } catch(err) {
+//     next(err)
 //   }
 // })
