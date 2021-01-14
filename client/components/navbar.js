@@ -28,6 +28,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <div className="navLeftButtons">
             <Link to="/home">Home</Link>
             <Link to="/plants">All Plants</Link>
+            <Link to="/plant">Single Plant</Link>
           </div>
           <div className="navRightButtons">
             <Link to="/login">Login</Link>
