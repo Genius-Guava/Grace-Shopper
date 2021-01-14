@@ -11,6 +11,15 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/:plantId', async (req, res, next) => {
+  try {
+    const plant = findByPk(req.params.plantId)
+    res.json(plant)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.post('/', async (req, res, next) => {
   try {
     const {
@@ -36,8 +45,6 @@ router.post('/', async (req, res, next) => {
     next(err)
   }
 })
-
-// router.get('/:plantId', async (req, res, next)){}
 
 router.delete('/:plantId', async (req, res, next) => {
   try {

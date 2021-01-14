@@ -36,31 +36,33 @@ import {getSinglePlant} from '../store/singlePlant'
 
 export class SinglePlant extends React.Component {
   componentDidMount() {
-    const plantId = this.props.plantId
-    this.props.getSinglePlant(plantId)
+    this.props.getSinglePlant(this.props.computedMatch.params.plantId)
   }
 
   render() {
+    // console.log('props are', this.props)
     const {plant} = this.props
-    console.log()
 
     return (
       <div>
         <h3> Single Plant</h3>
+        <p>Plant Name:</p>
+        <h5>{plant.name}</h5>
       </div>
     )
   }
 }
 
 const mapState = state => {
+  // console.log('stat is ', state)
   return {
-    plant: state.plant
+    plant: state.singlePlant
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    getSinglePlant: () => dispatch(getSinglePlant())
+    getSinglePlant: id => dispatch(getSinglePlant(id))
   }
 }
 
