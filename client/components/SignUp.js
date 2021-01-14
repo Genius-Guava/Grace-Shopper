@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
-import {Columns, Button, Section} from 'react-bulma-components'
+import {Columns, Button, Section, Icon} from 'react-bulma-components'
 import {Form} from 'react-bulma-components'
 
 /**
@@ -38,51 +38,54 @@ class SignUp extends React.Component {
       <Columns breakpoint="mobile" centered>
         <Columns.Column size="half">
           <form onSubmit={this.handleSubmit}>
-            <Form.Field>
-              <Form.Label>First Name</Form.Label>
-              <Form.Control>
-                <Form.Input
-                  placeholder="First Name"
-                  name="name"
-                  type="text"
-                  onChange={this.onChange}
-                  value={this.state.name}
-                />
-              </Form.Control>
-            </Form.Field>
-
-            <Form.Field>
-              <Form.Label>Email</Form.Label>
-              <Form.Control>
-                <Form.Input
-                  placeholder="Please enter an Email Address"
-                  name="email"
-                  type="text"
-                  onChange={this.onChange}
-                  value={this.state.email}
-                />
-              </Form.Control>
-            </Form.Field>
-
-            <Form.Field>
-              <Form.Label>Password</Form.Label>
-              <Form.Control>
-                <Form.Input
-                  placeholder="Create Password"
-                  name="password"
-                  type="password"
-                  onChange={this.onChange}
-                  value={this.state.password}
-                />
-              </Form.Control>
-            </Form.Field>
-
             <Section>
+              <Form.Field size="medium">
+                <Form.Label className="form-label">First Name</Form.Label>
+                <Form.Control>
+                  <Form.Input
+                    placeholder="First Name"
+                    name="name"
+                    type="text"
+                    onChange={this.onChange}
+                    value={this.state.name}
+                  />
+                </Form.Control>
+              </Form.Field>
+
+              <Form.Field>
+                <Form.Label className="form-label">Email</Form.Label>
+                <Form.Control iconLeft>
+                  <Form.Input
+                    placeholder="Please enter an Email Address"
+                    name="email"
+                    type="text"
+                    onChange={this.onChange}
+                    value={this.state.email}
+                  />
+                  <Icon align="left">
+                    <i className="fas fa-envelope" />
+                  </Icon>
+                </Form.Control>
+              </Form.Field>
+
+              <Form.Field>
+                <Form.Label className="form-label">Password</Form.Label>
+                <Form.Control>
+                  <Form.Input
+                    placeholder="Create Password"
+                    name="password"
+                    type="password"
+                    onChange={this.onChange}
+                    value={this.state.password}
+                  />
+                </Form.Control>
+              </Form.Field>
+            </Section>
+            <Section align="right">
               <Button className="submit-button" color="success">
                 Submit
               </Button>
             </Section>
-
             {error && error.response && <div> {error.response.data} </div>}
           </form>
         </Columns.Column>
