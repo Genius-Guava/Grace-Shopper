@@ -1,7 +1,7 @@
 const User = require('./user')
 const Plant = require('./plant')
 const Order = require('./order')
-const OrderItem = require('./orderItem')
+const LineItem = require('./lineItem')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -14,8 +14,13 @@ const OrderItem = require('./orderItem')
 
 User.hasMany(Order)
 Order.belongsTo(User)
-OrderItem.belongsTo(Order)
-Order.belongsToMany(OrderItem, {through: 'order-items'})
+Plant.belongsToMany(Order, {through: 'lineItem'})
+Order.belongsToMany(Plant, {through: 'lineItem'})
+
+// User.hasMany(Order)
+// Order.belongsTo(User)
+// OrderItem.belongsTo(Order)
+// Order.belongsToMany(OrderItem, {through: 'order-items'})
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
@@ -26,5 +31,5 @@ module.exports = {
   User,
   Plant,
   Order,
-  OrderItem
+  LineItem
 }
