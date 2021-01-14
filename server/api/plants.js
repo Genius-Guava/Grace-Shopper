@@ -13,7 +13,24 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const plant = await Plant.create(req.body)
+    const {
+      name,
+      imageUrl,
+      price,
+      description,
+      light,
+      petFriendly,
+      quantity
+    } = req.body
+    const plant = await Plant.create({
+      name,
+      imageUrl,
+      price,
+      description,
+      light,
+      petFriendly,
+      quantity
+    })
     res.json(plant)
   } catch (err) {
     next(err)
@@ -35,8 +52,25 @@ router.delete('/:plantId', async (req, res, next) => {
 
 router.put('/:plantId', async (req, res, next) => {
   try {
-    const plant = await Plant.findbyId(req.params.plantId)
-    await plant.update(req.body)
+    const {
+      name,
+      imageUrl,
+      price,
+      description,
+      light,
+      petFriendly,
+      quantity
+    } = req.body
+    const plant = await Plant.findByPk(req.params.plantId)
+    await plant.update({
+      name,
+      imageUrl,
+      price,
+      description,
+      light,
+      petFriendly,
+      quantity
+    })
     res.json(plant)
   } catch (err) {
     next(err)

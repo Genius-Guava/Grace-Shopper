@@ -8,7 +8,9 @@ export class NewPlant extends Component {
     super(props)
     this.state = {
       name: '',
-      imageUrl: '',
+      imageUrl:
+        'https://images-na.ssl-images-amazon.com/images/I/41kT5IhNiwL.jpg',
+      price: 50.0,
       description: '',
       light: '',
       petfriendly: '',
