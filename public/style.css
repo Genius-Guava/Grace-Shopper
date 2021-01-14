@@ -11,18 +11,9 @@ a:hover {
   text-decoration: underline;
 }
 
-label {
-  display: block;
-}
-
 nav a {
   display: inline-block;
   margin: 0.5em;
-}
-
-form div {
-  margin: 1em;
-  display: inline-block;
 }
 
 .homeImage {
@@ -65,4 +56,8 @@ form div {
 
 .plant-option img {
   width: 20%;
+}
+
+.label.form-label {
+  color: rgb(95, 95, 95);
 }
