@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:plantId', async (req, res, next) => {
   try {
-    const plant = findByPk(req.params.plantId)
+    const plant = await Plant.findByPk(req.params.plantId)
     res.json(plant)
   } catch (err) {
     next(err)
