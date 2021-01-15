@@ -3,9 +3,16 @@ import axios from 'axios'
 const UPDATE_PLANT = 'UPDATE_PLANT'
 const FETCH_PLANT = 'FETCH_PLANT'
 
-export const fetchSinglePlant = plant => {
+const fetchSinglePlant = plant => {
   return {
     type: FETCH_PLANT,
+    plant
+  }
+}
+
+const updatePlant = plant => {
+  return {
+    type: UPDATE_PLANT,
     plant
   }
 }
@@ -18,13 +25,6 @@ export const getSinglePlant = id => {
     } catch (err) {
       console.log(err)
     }
-  }
-}
-
-export const updatePlant = plant => {
-  return {
-    type: UPDATE_PLANT,
-    plant
   }
 }
 

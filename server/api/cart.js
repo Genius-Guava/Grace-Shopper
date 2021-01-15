@@ -5,6 +5,7 @@ module.exports = router
 const isLoggedIn = (req, res, next) =>
   req.user ? next() : res.send('Please log in')
 
+//localhost:8080/api/cart
 router.get('/', isLoggedIn, async (req, res, next) => {
   // console.log(req.user)
   const cart = await Order.findOne({
@@ -25,12 +26,14 @@ router.get('/', isLoggedIn, async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.put('/', async (req, res, next) => {
+  console.log('try not working')
   try {
     // find a cart (create if not found)
     // see if item is in cart
     // if item in cart, increase quantity
     // if item not in cart, add item to cart
+    console.log('attempting to add')
     const cart = await Order.findOrCreate({
       where: {
         status: 'In Cart',
