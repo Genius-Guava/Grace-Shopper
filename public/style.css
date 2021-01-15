@@ -2,29 +2,9 @@ body {
   font-family: sans-serif;
 }
 
-a {
-  text-decoration: none;
-  color: black;
-  margin: 5px;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-nav a {
-  display: inline-block;
-  margin: 0.5em;
-}
-
 .homeImage {
   width: 100%;
   height: auto;
-}
-
-.navButtons {
-  display: flex;
-  justify-content: space-between;
 }
 
 .homePage h2 {
@@ -62,5 +42,10 @@ footer.footer {
   background-image: url('baground-signUp.jpg');
   background-position: bottom;
   background-size: 100%;
-  background-attachment: fixed;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#navBar {
+  background-color: #226f54;
 }

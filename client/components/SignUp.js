@@ -33,14 +33,14 @@ class SignUp extends React.Component {
   }
 
   render() {
-    const {name, displayName, handleSubmit, error} = this.props
+    const {error} = this.props
     return (
       <Columns id="signUp" breakpoint="mobile" centered>
         <Columns.Column className="control" size="half">
           <form onSubmit={this.handleSubmit}>
             <Section>
               <Form.Field size="medium">
-                <Form.Label className="form-label">First Name</Form.Label>
+                <Form.Label className="form-label">Full Name</Form.Label>
                 <Form.Control>
                   <Form.Input
                     placeholder="First Name"
@@ -82,7 +82,7 @@ class SignUp extends React.Component {
               </Form.Field>
             </Section>
             <Section align="right">
-              <Button className="submit-button is-focused" color="success">
+              <Button className="submit-button is-focused is-primary">
                 <strong>Submit</strong>
               </Button>
             </Section>
