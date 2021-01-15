@@ -2,37 +2,9 @@ body {
   font-family: sans-serif;
 }
 
-a {
-  text-decoration: none;
-  color: black;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-nav a {
-  display: inline-block;
-  margin: 0.5em;
-}
-
 .homeImage {
   width: 100%;
   height: auto;
-}
-
-.navButtons {
-  display: flex;
-  justify-content: space-between;
-}
-
-.footer {
-  text-align: center;
-  font-size: 10px;
-}
-
-.footer a {
-  margin: 5px;
 }
 
 .homePage h2 {
@@ -60,4 +32,20 @@ nav a {
 
 .label.form-label {
   color: rgb(95, 95, 95);
+}
+
+footer.footer {
+  padding: 1rem 1rem;
+}
+
+#signUp {
+  background-image: url('baground-signUp.jpg');
+  background-position: bottom;
+  background-size: 100%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#navBar {
+  background-color: #226f54;
 }
