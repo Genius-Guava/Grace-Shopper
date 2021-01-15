@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {fetchPlants} from '../store/plants'
+import {fetchPlants, deletePlant} from '../store/plants'
 
 export class AllPlants extends React.Component {
   componentDidMount() {
@@ -9,8 +9,7 @@ export class AllPlants extends React.Component {
   }
 
   render() {
-    const {plants} = this.props
-    console.log()
+    const {plants, user} = this.props
     return (
       <div>
         <h3>Plants</h3>
@@ -24,6 +23,14 @@ export class AllPlants extends React.Component {
                   <h4>{plant.name}</h4>
                   <p>${plant.price}</p>
                 </Link>
+                {user.isAdmin && (
+                  <button
+                    type="button"
+                    onClick={() => this.props.deletePlant(plant.id)}
+                  >
+                    Remove Plant
+                  </button>
+                )}
               </div>
             )
           })}
@@ -35,13 +42,15 @@ export class AllPlants extends React.Component {
 
 const mapState = state => {
   return {
-    plants: state.plants
+    plants: state.plants,
+    user: state.user
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    fetchPlants: () => dispatch(fetchPlants())
+    fetchPlants: () => dispatch(fetchPlants()),
+    deletePlant: plantId => dispatch(deletePlant(plantId))
   }
 }
 
