@@ -19,7 +19,7 @@ export class AllPlants extends React.Component {
           {plants.map(plant => {
             return (
               <div className="plant-option" key={plant.id}>
-                <Link to={`/api/plants/${plant.id}`}>
+                <Link to={`/plants/${plant.id}`}>
                   <img src={plant.imageUrl} />
                   <h4>{plant.name}</h4>
                   <p>${plant.price}</p>

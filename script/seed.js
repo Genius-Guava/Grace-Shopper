@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Plant} = require('../server/db/models')
+const {User, Plant, Order, LineItem} = require('../server/db/models')
 
 const seedPlants = [
   {
@@ -161,6 +161,10 @@ async function seed() {
     })
   ])
   await Plant.bulkCreate(seedPlants)
+  await Plant.bulkCreate(seedPlants)
+  await Order.create({userId: 1})
+  await LineItem.create({quantity: 1, plantId: 1, orderId: 1})
+  await LineItem.create({quantity: 1, plantId: 3, orderId: 1})
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)

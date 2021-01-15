@@ -1,8 +1,8 @@
-// import { render } from 'enzyme'
-// import React from 'react'
-// import {connect} from 'react-redux'
-// import {Link} from 'react-router-dom'
-// import {fetchPlants} from '../store/plants'
+import {render} from 'enzyme'
+import React from 'react'
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+import {getSinglePlant} from '../store/singlePlant'
 
 // export class SinglePlant extends React.Component {
 //   componentDidMount() {
@@ -34,16 +34,36 @@
 //   )
 // }
 
-// const mapState = (state) => {
-//   return {
-//     plants: state.plants,
-//   }
-// }
+export class SinglePlant extends React.Component {
+  componentDidMount() {
+    this.props.getSinglePlant(this.props.computedMatch.params.plantId)
+  }
 
-// const mapDispatch = (dispatch) => {
-//   return {
-//     fetchPlants: () => dispatch(fetchPlants()),
-//   }
-// }
+  render() {
+    // console.log('props are', this.props)
+    const {plant} = this.props
 
-// export default connect(mapState, mapDispatch)(SinglePlant)
+    return (
+      <div>
+        <h3> Single Plant</h3>
+        <p>Plant Name:</p>
+        <h5>{plant.name}</h5>
+      </div>
+    )
+  }
+}
+
+const mapState = state => {
+  // console.log('stat is ', state)
+  return {
+    plant: state.singlePlant
+  }
+}
+
+const mapDispatch = dispatch => {
+  return {
+    getSinglePlant: id => dispatch(getSinglePlant(id))
+  }
+}
+
+export default connect(mapState, mapDispatch)(SinglePlant)
