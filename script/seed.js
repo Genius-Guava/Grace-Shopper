@@ -12,7 +12,6 @@ const seedPlants = [
     description:
       'The same plant that grows your morning cup of coffee is also a low maintence house plant!',
     light: 'brightlight',
-    petFriendly: false,
     quantity: 10
   },
 
@@ -24,7 +23,6 @@ const seedPlants = [
     description:
       'Also known as the "swiss cheese plant", this place is known for their odd-looking, perforated leaves with holes.',
     light: 'brightlight',
-    petFriendly: false,
     quantity: 10
   },
 
@@ -36,7 +34,6 @@ const seedPlants = [
     description:
       'The plant is known for its thick, waxy green leaves. It tolerates low lights, making it a perfect plant for beginners!',
     light: 'lowlight',
-    petFriendly: true,
     quantity: 10
   },
 
@@ -48,7 +45,6 @@ const seedPlants = [
     description:
       'Similiar to the yearly Christmas tree,  but this plant can be kept all year around, giving your home a lively addition.',
     light: 'brightlight',
-    petFriendly: false,
     quantity: 10
   },
 
@@ -60,7 +56,6 @@ const seedPlants = [
     description:
       'This trio is petite in size, making it a perfect addition for your home office or work office.',
     light: 'brightlight',
-    petFriendly: false,
     quantity: 10
   },
 
@@ -72,7 +67,6 @@ const seedPlants = [
     description:
       'The plant is perfect to add a pop of color to your house while being low maintanence, making it perfect for someone who is a beginner!',
     light: 'brightlight',
-    petFriendly: false,
     quantity: 10
   },
 
@@ -84,7 +78,6 @@ const seedPlants = [
     description:
       "This plant is the known as the world's longest blooming houseplant. Each bloom lasts up to eight weeks!",
     light: 'brightlight',
-    petFriendly: false,
     quantity: 10
   },
 
@@ -96,7 +89,6 @@ const seedPlants = [
     description:
       'This plant is known to bring good luck and fortune in some culture while also adding a tropical feel to your home.',
     light: 'brightlight',
-    petFriendly: true,
     quantity: 10
   },
 
@@ -108,7 +100,6 @@ const seedPlants = [
     description:
       'As this is one of the most popular house plants, it is easy to care for while bringing a touch of tropics to your home with vibrant green leaves.',
     light: 'brightlight',
-    petFriendly: false,
     quantity: 10
   },
 
@@ -120,7 +111,6 @@ const seedPlants = [
     description:
       'Also known as the Chinese money plant, this plant is known for their saucer-shaped, shiny, vibrant colored leaves.',
     light: 'lowlight',
-    petFriendly: true,
     quantity: 10
   },
 
@@ -132,7 +122,6 @@ const seedPlants = [
     description:
       'Also known as the Peacock plant, with great care, it can bring great colors to your home!',
     light: 'brightlight',
-    petFriendly: false,
     quantity: 10
   },
 
@@ -144,7 +133,6 @@ const seedPlants = [
     description:
       'This succulent plant is known for their upright swordlight leaves with a vibrant yellow edge that helps remove toxins on your home..',
     light: 'lowlight',
-    petFriendly: true,
     quantity: 10
   }
 ]
