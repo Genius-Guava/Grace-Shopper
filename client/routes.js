@@ -9,6 +9,7 @@ import {me} from './store'
 import Home from './components/Home'
 import SinglePlant from './components/SinglePlant'
 import SignUp from './components/SignUp'
+import Cart from './components/Cart'
 
 /**
  * COMPONENT
@@ -29,6 +30,7 @@ class Routes extends Component {
         <Route path="/signup" component={SignUp} />
         <Route path="/home" component={Home} />
         <Route exact path="/" component={Home} />
+        <Route exact path="/cart" component={Cart} />
         <AllPlants exact path="/plants" component={AllPlants} />
         <SinglePlant path="/plants/:plantId" component={SinglePlant} />
         {isLoggedIn && (

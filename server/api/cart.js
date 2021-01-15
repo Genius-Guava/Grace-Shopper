@@ -20,41 +20,41 @@ router.get('/', isLoggedIn, async (req, res, next) => {
   if (cart) {
     res.json(cart)
   } else {
+    console.log('Cart is currently empty.')
     res.json('Cart is currently empty.')
   }
 })
 
-// router.post('/', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
+  try {
+    // find a cart (create if not found)
+    // see if item is in cart
+    // if item in cart, increase quantity
+    // if item not in cart, add item to cart
+    const cart = await Order.findOrCreate({
+      where: {
+        status: 'In Cart',
+        userId: req.user.id
+      }
+    })
 
-//   try {
-//     // find a cart
-//     // see if item is in cart
-//     // if item in cart, increase quantity
-//     // if item not in cart, add item to cart
-//     const cart = await Order.findOne({
-//       include: {
-//         model: Plant
-//       },
-//       where: {
-//         status: 'In Cart',
-//         userId: req.user.id
-//       }
-//     })
-//     const item = await LineItem.findOne({
-//       where: {
-//         plantId: req.body.plantId,
-//         orderId: cart.id
-//       }
-//     })
-//     if (item) {
-//       item.quantity ++;
-//     } else {
-//       await LineItem.create({
-//         plantId: req.body.plantId,
-//         orderId: cart.id
-//       })
-//     }
-//   } catch(err) {
-//     next(err)
-//   }
-// })
+    const item = await LineItem.findOne({
+      where: {
+        plantId: req.body.id,
+        orderId: cart[0].id
+      }
+    })
+    if (item) {
+      const newQuant = item.quantity++
+      item.update({quantity: newQuant})
+    } else {
+      await LineItem.create({
+        plantId: req.body.id,
+        orderId: cart[0].id
+      })
+    }
+    res.json(req.body)
+  } catch (err) {
+    next(err)
+  }
+})

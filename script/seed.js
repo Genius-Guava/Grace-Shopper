@@ -148,23 +148,94 @@ const seedPlants = [
     quantity: 10
   }
 ]
+
+const seedOrders = [
+  {
+    status: 'In Cart',
+    userId: 1
+  },
+  {
+    status: 'In Cart',
+    userId: 2
+  },
+  {
+    status: 'Past',
+    userId: 1
+  },
+  {
+    status: 'Past',
+    userId: 3
+  }
+]
+
+const seedLineItems = [
+  {
+    plantId: 1,
+    orderId: 1
+  },
+  {
+    plantId: 2,
+    orderId: 1,
+    quantity: 2
+  },
+  {
+    plantId: 3,
+    orderId: 1
+  },
+  {
+    plantId: 5,
+    orderId: 3
+  },
+  {
+    plantId: 10,
+    orderId: 2
+  },
+  {
+    plantId: 7,
+    orderId: 4
+  }
+]
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({username: 'cody', email: 'cody@email.com', password: '123'}),
     User.create({
-      username: 'murphy',
+      email: 'cody@email.com',
+      password: '123',
+      isAdmin: true
+    }),
+    User.create({
       email: 'murphy@email.com',
+      password: '123'
+    }),
+    User.create({
+      email: 'bob@email.com',
+      password: '123',
+      isAdmin: true
+    }),
+    User.create({
+      email: 'sally@email.com',
       password: '123'
     })
   ])
-  await Plant.bulkCreate(seedPlants)
-  await Plant.bulkCreate(seedPlants)
-  await Order.create({userId: 1})
-  await LineItem.create({quantity: 1, plantId: 1, orderId: 1})
-  await LineItem.create({quantity: 1, plantId: 3, orderId: 1})
+
+  await Promise.all(
+    seedPlants.map(plant => {
+      return Plant.create(plant)
+    })
+  )
+  await Promise.all(
+    seedOrders.map(order => {
+      return Order.create(order)
+    })
+  )
+  await Promise.all(
+    seedLineItems.map(lineItem => {
+      return LineItem.create(lineItem)
+    })
+  )
+  // await Plant.bulkCreate(seedPlants)
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)

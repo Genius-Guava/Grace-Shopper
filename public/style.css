@@ -7,6 +7,12 @@ body {
   height: auto;
 }
 
+.plant-form {
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
 .homePage h2 {
   text-align: center;
 }
