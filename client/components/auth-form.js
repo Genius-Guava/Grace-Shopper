@@ -15,8 +15,6 @@ class AuthForm extends React.Component {
     const {name, displayName, handleSubmit, error} = this.props
     return (
       <div>
-        <Button>su</Button>
-
         <form onSubmit={handleSubmit} name={name}>
           <div>
             <label htmlFor="email">
@@ -52,14 +50,6 @@ const mapLogin = state => {
   return {
     name: 'login',
     displayName: 'Login',
-    error: state.user.error
-  }
-}
-
-const mapSignup = state => {
-  return {
-    name: 'signup',
-    displayName: 'Sign Up',
     error: state.user.error
   }
 }
