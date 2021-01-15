@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import {Columns, Button, Section, Icon} from 'react-bulma-components'
- 
+
 class Navbar extends React.Component {
   constructor() {
     super()
@@ -14,8 +14,7 @@ class Navbar extends React.Component {
   navbarRight() {
     const handleClick = this.props.handleClick
     const isLoggedIn = this.props.isLoggedIn
-    const user = this.props.user
-    
+
     if (isLoggedIn) {
       return (
         <div className="navbar-end">
@@ -48,6 +47,7 @@ class Navbar extends React.Component {
   }
 
   render() {
+    const user = this.props.user
     return (
       <nav
         id="navBar"
@@ -67,7 +67,7 @@ class Navbar extends React.Component {
             <Link className="navbar-item" to="/plants">
               All Plants
             </Link>
-      {user.isAdmin && <Link to="/plants/addplant">Add New Plant</Link>}
+            {user.isAdmin && <Link to="/plants/addplant">Add New Plant</Link>}
           </div>
 
           {this.navbarRight()}
