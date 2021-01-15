@@ -21,9 +21,6 @@ let Plant = db.define('plant', {
   light: {
     type: Sequelize.ENUM('lowlight', 'brightlight')
   },
-  petFriendly: {
-    type: Sequelize.BOOLEAN
-  },
   quantity: {
     type: Sequelize.INTEGER
   }

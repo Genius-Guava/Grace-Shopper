@@ -36,19 +36,6 @@ const PlantForm = props => {
         <option value="lowlight">Lowlight </option>
         <option value="brightlight">brightlight</option>
       </select>
-      <label htmlFor="petfriendly">Pet Friendly?</label>
-
-      <select
-        name="petfriendly"
-        value={props.state.petfriendly}
-        onChange={props.handleChange}
-      >
-        <option value="selection" hidden>
-          True/False
-        </option>
-        <option value="true">True</option>
-        <option value="false">False</option>
-      </select>
       <label htmlFor="quantity">Quantity:</label>
       <input
         type="number"

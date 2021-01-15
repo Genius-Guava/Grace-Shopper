@@ -13,7 +13,6 @@ export class NewPlant extends Component {
       price: 50.0,
       description: '',
       light: '',
-      petfriendly: '',
       quantity: 0
     }
     this.initialState = this.state
