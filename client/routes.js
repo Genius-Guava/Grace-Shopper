@@ -12,6 +12,7 @@ import SignUp from './components/SignUp'
 import Cart from './components/Cart'
 import Users from './components/Users'
 import {isAdmin} from '../server/api/security'
+import UpdatePlant from './components/UpdatePlant'
 
 /**
  * COMPONENT
@@ -22,13 +23,14 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props
+    // const {isLoggedIn} = this.props
 
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/plants/addplant" component={NewPlant} />
         <Route path="/users" component={Users} />
+        <Route path="/plants/:plantId/update" component={UpdatePlant} />
         <Route path="/users" component={Users} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />

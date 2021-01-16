@@ -1,8 +1,9 @@
 import {render} from 'enzyme'
 import React from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
 import {getSinglePlant} from '../store/singlePlant'
+import UpdatePlant from './UpdatePlant'
+import {Link} from 'react-router-dom'
 
 export class SinglePlant extends React.Component {
   componentDidMount() {
@@ -10,18 +11,22 @@ export class SinglePlant extends React.Component {
   }
 
   render() {
-    const {plant} = this.props
+    const {plant, user} = this.props
 
     return (
       <div>
-        <h5>
-          {plant.name} ${plant.price}
-        </h5>
-        <img src={plant.imageUrl} />
-        <p>{plant.description}</p>
-        <p>This plant is:</p>
-        <p>-{plant.light}</p>
-        {plant.petFriendly ? <p>-pet friendly</p> : <p>-not pet friendly</p>}
+        <div>
+          <h5>
+            {plant.name} ${plant.price}
+          </h5>
+          <img src={plant.imageUrl} />
+          <p>{plant.description}</p>
+          <p>This plant is:</p>
+          <p>-{plant.light}</p>
+        </div>
+        {user.isAdmin && (
+          <Link to={`/plants/${plant.id}/update`}>Update Plant</Link>
+        )}
       </div>
     )
   }
@@ -29,7 +34,8 @@ export class SinglePlant extends React.Component {
 
 const mapState = state => {
   return {
-    plant: state.singlePlant
+    plant: state.singlePlant,
+    user: state.user
   }
 }
 

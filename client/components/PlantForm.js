@@ -1,13 +1,5 @@
 import React from 'react'
-import {
-  Columns,
-  Button,
-  Section,
-  Icon,
-  Box,
-  Heading
-} from 'react-bulma-components'
-import {Form} from 'react-bulma-components'
+import {Columns, Button, Section, Heading, Form} from 'react-bulma-components'
 
 const PlantForm = props => {
   return (
@@ -43,7 +35,18 @@ const PlantForm = props => {
                 />
               </Form.Control>
             </Form.Field>
-
+            <Form.Field>
+              <Form.Label className="form-label">Price</Form.Label>
+              <Form.Control>
+                <Form.Input
+                  placeholder="Price"
+                  type="number"
+                  name="price"
+                  value={props.state.price}
+                  onChange={props.handleChange}
+                />
+              </Form.Control>
+            </Form.Field>
             <Form.Field>
               <Form.Label className="form-label">Description</Form.Label>
               <Form.Control>
@@ -72,7 +75,6 @@ const PlantForm = props => {
               </Form.Select>
               <Form.Control />
             </Form.Field>
-
             <Form.Field>
               <Form.Label className="form-label">Quantity</Form.Label>
               <Form.Control>
