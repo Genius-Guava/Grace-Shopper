@@ -1,18 +1,16 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Heading, Button, Section} from 'react-bulma-components'
+import {Link} from 'react-router-dom'
 
 const Home = ({isLoggedIn, email}) => {
   return (
     <div className="homePage">
-      {isLoggedIn ? (
-        <h2>Welcome back {email}!</h2>
-      ) : (
-        <h2>Welcome to Grace Shopper!</h2>
-      )}
-      <img
-        className="homeImage"
-        src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/plants1-1551895073.png"
-      />
+      <Section align="center">
+        <Button className="home-btn">
+          <Link to="/plants">Shop Now</Link>
+        </Button>
+      </Section>
     </div>
   )
 }

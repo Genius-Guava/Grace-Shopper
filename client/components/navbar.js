@@ -39,7 +39,9 @@ class Navbar extends React.Component {
             Sign Up
           </Link>
           <Link className="navbar-item" to="/cart">
-            Cart
+            <Icon>
+              <i className="fas fa-shopping-bag fa-lg" />
+            </Icon>
           </Link>
         </div>
       )
