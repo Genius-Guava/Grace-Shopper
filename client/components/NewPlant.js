@@ -32,7 +32,7 @@ export class NewPlant extends Component {
 
   render() {
     return (
-      <div className="newPlantContainer">
+      <div>
         <h3>Add a new plant:</h3>
         <PlantForm
           handleSubmit={this.handleSubmit}
