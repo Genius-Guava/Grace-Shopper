@@ -1,11 +1,21 @@
 import React from 'react'
-import {Columns, Button, Section, Icon} from 'react-bulma-components'
+import {
+  Columns,
+  Button,
+  Section,
+  Icon,
+  Box,
+  Heading
+} from 'react-bulma-components'
 import {Form} from 'react-bulma-components'
 
 const PlantForm = props => {
   return (
     <Columns breakpoint="mobile" centered>
       <Columns.Column className="control" size="half">
+        <Section align="center">
+          <Heading>Add New Plant:</Heading>
+        </Section>
         <form onSubmit={props.handleSubmit}>
           <Section>
             <Form.Field size="medium">
@@ -57,8 +67,8 @@ const PlantForm = props => {
                 <option value="selection" hidden>
                   Select
                 </option>
-                <option value="lowlight">Lowlight </option>
-                <option value="brightlight">brightlight</option>
+                <option value="lowlight">Low-light </option>
+                <option value="brightlight">Bright-light</option>
               </Form.Select>
               <Form.Control />
             </Form.Field>

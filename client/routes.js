@@ -10,6 +10,8 @@ import Home from './components/Home'
 import SinglePlant from './components/SinglePlant'
 import SignUp from './components/SignUp'
 import Cart from './components/Cart'
+import Users from './components/Users'
+import {isAdmin} from '../server/api/security'
 
 /**
  * COMPONENT
@@ -26,6 +28,8 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/plants/addplant" component={NewPlant} />
+        <Route path="/users" component={Users} />
+        <Route path="/users" component={Users} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
         <Route path="/home" component={Home} />
@@ -33,13 +37,13 @@ class Routes extends Component {
         <Route exact path="/cart" component={Cart} />
         <AllPlants exact path="/plants" component={AllPlants} />
         <SinglePlant path="/plants/:plantId" component={SinglePlant} />
-        {isLoggedIn && (
+        {isAdmin && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        <Route component={Home} />
       </Switch>
     )
   }

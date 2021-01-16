@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PlantForm from './PlantForm'
 import {addNewPlant} from '../store/plants'
 import {connect} from 'react-redux'
+import {Heading} from 'react-bulma-components'
 
 export class NewPlant extends Component {
   constructor(props) {
@@ -31,14 +32,18 @@ export class NewPlant extends Component {
   }
 
   render() {
+    const {user} = this.props
     return (
-      <div className="newPlantContainer">
-        <h3>Add a new plant:</h3>
-        <PlantForm
-          handleSubmit={this.handleSubmit}
-          handleChange={this.handleChange}
-          state={this.state}
-        />
+      <div>
+        {user.isAdmin ? (
+          <PlantForm
+            handleSubmit={this.handleSubmit}
+            handleChange={this.handleChange}
+            state={this.state}
+          />
+        ) : (
+          <Heading align="center">Admins only!</Heading>
+        )}
       </div>
     )
   }
@@ -46,7 +51,8 @@ export class NewPlant extends Component {
 
 const mapStateToProps = state => {
   return {
-    plants: state.plants
+    plants: state.plants,
+    user: state.user
   }
 }
 
