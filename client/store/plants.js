@@ -61,7 +61,9 @@ const initialState = []
 export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_PLANTS:
-      return action.plants
+      return action.plants.sort(
+        (a, b) => (a.name > b.name ? 1 : a.name < b.name ? -1 : 0)
+      )
     case ADD_PLANT:
       return [...state, action.plant]
     case REMOVE_PLANT:

@@ -23,22 +23,13 @@ router.get('/:plantId', async (req, res, next) => {
 
 router.post('/', isAdmin, async (req, res, next) => {
   try {
-    const {
-      name,
-      imageUrl,
-      price,
-      description,
-      light,
-      petFriendly,
-      quantity
-    } = req.body
+    const {name, imageUrl, price, description, light, quantity} = req.body
     const plant = await Plant.create({
       name,
       imageUrl,
       price,
       description,
       light,
-      petFriendly,
       quantity
     })
     res.json(plant)
@@ -62,15 +53,7 @@ router.delete('/:plantId', isAdmin, async (req, res, next) => {
 
 router.put('/:plantId', isAdmin, async (req, res, next) => {
   try {
-    const {
-      name,
-      imageUrl,
-      price,
-      description,
-      light,
-      petFriendly,
-      quantity
-    } = req.body
+    const {name, imageUrl, price, description, light, quantity} = req.body
     const plant = await Plant.findByPk(req.params.plantId)
     await plant.update({
       name,
@@ -78,7 +61,6 @@ router.put('/:plantId', isAdmin, async (req, res, next) => {
       price,
       description,
       light,
-      petFriendly,
       quantity
     })
     res.json(plant)

@@ -2,16 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {fetchPlants, deletePlant} from '../store/plants'
-import {
-  Media,
-  Box,
-  Image,
-  Columns,
-  Button,
-  Section,
-  Heading,
-  Form
-} from 'react-bulma-components'
+import {Box, Button, Section, Heading} from 'react-bulma-components'
 
 export class AllPlants extends React.Component {
   componentDidMount() {
@@ -24,7 +15,6 @@ export class AllPlants extends React.Component {
       <div>
         <Section>
           <Heading align="center">All Plants:</Heading>
-
           <div id="plant-container">
             {plants.map(plant => {
               return (

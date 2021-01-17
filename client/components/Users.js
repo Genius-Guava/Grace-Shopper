@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchUsers} from '../store/users'
-import {Box, List, Heading} from 'react-bulma-components'
+import {Box, List, Heading, Section} from 'react-bulma-components'
 
 class Users extends React.Component {
   componentDidMount() {
@@ -11,25 +11,31 @@ class Users extends React.Component {
     const {users, user} = this.props
     return (
       <div>
-        {user.isAdmin ? (
-          <div>
-            <Heading align="center">Users:</Heading>
-            <Box>
-              {users.map(mappedUser => {
-                return (
-                  <div key={mappedUser.id}>
-                    <List className="user-list">
-                      <List.Item>UserID: {mappedUser.id}</List.Item>
-                      <List.Item>Email: {mappedUser.email}</List.Item>
-                    </List>
-                  </div>
-                )
-              })}
-            </Box>
-          </div>
-        ) : (
-          <Heading align="center">Admins only!</Heading>
-        )}
+        <Section>
+          {user.isAdmin ? (
+            <div>
+              <Heading align="center">Users:</Heading>
+              <Box>
+                {users.map(mappedUser => {
+                  return (
+                    <div key={mappedUser.id}>
+                      <List className="user-list">
+                        <List.Item>UserID: {mappedUser.id}</List.Item>
+                        <List.Item>Email: {mappedUser.email}</List.Item>
+                        <List.Item>
+                          Admin Status:{' '}
+                          {mappedUser.isAdmin ? 'Admin' : 'Customer'}
+                        </List.Item>
+                      </List>
+                    </div>
+                  )
+                })}
+              </Box>
+            </div>
+          ) : (
+            <Heading align="center">Admins only!</Heading>
+          )}
+        </Section>
       </div>
     )
   }
