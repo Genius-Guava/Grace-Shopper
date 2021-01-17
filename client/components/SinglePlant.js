@@ -3,10 +3,24 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getSinglePlant} from '../store/singlePlant'
+import {Button} from 'react-bulma-components'
+import axios from 'axios'
 
 export class SinglePlant extends React.Component {
+  constructor() {
+    super()
+    this.addToCart = this.addToCart.bind(this)
+  }
   componentDidMount() {
     this.props.getSinglePlant(this.props.computedMatch.params.plantId)
+  }
+
+  async addToCart(id) {
+    try {
+      await axios.put('/api/cart', {id: id})
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   render() {
@@ -22,6 +36,9 @@ export class SinglePlant extends React.Component {
         <p>This plant is:</p>
         <p>-{plant.light}</p>
         {plant.petFriendly ? <p>-pet friendly</p> : <p>-not pet friendly</p>}
+        <Button onClick={() => this.addToCart(plant.id)}>
+          <strong>Add To Cart</strong>
+        </Button>
       </div>
     )
   }
