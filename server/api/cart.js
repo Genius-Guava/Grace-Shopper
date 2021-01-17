@@ -47,8 +47,9 @@ router.put('/', async (req, res, next) => {
         orderId: cart[0].id
       }
     })
+    console.log(item)
     if (item) {
-      const newQuant = item.quantity++
+      const newQuant = item.quantity + 1
       item.update({quantity: newQuant})
     } else {
       await LineItem.create({
@@ -56,7 +57,7 @@ router.put('/', async (req, res, next) => {
         orderId: cart[0].id
       })
     }
-    res.json(req.body)
+    res.json(item)
   } catch (err) {
     next(err)
   }

@@ -1,7 +1,6 @@
 import React from 'react'
 import {fetchCart, removeFromCart} from '../store/cart'
 import {connect} from 'react-redux'
-import axios from 'axios'
 import {Button} from 'react-bulma-components'
 
 class Cart extends React.Component {
