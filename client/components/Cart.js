@@ -1,11 +1,14 @@
 import React from 'react'
-import {fetchCart} from '../store/cart'
+import {fetchCart, removeFromCart} from '../store/cart'
 import {connect} from 'react-redux'
+import axios from 'axios'
+import {Button} from 'react-bulma-components'
 
 class Cart extends React.Component {
   componentDidMount() {
     this.props.fetchCart()
   }
+
   render() {
     const {cart} = this.props
     console.log(cart)
@@ -18,6 +21,9 @@ class Cart extends React.Component {
               <div key={plant.id}>
                 <h3>Item: {plant.name}</h3>
                 <p>Quantity: {plant.lineItem.quantity}</p>
+                <Button onClick={() => this.props.removeFromCart(plant.id)}>
+                  <strong>Remove From Cart</strong>
+                </Button>
               </div>
             )
           })
@@ -37,7 +43,8 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    fetchCart: () => dispatch(fetchCart())
+    fetchCart: () => dispatch(fetchCart()),
+    removeFromCart: id => dispatch(removeFromCart(id))
   }
 }
 

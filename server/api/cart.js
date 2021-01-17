@@ -61,3 +61,27 @@ router.put('/', async (req, res, next) => {
     next(err)
   }
 })
+
+router.delete('/', async (req, res, next) => {
+  try {
+    const cart = await Order.findOne({
+      where: {
+        status: 'In Cart',
+        userId: req.user.id
+      }
+    })
+    console.log(req.body)
+    if (cart) {
+      const deletedItem = await LineItem.findAll({
+        where: {
+          plantId: req.body.plantId,
+          orderId: cart.id
+        }
+      })
+      await deletedItem[0].destroy()
+    }
+    res.json(cart)
+  } catch (err) {
+    next(err)
+  }
+})
