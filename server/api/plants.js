@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Plant} = require('../db/models')
+const {isAdmin} = require('./security')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -20,24 +21,15 @@ router.get('/:plantId', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', isAdmin, async (req, res, next) => {
   try {
-    const {
-      name,
-      imageUrl,
-      price,
-      description,
-      light,
-      petFriendly,
-      quantity
-    } = req.body
+    const {name, imageUrl, price, description, light, quantity} = req.body
     const plant = await Plant.create({
       name,
       imageUrl,
       price,
       description,
       light,
-      petFriendly,
       quantity
     })
     res.json(plant)
@@ -46,7 +38,7 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.delete('/:plantId', async (req, res, next) => {
+router.delete('/:plantId', isAdmin, async (req, res, next) => {
   try {
     await Plant.destroy({
       where: {
@@ -59,17 +51,9 @@ router.delete('/:plantId', async (req, res, next) => {
   }
 })
 
-router.put('/:plantId', async (req, res, next) => {
+router.put('/:plantId', isAdmin, async (req, res, next) => {
   try {
-    const {
-      name,
-      imageUrl,
-      price,
-      description,
-      light,
-      petFriendly,
-      quantity
-    } = req.body
+    const {name, imageUrl, price, description, light, quantity} = req.body
     const plant = await Plant.findByPk(req.params.plantId)
     await plant.update({
       name,
@@ -77,7 +61,6 @@ router.put('/:plantId', async (req, res, next) => {
       price,
       description,
       light,
-      petFriendly,
       quantity
     })
     res.json(plant)

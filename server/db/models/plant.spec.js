@@ -10,13 +10,12 @@ describe('Plant model', () => {
       name: 'Beautiful Tree',
       price: 35,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      light: 'brightlight',
-      petFriendly: true,
+      light: 'Bright',
       quantity: 5
     }
   })
   afterEach(() => db.sync({force: true}))
-  it('has fields name, imageUrl, price, description, light, petFriendly, quantity', async () => {
+  it('has fields name, imageUrl, price, description, light, quantity', async () => {
     plant.notARealAttribute = 'does not compute'
     const savedPlant = await Plant.create(plant)
     expect(savedPlant.name).to.equal('Beautiful Tree')
@@ -24,8 +23,7 @@ describe('Plant model', () => {
     expect(savedPlant.description).to.equal(
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
     )
-    expect(savedPlant.light).to.equal('brightlight')
-    expect(savedPlant.petFriendly).to.equal(true)
+    expect(savedPlant.light).to.equal('Bright')
     expect(savedPlant.quantity).to.equal(5)
     expect(savedPlant.notARealAttribute).to.equal(undefined)
   })
