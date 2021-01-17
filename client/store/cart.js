@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const FETCH_CART = 'FETCH_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
+const CHECKOUT_CART = 'CHECKOUT_CART'
 
 const fetchedCart = cart => {
   return {
@@ -14,6 +15,12 @@ const removedFromCart = plantId => {
   return {
     type: REMOVE_FROM_CART,
     plantId
+  }
+}
+
+const checkedOutCart = () => {
+  return {
+    type: CHECKOUT_CART
   }
 }
 
@@ -39,6 +46,17 @@ export const removeFromCart = plantId => {
   }
 }
 
+export const checkoutCart = cartId => {
+  return async dispatch => {
+    try {
+      await axios.put('/api/cart/checkout', {cartId: cartId})
+      dispatch(checkedOutCart())
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
+
 const initialState = {}
 
 export default (state = initialState, action) => {
@@ -50,6 +68,8 @@ export default (state = initialState, action) => {
         plant => plant.id !== action.plantId
       )
       return {...state, plants: newPlants}
+    case CHECKOUT_CART:
+      return {}
     default:
       return state
   }

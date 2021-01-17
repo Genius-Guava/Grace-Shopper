@@ -63,6 +63,16 @@ router.put('/', async (req, res, next) => {
   }
 })
 
+router.put('/checkout', async (req, res, next) => {
+  try {
+    const cart = await Order.findByPk(req.body.cartId)
+    await cart.update({status: 'Past'})
+    res.json(cart)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.delete('/', async (req, res, next) => {
   try {
     const cart = await Order.findOne({
