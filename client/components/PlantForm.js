@@ -70,8 +70,8 @@ const PlantForm = props => {
                 <option value="selection" hidden>
                   Select
                 </option>
-                <option value="lowlight">Low-light </option>
-                <option value="brightlight">Bright-light</option>
+                <option value="Low to Partial">Low to Partial </option>
+                <option value="Bright">Bright</option>
               </Form.Select>
               <Form.Control />
             </Form.Field>

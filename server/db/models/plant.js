@@ -19,7 +19,7 @@ let Plant = db.define('plant', {
     type: Sequelize.TEXT
   },
   light: {
-    type: Sequelize.ENUM('lowlight', 'brightlight')
+    type: Sequelize.ENUM('Low to Partial', 'Bright')
   },
   quantity: {
     type: Sequelize.INTEGER
