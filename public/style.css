@@ -63,6 +63,14 @@ footer.footer {
   margin-bottom: 0px;
 }
 
+#plant-form {
+  background-image: url('baground-signUp.jpg');
+  background-position: bottom;
+  background-size: 100% 100%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 #navBar {
   background-color: #226f54;
 }
@@ -74,10 +82,28 @@ footer.footer {
   margin: 10px;
 }
 
+.single-plant-text {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.plant-image {
+  width: 200px;
+  height: auto;
+}
+
+.single-plant-container {
+  text-align: center;
+}
+
 .remove-btn {
   margin-top: 5px;
 }
 
 .plant-option a:hover {
   background-color: green;
+}
+
+.light-filter {
+  margin-bottom: 10px;
 }

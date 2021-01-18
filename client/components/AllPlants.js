@@ -5,16 +5,47 @@ import {fetchPlants, deletePlant} from '../store/plants'
 import {Box, Button, Section, Heading} from 'react-bulma-components'
 
 export class AllPlants extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      filter: 'all'
+    }
+    this.handleChange = this.handleChange.bind(this)
+  }
   componentDidMount() {
     this.props.fetchPlants()
   }
 
+  handleChange(event) {
+    this.setState({filter: event.target.value})
+  }
   render() {
-    const {plants, user} = this.props
+    let {plants, user} = this.props
+    if (this.state.filter === 'all') {
+      plants = this.props.plants
+    } else if (this.state.filter === 'bright') {
+      plants = plants.filter(plant => plant.light === 'Bright')
+    } else {
+      plants = plants.filter(plant => plant.light === 'Low to Partial')
+    }
     return (
       <div>
-        <Section>
-          <Heading align="center">All Plants:</Heading>
+        <Section align="center">
+          <Heading>All Plants</Heading>
+          <div className="select is-small light-filter">
+            <select
+              name="light"
+              value={this.state.light}
+              onChange={this.handleChange}
+            >
+              <option value="filter-by" hidden>
+                Filter by:
+              </option>
+              <option value="all">All Plants</option>
+              <option value="low">Low to Partial Light</option>
+              <option value="bright">Bright Light</option>
+            </select>
+          </div>
           <div id="plant-container">
             {plants.map(plant => {
               return (
