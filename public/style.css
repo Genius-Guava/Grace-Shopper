@@ -63,6 +63,14 @@ footer.footer {
   margin-bottom: 0px;
 }
 
+#plant-form {
+  background-image: url('baground-signUp.jpg');
+  background-position: bottom;
+  background-size: 100% 100%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 #navBar {
   background-color: #226f54;
 }

@@ -45,7 +45,7 @@ export class UpdatePlant extends React.Component {
     return (
       <div>
         {this.props.user.isAdmin ? (
-          <Columns breakpoint="mobile" centered>
+          <Columns id="plant-form" breakpoint="mobile" centered>
             <Columns.Column className="control" size="half">
               <Section>
                 <Heading align="center">Update Plant:</Heading>
@@ -54,6 +54,7 @@ export class UpdatePlant extends React.Component {
                     <Form.Label className="form-label">Name</Form.Label>
                     <Form.Control>
                       <Form.Input
+                        size="small"
                         placeholder="Plant Name"
                         type="text"
                         name="name"
@@ -66,6 +67,7 @@ export class UpdatePlant extends React.Component {
                     <Form.Label className="form-label">Image URL</Form.Label>
                     <Form.Control>
                       <Form.Input
+                        size="small"
                         placeholder="Image URL"
                         type="text"
                         name="imageUrl"
@@ -78,6 +80,7 @@ export class UpdatePlant extends React.Component {
                     <Form.Label className="form-label">Price</Form.Label>
                     <Form.Control>
                       <Form.Input
+                        size="small"
                         placeholder="Price"
                         type="number"
                         name="price"
@@ -90,6 +93,7 @@ export class UpdatePlant extends React.Component {
                     <Form.Label className="form-label">Description</Form.Label>
                     <Form.Control>
                       <Form.Input
+                        size="small"
                         placeholder="Plant Description"
                         type="text"
                         name="description"
@@ -104,6 +108,7 @@ export class UpdatePlant extends React.Component {
                       Light Needed:
                     </Form.Label>
                     <Form.Select
+                      size="small"
                       name="light"
                       value={this.state.light}
                       onChange={this.handleChange}
@@ -121,6 +126,7 @@ export class UpdatePlant extends React.Component {
                     <Form.Label className="form-label">Quantity</Form.Label>
                     <Form.Control>
                       <Form.Input
+                        size="small"
                         placeholder="Quantity"
                         type="number"
                         name="quantity"
@@ -129,11 +135,14 @@ export class UpdatePlant extends React.Component {
                       />
                     </Form.Control>
                   </Form.Field>
-                  <Section align="center">
-                    <Button className="submit-button is-focused is-primary">
+                  <div align="center">
+                    <Button
+                      size="small"
+                      className="submit-button is-focused is-primary"
+                    >
                       <strong>Submit</strong>
                     </Button>
-                  </Section>
+                  </div>
                 </form>
               </Section>
             </Columns.Column>

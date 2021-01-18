@@ -3,15 +3,16 @@ import {Columns, Button, Section, Heading, Form} from 'react-bulma-components'
 
 const PlantForm = props => {
   return (
-    <Columns breakpoint="mobile" centered>
+    <Columns id="plant-form" breakpoint="mobile" centered>
       <Columns.Column className="control" size="half">
         <Section>
           <Heading align="center">Add New Plant:</Heading>
           <form onSubmit={props.handleSubmit}>
-            <Form.Field size="medium">
+            <Form.Field size="small">
               <Form.Label className="form-label">Name</Form.Label>
               <Form.Control>
                 <Form.Input
+                  size="small"
                   placeholder="Plant Name"
                   type="text"
                   name="name"
@@ -25,6 +26,7 @@ const PlantForm = props => {
               <Form.Label className="form-label">Image URL</Form.Label>
               <Form.Control>
                 <Form.Input
+                  size="small"
                   placeholder="Image URL"
                   type="text"
                   name="imageUrl"
@@ -37,6 +39,7 @@ const PlantForm = props => {
               <Form.Label className="form-label">Price</Form.Label>
               <Form.Control>
                 <Form.Input
+                  size="small"
                   placeholder="Price"
                   type="number"
                   name="price"
@@ -49,6 +52,7 @@ const PlantForm = props => {
               <Form.Label className="form-label">Description</Form.Label>
               <Form.Control>
                 <Form.Input
+                  size="small"
                   placeholder="Plant Description"
                   type="text"
                   name="description"
@@ -61,6 +65,7 @@ const PlantForm = props => {
             <Form.Field>
               <Form.Label className="form-label">Light Needed:</Form.Label>
               <Form.Select
+                size="small"
                 name="light"
                 value={props.state.light}
                 onChange={props.handleChange}
@@ -77,6 +82,7 @@ const PlantForm = props => {
               <Form.Label className="form-label">Quantity</Form.Label>
               <Form.Control>
                 <Form.Input
+                  size="small"
                   placeholder="Quantity"
                   type="number"
                   name="quantity"
@@ -85,14 +91,15 @@ const PlantForm = props => {
                 />
               </Form.Control>
             </Form.Field>
-            <Section align="center">
+            <div align="center">
               <Button
+                size="small"
                 align="center"
                 className="submit-button is-focused is-primary"
               >
                 <strong>Submit</strong>
               </Button>
-            </Section>
+            </div>
           </form>
         </Section>
       </Columns.Column>
