@@ -13,6 +13,7 @@ import Cart from './components/Cart'
 import Users from './components/Users'
 import {isAdmin} from '../server/api/security'
 import UpdatePlant from './components/UpdatePlant'
+import Checkout from './components/Checkout'
 
 /**
  * COMPONENT
@@ -37,8 +38,9 @@ class Routes extends Component {
         <Route path="/home" component={Home} />
         <Route exact path="/" component={Home} />
         <Route exact path="/cart" component={Cart} />
-        <AllPlants exact path="/plants" component={AllPlants} />
-        <SinglePlant path="/plants/:plantId" component={SinglePlant} />
+        <Route exact path="/plants" component={AllPlants} />
+        <Route path="/plants/:plantId" component={SinglePlant} />
+        <Route path="/cart/checkout" component={Checkout} />
         {isAdmin && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

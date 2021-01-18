@@ -1,6 +1,7 @@
 import React from 'react'
-import {fetchCart, removeFromCart} from '../store/cart'
+import {fetchCart, removeFromCart, checkoutCart} from '../store/cart'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {Button} from 'react-bulma-components'
 
 class Cart extends React.Component {
@@ -10,11 +11,10 @@ class Cart extends React.Component {
 
   render() {
     const {cart} = this.props
-    console.log(cart)
     return (
       <div>
         <h3>Cart: </h3>
-        {cart.plants ? (
+        {cart.plants !== undefined && cart.plants.length ? (
           cart.plants.map(plant => {
             return (
               <div key={plant.id}>
@@ -28,6 +28,15 @@ class Cart extends React.Component {
           })
         ) : (
           <p>Cart is empty</p>
+        )}
+        {cart.plants !== undefined && cart.plants.length ? (
+          <Button>
+            <Link to="/cart/checkout">
+              <strong>To Checkout</strong>
+            </Link>
+          </Button>
+        ) : (
+          <p />
         )}
       </div>
     )
@@ -43,7 +52,8 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     fetchCart: () => dispatch(fetchCart()),
-    removeFromCart: id => dispatch(removeFromCart(id))
+    removeFromCart: id => dispatch(removeFromCart(id)),
+    checkoutCart: cartId => dispatch(checkoutCart(cartId))
   }
 }
 
