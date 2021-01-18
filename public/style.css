@@ -95,3 +95,7 @@ footer.footer {
 .plant-option a:hover {
   background-color: green;
 }
+
+.light-filter {
+  margin-bottom: 10px;
+}
