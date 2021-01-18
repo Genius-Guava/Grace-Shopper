@@ -1,10 +1,9 @@
 import {render} from 'enzyme'
 import React from 'react'
 import {connect} from 'react-redux'
-import {getSinglePlant} from '../store/singlePlant'
-import UpdatePlant from './UpdatePlant'
 import {Link} from 'react-router-dom'
 import {Button, Box, Heading, Section} from 'react-bulma-components'
+import {getSinglePlant} from '../store/singlePlant'
 import axios from 'axios'
 
 export class SinglePlant extends React.Component {
@@ -13,7 +12,7 @@ export class SinglePlant extends React.Component {
     this.addToCart = this.addToCart.bind(this)
   }
   componentDidMount() {
-    this.props.getSinglePlant(this.props.computedMatch.params.plantId)
+    this.props.getSinglePlant(this.props.match.params.plantId)
   }
 
   async addToCart(id) {
@@ -25,7 +24,7 @@ export class SinglePlant extends React.Component {
   }
 
   render() {
-    const {plant, user} = this.props
+    const {plant} = this.props
 
     return (
       <Section className="columns is-centered">
@@ -59,8 +58,7 @@ export class SinglePlant extends React.Component {
 
 const mapState = state => {
   return {
-    plant: state.singlePlant,
-    user: state.user
+    plant: state.singlePlant
   }
 }
 

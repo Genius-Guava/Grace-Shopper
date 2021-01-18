@@ -47,7 +47,7 @@ router.put('/', async (req, res, next) => {
         orderId: cart[0].id
       }
     })
-    console.log(item)
+
     if (item) {
       const newQuant = item.quantity + 1
       item.update({quantity: newQuant})
@@ -58,6 +58,16 @@ router.put('/', async (req, res, next) => {
       })
     }
     res.json(item)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.put('/checkout', async (req, res, next) => {
+  try {
+    const cart = await Order.findByPk(req.body.cartId)
+    await cart.update({status: 'Past'})
+    res.json(cart)
   } catch (err) {
     next(err)
   }
