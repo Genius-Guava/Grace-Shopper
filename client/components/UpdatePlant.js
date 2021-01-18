@@ -47,11 +47,9 @@ export class UpdatePlant extends React.Component {
         {this.props.user.isAdmin ? (
           <Columns breakpoint="mobile" centered>
             <Columns.Column className="control" size="half">
-              <Section align="center">
-                <Heading>Update Plant:</Heading>
-              </Section>
-              <form onSubmit={this.handleSubmit}>
-                <Section>
+              <Section>
+                <Heading align="center">Update Plant:</Heading>
+                <form onSubmit={this.handleSubmit}>
                   <Form.Field size="medium">
                     <Form.Label className="form-label">Name</Form.Label>
                     <Form.Control>
@@ -131,13 +129,13 @@ export class UpdatePlant extends React.Component {
                       />
                     </Form.Control>
                   </Form.Field>
-                </Section>
-                <Section align="center">
-                  <Button className="submit-button is-focused is-primary">
-                    <strong>Submit</strong>
-                  </Button>
-                </Section>
-              </form>
+                  <Section align="center">
+                    <Button className="submit-button is-focused is-primary">
+                      <strong>Submit</strong>
+                    </Button>
+                  </Section>
+                </form>
+              </Section>
             </Columns.Column>
           </Columns>
         ) : (

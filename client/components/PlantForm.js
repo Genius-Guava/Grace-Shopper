@@ -5,11 +5,9 @@ const PlantForm = props => {
   return (
     <Columns breakpoint="mobile" centered>
       <Columns.Column className="control" size="half">
-        <Section align="center">
-          <Heading>Add New Plant:</Heading>
-        </Section>
-        <form onSubmit={props.handleSubmit}>
-          <Section>
+        <Section>
+          <Heading align="center">Add New Plant:</Heading>
+          <form onSubmit={props.handleSubmit}>
             <Form.Field size="medium">
               <Form.Label className="form-label">Name</Form.Label>
               <Form.Control>
@@ -87,13 +85,16 @@ const PlantForm = props => {
                 />
               </Form.Control>
             </Form.Field>
-          </Section>
-          <Section align="center">
-            <Button className="submit-button is-focused is-primary">
-              <strong>Submit</strong>
-            </Button>
-          </Section>
-        </form>
+            <Section align="center">
+              <Button
+                align="center"
+                className="submit-button is-focused is-primary"
+              >
+                <strong>Submit</strong>
+              </Button>
+            </Section>
+          </form>
+        </Section>
       </Columns.Column>
     </Columns>
   )

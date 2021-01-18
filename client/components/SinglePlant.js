@@ -34,11 +34,11 @@ export class SinglePlant extends React.Component {
             <Heading align="center">{plant.name}</Heading>
             <img className="plant-image" src={plant.imageUrl} />
             <br />
-            <br />
-            <b>${plant.price}</b>
-            <p>{plant.description}</p>
-            {/* <br></br> */}
-            <p className="light">
+            <b>
+              <p className="single-plant-text">${plant.price}</p>
+            </b>
+            <p className="single-plant-text">{plant.description}</p>
+            <p className="light single-plant-text">
               <b>Light:</b> {plant.light} <i className="far fa-sun" />
             </p>
             <Button size="small" onClick={() => this.addToCart(plant.id)}>
@@ -47,7 +47,7 @@ export class SinglePlant extends React.Component {
           </div>
           <br />
           {user.isAdmin && (
-            <Button size="small">
+            <Button size="small is-warning">
               <Link to={`/plants/${plant.id}/update`}>Update Plant</Link>
             </Button>
           )}

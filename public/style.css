@@ -73,10 +73,12 @@ footer.footer {
 .single-plant-box {
   margin: 10px;
 }
-.light {
-  margin-top: 10px;
-  margin-bottom: 10px;
+
+.single-plant-text {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
+
 .plant-image {
   width: 200px;
   height: auto;
