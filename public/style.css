@@ -73,6 +73,18 @@ footer.footer {
 .single-plant-box {
   margin: 10px;
 }
+.light {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.plant-image {
+  width: 200px;
+  height: auto;
+}
+
+.single-plant-container {
+  text-align: center;
+}
 
 .remove-btn {
   margin-top: 5px;

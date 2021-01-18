@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {getSinglePlant} from '../store/singlePlant'
 import UpdatePlant from './UpdatePlant'
 import {Link} from 'react-router-dom'
-import {Button} from 'react-bulma-components'
+import {Button, Box, Heading, Section} from 'react-bulma-components'
 import axios from 'axios'
 
 export class SinglePlant extends React.Component {
@@ -28,24 +28,31 @@ export class SinglePlant extends React.Component {
     const {plant, user} = this.props
 
     return (
-      <div>
-
-        <div>
-          <h5>
-            {plant.name} ${plant.price}
-          </h5>
-          <img src={plant.imageUrl} />
-          <p>{plant.description}</p>
-          <p>This plant is:</p>
-          <p>-{plant.light}</p>
-        </div>
-        {user.isAdmin && (
-          <Link to={`/plants/${plant.id}/update`}>Update Plant</Link>
-        )}
-        <Button onClick={() => this.addToCart(plant.id)}>
-          <strong>Add To Cart</strong>
-        </Button>
-      </div>
+      <Section className="columns is-centered">
+        <Box className="column is-half single-plant-container is-centered">
+          <div>
+            <Heading align="center">{plant.name}</Heading>
+            <img className="plant-image" src={plant.imageUrl} />
+            <br />
+            <br />
+            <b>${plant.price}</b>
+            <p>{plant.description}</p>
+            {/* <br></br> */}
+            <p className="light">
+              <b>Light:</b> {plant.light} <i className="far fa-sun" />
+            </p>
+            <Button size="small" onClick={() => this.addToCart(plant.id)}>
+              <strong>Add To Cart</strong>
+            </Button>
+          </div>
+          <br />
+          {user.isAdmin && (
+            <Button size="small">
+              <Link to={`/plants/${plant.id}/update`}>Update Plant</Link>
+            </Button>
+          )}
+        </Box>
+      </Section>
     )
   }
 }
