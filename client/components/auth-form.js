@@ -1,9 +1,17 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {auth} from '../store'
-import {Columns, Button, Section, Icon} from 'react-bulma-components'
-import {Form} from 'react-bulma-components'
+import {login} from '../store'
+import {
+  Columns,
+  Button,
+  Section,
+  Icon,
+  Content,
+  Heading,
+  Form
+} from 'react-bulma-components'
+import {formReset} from '../store/form'
 /**
  * COMPONENT
  */
@@ -14,18 +22,20 @@ class AuthForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.onChange = this.onChange.bind(this)
     this.state = {
-      name: '',
       email: '',
       password: ''
     }
   }
+
+  componentDidMount() {
+    this.props.formReset()
+  }
+
   handleSubmit(evt) {
     evt.preventDefault()
-    const formName = evt.target.name
-    const email = evt.target.email.value
-    const password = evt.target.password.value
-    this.props.auth(email, password, formName)
+    this.props.login(this.state.email, this.state.password)
   }
+
   onChange(event) {
     const state = {...this.state}
     state[event.target.name] = event.target.value
@@ -33,24 +43,13 @@ class AuthForm extends React.Component {
   }
 
   render() {
-    const {name, displayName, handleSubmit, error} = this.props
+    const {form} = this.props
     return (
       <Columns id="logIn" breakpoint="mobile" centered>
         <Columns.Column className="control" size="half">
           <form onSubmit={this.handleSubmit}>
-            <Section>
-              <Form.Field size="medium">
-                <Form.Label className="form-label">Name</Form.Label>
-                <Form.Control>
-                  <Form.Input
-                    placeholder="Username"
-                    name="name"
-                    type="text"
-                    onChange={this.onChange}
-                    value={this.state.name}
-                  />
-                </Form.Control>
-              </Form.Field>
+            <Section className="pageBox">
+              <Heading className="headerLoginSignUp"> Sign in</Heading>
 
               <Form.Field>
                 <Form.Label className="form-label">Email</Form.Label>
@@ -61,34 +60,54 @@ class AuthForm extends React.Component {
                     type="text"
                     onChange={this.onChange}
                     value={this.state.email}
+                    color={form.errors.email && 'danger'}
                   />
                   <Icon align="left">
                     <i className="fas fa-envelope" />
                   </Icon>
                 </Form.Control>
+                <Form.Help color="danger">{form.errors.email}</Form.Help>
               </Form.Field>
 
               <Form.Field>
                 <Form.Label className="form-label">Password</Form.Label>
-                <Form.Control>
+                <Form.Control iconLeft>
                   <Form.Input
                     placeholder="Please enter your Password"
                     name="password"
                     type="password"
                     onChange={this.onChange}
                     value={this.state.password}
+                    color={form.errors.password && 'danger'}
                   />
+                  <Icon align="left">
+                    <i className="fas fa-lock" />
+                  </Icon>
                 </Form.Control>
+                <Form.Help color="danger">{form.errors.password}</Form.Help>
               </Form.Field>
+
+              <Content className="formButtons">
+                <Form.Field kind="group" align="right">
+                  <Form.Control>
+                    <a
+                      className="button button is-warning is-focused is-primary"
+                      href="/auth/google"
+                    >
+                      Login with Google
+                    </a>
+                  </Form.Control>
+                  <Form.Control>
+                    <Button className="submit-button is-focused is-primary">
+                      <strong>Submit</strong>
+                    </Button>
+                  </Form.Control>
+                </Form.Field>
+
+                <Form.Help color="danger">{form.errors.other}</Form.Help>
+              </Content>
             </Section>
-            <Section align="right">
-              <Button className="submit-button is-focused is-primary">
-                <strong>Submit</strong>
-              </Button>
-            </Section>
-            {error && error.response && <div> {error.response.data} </div>}
           </form>
-          <a href="/auth/google">{displayName} with Google</a>
         </Columns.Column>
       </Columns>
     )
@@ -103,16 +122,14 @@ class AuthForm extends React.Component {
  */
 const mapLogin = state => {
   return {
-    name: 'login',
-    displayName: 'Login',
-    error: state.user.error
+    form: state.form
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    auth: (email, password, formName) =>
-      dispatch(auth(email, password, formName))
+    login: (email, password) => dispatch(login(email, password)),
+    formReset: () => dispatch(formReset())
   }
 }
 
@@ -122,8 +139,6 @@ export const Login = connect(mapLogin, mapDispatch)(AuthForm)
  * PROP TYPES
  */
 AuthForm.propTypes = {
-  name: PropTypes.string.isRequired,
-  displayName: PropTypes.string.isRequired,
-  auth: PropTypes.func.isRequired,
-  error: PropTypes.object
+  login: PropTypes.func.isRequired,
+  form: PropTypes.object
 }

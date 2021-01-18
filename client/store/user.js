@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+import {formErrors, formSuccess} from './form'
 
 /**
  * ACTION TYPES
@@ -30,16 +31,44 @@ export const me = () => async dispatch => {
   }
 }
 
-export const auth = (email, password, method) => async dispatch => {
+export const login = (email, password) => async dispatch => {
   let res
   try {
-    res = await axios.post(`/auth/${method}`, {email, password})
+    res = await axios.post(`/auth/login`, {email, password})
   } catch (authError) {
-    return dispatch(getUser({error: authError}))
+    return dispatch(formErrors(authError.response.data))
   }
 
   try {
     dispatch(getUser(res.data))
+    dispatch(formSuccess())
+    history.push('/home')
+  } catch (dispatchOrHistoryErr) {
+    console.error(dispatchOrHistoryErr)
+  }
+}
+
+export const signUp = (
+  firstName,
+  lastName,
+  email,
+  password
+) => async dispatch => {
+  let res
+  try {
+    res = await axios.post(`/auth/signup`, {
+      firstName,
+      lastName,
+      email,
+      password
+    })
+  } catch (authError) {
+    return dispatch(formErrors(authError.response.data))
+  }
+
+  try {
+    dispatch(getUser(res.data))
+    dispatch(formSuccess())
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
@@ -65,6 +94,7 @@ export default function(state = defaultUser, action) {
       return action.user
     case REMOVE_USER:
       return defaultUser
+
     default:
       return state
   }
