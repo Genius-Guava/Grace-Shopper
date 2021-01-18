@@ -69,7 +69,7 @@ export default (state = initialState, action) => {
       )
       return {...state, plants: newPlants}
     case CHECKOUT_CART:
-      return {}
+      return {...state, status: 'Past'}
     default:
       return state
   }

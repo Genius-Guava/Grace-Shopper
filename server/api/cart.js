@@ -47,7 +47,7 @@ router.put('/', async (req, res, next) => {
         orderId: cart[0].id
       }
     })
-    console.log(item)
+
     if (item) {
       const newQuant = item.quantity + 1
       item.update({quantity: newQuant})

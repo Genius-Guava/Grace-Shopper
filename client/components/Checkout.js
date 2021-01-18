@@ -1,13 +1,28 @@
 import React from 'react'
 import {checkoutCart} from '../store/cart'
 import {connect} from 'react-redux'
+import {Button} from 'react-bulma-components'
 
-class Cart extends React.Component {
+class Checkout extends React.Component {
   render() {
     const {cart} = this.props
+
     return (
       <div>
-        <h3>You have successfully checked out!</h3>
+        {cart.status === 'In Cart' ? (
+          <div>
+            <h3>Would you like to checkout?</h3>
+            <Button
+              onClick={() => {
+                this.props.checkoutCart(cart.id)
+              }}
+            >
+              <strong>Confirm Checkout</strong>
+            </Button>
+          </div>
+        ) : (
+          <h3>You've successfully checked out!</h3>
+        )}
       </div>
     )
   }
@@ -25,4 +40,4 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Cart)
+export default connect(mapState, mapDispatch)(Checkout)
