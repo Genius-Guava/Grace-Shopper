@@ -21,11 +21,8 @@ class Navbar extends React.Component {
           <a className="navbar-item" href="#" onClick={handleClick}>
             Logout
           </a>
-          <Link className="navbar-item" to="/signup">
-            Sign Up
-          </Link>
           <Link className="navbar-item" to="/cart">
-            Cart
+            <i className="fas fa-shopping-bag fa-lg" />
           </Link>
         </div>
       )
