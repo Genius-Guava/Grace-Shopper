@@ -24,7 +24,7 @@ export class SinglePlant extends React.Component {
   }
 
   render() {
-    const {plant} = this.props
+    const {plant, user} = this.props
 
     return (
       <Section className="columns is-centered">
@@ -58,7 +58,8 @@ export class SinglePlant extends React.Component {
 
 const mapState = state => {
   return {
-    plant: state.singlePlant
+    plant: state.singlePlant,
+    user: state.user
   }
 }
 
