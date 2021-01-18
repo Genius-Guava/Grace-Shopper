@@ -84,6 +84,14 @@ footer.footer {
   box-shadow: 5px 5px 15px 5px #b1b1b146;
 }
 
+#plant-form {
+  background-image: url('baground-signUp.jpg');
+  background-position: bottom;
+  background-size: 100% 100%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 #navBar {
   background-color: #226f54;
 }
@@ -93,6 +101,20 @@ footer.footer {
 
 .single-plant-box {
   margin: 10px;
+}
+
+.single-plant-text {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.plant-image {
+  width: 200px;
+  height: auto;
+}
+
+.single-plant-container {
+  text-align: center;
 }
 
 .remove-btn {
@@ -111,4 +133,7 @@ h1.headerLoginSignUp {
   color: rgb(133, 133, 133);
   text-align: center;
   font-family: 'Noto Serif JP', serif;
+  
+.light-filter {
+  margin-bottom: 10px;
 }

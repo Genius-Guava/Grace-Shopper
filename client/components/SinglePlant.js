@@ -1,10 +1,9 @@
 import {render} from 'enzyme'
 import React from 'react'
 import {connect} from 'react-redux'
-import {getSinglePlant} from '../store/singlePlant'
-import UpdatePlant from './UpdatePlant'
 import {Link} from 'react-router-dom'
-import {Button} from 'react-bulma-components'
+import {Button, Box, Heading, Section} from 'react-bulma-components'
+import {getSinglePlant} from '../store/singlePlant'
 import axios from 'axios'
 
 export class SinglePlant extends React.Component {
@@ -13,7 +12,7 @@ export class SinglePlant extends React.Component {
     this.addToCart = this.addToCart.bind(this)
   }
   componentDidMount() {
-    this.props.getSinglePlant(this.props.computedMatch.params.plantId)
+    this.props.getSinglePlant(this.props.match.params.plantId)
   }
 
   async addToCart(id) {
@@ -28,24 +27,31 @@ export class SinglePlant extends React.Component {
     const {plant, user} = this.props
 
     return (
-      <div>
-
-        <div>
-          <h5>
-            {plant.name} ${plant.price}
-          </h5>
-          <img src={plant.imageUrl} />
-          <p>{plant.description}</p>
-          <p>This plant is:</p>
-          <p>-{plant.light}</p>
-        </div>
-        {user.isAdmin && (
-          <Link to={`/plants/${plant.id}/update`}>Update Plant</Link>
-        )}
-        <Button onClick={() => this.addToCart(plant.id)}>
-          <strong>Add To Cart</strong>
-        </Button>
-      </div>
+      <Section className="columns is-centered">
+        <Box className="column is-half single-plant-container is-centered">
+          <div>
+            <Heading align="center">{plant.name}</Heading>
+            <img className="plant-image" src={plant.imageUrl} />
+            <br />
+            <b>
+              <p className="single-plant-text">${plant.price}</p>
+            </b>
+            <p className="single-plant-text">{plant.description}</p>
+            <p className="light single-plant-text">
+              <b>Light:</b> {plant.light} <i className="far fa-sun" />
+            </p>
+            <Button size="small" onClick={() => this.addToCart(plant.id)}>
+              <strong>Add To Cart</strong>
+            </Button>
+          </div>
+          <br />
+          {user.isAdmin && (
+            <Button size="small is-warning">
+              <Link to={`/plants/${plant.id}/update`}>Update Plant</Link>
+            </Button>
+          )}
+        </Box>
+      </Section>
     )
   }
 }
