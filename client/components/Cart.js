@@ -2,7 +2,7 @@ import React from 'react'
 import {fetchCart, removeFromCart, checkoutCart} from '../store/cart'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {Button} from 'react-bulma-components'
+import {Tile, Button, Heading, Box} from 'react-bulma-components'
 
 class Cart extends React.Component {
   componentDidMount() {
@@ -12,22 +12,37 @@ class Cart extends React.Component {
   render() {
     const {cart} = this.props
     return (
-      <div>
-        <h3>Cart: </h3>
+      <div className="cart-container">
         {cart.plants !== undefined && cart.plants.length ? (
           cart.plants.map(plant => {
             return (
               <div key={plant.id}>
-                <h3>Item: {plant.name}</h3>
-                <p>Quantity: {plant.lineItem.quantity}</p>
-                <Button onClick={() => this.props.removeFromCart(plant.id)}>
-                  <strong>Remove From Cart</strong>
-                </Button>
+                <Tile kind="parent">
+                  <Tile
+                    renderAs="article"
+                    kind="child"
+                    notification
+                    color="warning"
+                  >
+                    <Heading>{plant.name}</Heading>
+                    <img className="plant-image" src={plant.imageUrl} />
+                    <Heading subtitle>
+                      Quantity: {plant.lineItem.quantity}
+                    </Heading>
+                    <div className="content">
+                      <Button
+                        onClick={() => this.props.removeFromCart(plant.id)}
+                      >
+                        <strong>Remove From Cart</strong>
+                      </Button>
+                    </div>
+                  </Tile>
+                </Tile>
               </div>
             )
           })
         ) : (
-          <p>Cart is empty</p>
+          <Heading>Cart is empty</Heading>
         )}
         {cart.plants !== undefined && cart.plants.length ? (
           <Button>
