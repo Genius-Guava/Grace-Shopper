@@ -56,7 +56,7 @@ class SignUp extends React.Component {
       <Columns id="signUp" breakpoint="mobile" centered>
         <Columns.Column className="control" size="half">
           <form onSubmit={this.handleSubmit}>
-            <Section>
+            <Section className="pageBox">
               <Heading className="headerLoginSignUp">Create an account</Heading>
 
               <Form.Field size="medium">
@@ -124,6 +124,12 @@ class SignUp extends React.Component {
                 </Form.Control>
                 <Form.Help color="danger">{form.errors.password}</Form.Help>
               </Form.Field>
+              {/*
+              <label class="checkbox">
+                <input type="checkbox">I agree to the <a href="#">terms and conditions</a>
+                </label>
+
+                */}
 
               <Content className="formButtons">
                 <Form.Field kind="group" align="right">

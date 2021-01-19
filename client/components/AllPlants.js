@@ -31,7 +31,7 @@ export class AllPlants extends React.Component {
     return (
       <div>
         <Section align="center">
-          <Heading>All Plants</Heading>
+          <Heading className="all-plants-heading">All Plants:</Heading>
           <div className="select is-small light-filter">
             <select
               name="light"
