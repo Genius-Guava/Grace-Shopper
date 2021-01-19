@@ -12,7 +12,7 @@ body {
 } */
 
 .homePage {
-  background-image: url('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/plants1-1551895073.png');
+  background-image: url('https://img.freepik.com/free-psd/tropical-foliage-background_53876-91352.jpg?size=626&ext=jpg&ga=GA1.2.1173566506.1610841600');
   width: 100%;
   min-height: 550px;
   background-position: center;
@@ -21,7 +21,7 @@ body {
   color: white;
 }
 .home-btn {
-  margin-top: 125px;
+  margin-top: 75px;
 }
 
 .plant-form {
@@ -163,9 +163,10 @@ h1.all-plants-heading {
 .appName {
   font-family: 'Pacifico', cursive;
   /* z-index:; */
-  color: #226f54;
+  color: rgba(218, 196, 109, 0.728);
   font-size: 7rem;
-  text-shadow: -1px -1px 0 rgb(255, 255, 255), 1px -1px 0 rgb(255, 255, 255),
-    -1px 1px 0 rgb(255, 255, 255), 1px 1px 0 rgb(255, 255, 255);
-  margin-top: 25px;
+
+  /* text-shadow: -2px -2px 0 rgba(215, 191, 113, 0.878), 2px -2px 0 rgba(215, 191, 113, 0.878),
+    -2px 2px 0 rgba(215, 191, 113, 0.878), 2px 2px 0 rgba(215, 191, 113, 0.878); */
+  margin-top: 75px;
 }
