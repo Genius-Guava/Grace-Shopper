@@ -14,6 +14,7 @@ import Users from './components/Users'
 import {isAdmin} from '../server/api/security'
 import UpdatePlant from './components/UpdatePlant'
 import Checkout from './components/Checkout'
+import UserProfile from './components/userProfile'
 
 /**
  * COMPONENT
@@ -41,6 +42,7 @@ class Routes extends Component {
         <Route exact path="/plants" component={AllPlants} />
         <Route path="/plants/:plantId" component={SinglePlant} />
         <Route path="/cart/checkout" component={Checkout} />
+        <Route path="/editprofile" component={UserProfile} />
         {isAdmin && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
