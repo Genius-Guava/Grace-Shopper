@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 body {
   font-family: sans-serif;
@@ -13,14 +14,14 @@ body {
 .homePage {
   background-image: url('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/plants1-1551895073.png');
   width: 100%;
-  height: 550px;
+  min-height: 550px;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
   color: white;
 }
 .home-btn {
-  margin-top: 385px;
+  margin-top: 125px;
 }
 
 .plant-form {
@@ -61,6 +62,7 @@ footer.footer {
 #signUp {
   background-image: url('baground-signUp.jpg');
   background-position: bottom;
+  background-repeat: no-repeat;
   background-size: 100%;
   margin-top: 0px;
   margin-bottom: 0px;
@@ -86,6 +88,14 @@ footer.footer {
 
 #plant-form {
   background-image: url('baground-signUp.jpg');
+  background-position: bottom;
+  background-size: 100% 100%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#update-plant-form {
+  background-image: url('logInBackgroun1.jpeg');
   background-position: bottom;
   background-size: 100% 100%;
   margin-top: 0px;
@@ -130,10 +140,32 @@ footer.footer {
 }
 
 h1.headerLoginSignUp {
-  color: rgb(133, 133, 133);
+  color: #226f54;
   text-align: center;
-  font-family: 'Noto Serif JP', serif;
-  
+  font-family: 'Pacifico', cursive;
+}
+
+h1.plant-form-heading {
+  color: #226f54;
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+}
+h1.all-plants-heading {
+  color: #226f54;
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+}
+
 .light-filter {
   margin-bottom: 10px;
+}
+
+.appName {
+  font-family: 'Pacifico', cursive;
+  /* z-index:; */
+  color: #226f54;
+  font-size: 7rem;
+  text-shadow: -1px -1px 0 rgb(255, 255, 255), 1px -1px 0 rgb(255, 255, 255),
+    -1px 1px 0 rgb(255, 255, 255), 1px 1px 0 rgb(255, 255, 255);
+  margin-top: 25px;
 }

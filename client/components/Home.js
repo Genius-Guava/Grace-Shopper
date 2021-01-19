@@ -1,12 +1,15 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Button, Section} from 'react-bulma-components'
+import {Button, Section, Heading} from 'react-bulma-components'
 import {Link} from 'react-router-dom'
 
 const Home = ({isLoggedIn, email}) => {
   return (
     <div className="homePage">
       <Section align="center">
+        <h1 align="center" className="appName">
+          Leafly
+        </h1>
         <Button className="home-btn" size="small">
           <Link to="/plants">Shop Now</Link>
         </Button>
