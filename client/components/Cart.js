@@ -9,19 +9,61 @@ import {
   Media,
   Section,
   Content,
-  Image
+  Image,
+  Form,
+  Columns,
+  Icon,
+  Container,
+  Notification
 } from 'react-bulma-components'
 
 class Cart extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      promocode: '',
+      total:
+        this.props.cart.plants &&
+        this.props.cart.plants.reduce((acc, plant) => {
+          acc += plant.price * plant.lineItem.quantity
+          return acc
+        }, 0)
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handlePromo = this.handlePromo.bind(this)
+  }
   componentDidMount() {
     this.props.fetchCart()
   }
+  handleChange(evt) {
+    this.setState({
+      promocode: evt.target.value
+    })
+  }
+  handleSubmit(evt) {
+    evt.preventDefault()
+    if (this.state.promocode === 'GH2011') {
+      this.handlePromo()
+    }
+  }
+  handlePromo() {
+    this.setState({
+      total:
+        this.props.cart.plants &&
+        this.props.cart.plants.reduce((acc, plant) => {
+          acc += plant.price * plant.lineItem.quantity
+          return acc
+        }, 0) / 2
+    })
+  }
 
   render() {
+    
     let {cart, isLoggedIn} = this.props
     if (!isLoggedIn) cart = JSON.parse(localStorage.getItem('cart'))
     console.log(cart)
-    const total =
+    let total =
       cart.plants &&
       cart.plants.reduce((acc, plant) => {
         acc += plant.price * plant.lineItem.quantity
@@ -88,6 +130,7 @@ class Cart extends React.Component {
 
                           <div className="content">
                             <Button
+                              className="button is-danger is-outlined"
                               size="small"
                               onClick={() =>
                                 this.props.removeFromCart(plant.id)
@@ -104,14 +147,54 @@ class Cart extends React.Component {
               )
             })
           ) : (
-            <Heading className="empty-cart">Cart is empty!</Heading>
+            <div>
+              <br />
+              <Section>
+                <Icon>
+                  <i id="cartIcon" className="fas fa-shopping-cart fa-9x" />
+                </Icon>
+              </Section>
+              <Section>
+                <Container>
+                  <Notification color="warning">
+                    <Heading id="cartTxt" className="empty-cart">
+                      Cart is empty!
+                    </Heading>
+                  </Notification>
+                </Container>
+              </Section>
+            </div>
           )}
           {cart.plants !== undefined && cart.plants.length ? (
-            <div>
+            <div className="is-one-third is-centered">
+              <Columns.Column className="control">
+                <form align="center" onSubmit={this.handleSubmit}>
+                  <Form.Label className="form-label">Promo:</Form.Label>
+                  <Form.Field size="medium" className="promo">
+                    <Form.Control>
+                      <Form.Input
+                        size="small"
+                        placeholder="Enter promo-code"
+                        type="text"
+                        name="name"
+                        value={this.state.promocode}
+                        onChange={this.handleChange}
+                      />
+                    </Form.Control>
+                  </Form.Field>
+                  <Button className="cart-submit-button is-success is-outlined is-small">
+                    <strong>Submit</strong>
+                  </Button>
+                </form>
+              </Columns.Column>
               <p>
-                <strong>Cart Total: </strong>${total}.00
+                <strong>Cart Total: </strong> $
+                {(this.state.total > 0 ? this.state.total : total).toFixed(2)}
               </p>
-              <Button size="small">
+              <Button
+                size="small"
+                className="button is-info is-outlined checkout-btn"
+              >
                 <Link to="/cart/checkout">
                   <strong>To Checkout</strong>
                 </Link>

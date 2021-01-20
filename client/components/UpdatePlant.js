@@ -40,6 +40,7 @@ export class UpdatePlant extends React.Component {
   handleSubmit(evt) {
     evt.preventDefault()
     this.props.updatePlant(this.props.plant.id, this.state)
+    this.props.history.push(`/plants/${this.props.plant.id}`)
   }
   render() {
     return (
