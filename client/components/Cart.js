@@ -1,5 +1,6 @@
 import React from 'react'
 import {fetchCart, removeFromCart, checkoutCart} from '../store/cart'
+import {fetchLocal, removeFromLocal} from '../store/localCart'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {
@@ -15,12 +16,11 @@ import {
 class Cart extends React.Component {
   componentDidMount() {
     this.props.fetchCart()
+    this.props.fetchLocal()
   }
 
   render() {
-    let {cart, isLoggedIn} = this.props
-    if (!isLoggedIn) cart = JSON.parse(localStorage.getItem('cart'))
-    console.log(cart)
+    let {cart, isLoggedIn, localCart} = this.props
     const total =
       cart.plants &&
       cart.plants.reduce((acc, plant) => {
@@ -87,14 +87,25 @@ class Cart extends React.Component {
                           </p>
 
                           <div className="content">
-                            <Button
-                              size="small"
-                              onClick={() =>
-                                this.props.removeFromCart(plant.id)
-                              }
-                            >
-                              <strong>Remove From Cart</strong>
-                            </Button>
+                            {isLoggedIn ? (
+                              <Button
+                                size="small"
+                                onClick={() =>
+                                  this.props.removeFromCart(plant.id)
+                                }
+                              >
+                                <strong>Remove From Cart</strong>
+                              </Button>
+                            ) : (
+                              <Button
+                                size="small"
+                                onClick={() =>
+                                  this.props.removeFromLocal(plant.id)
+                                }
+                              >
+                                <strong>Remove From Cart</strong>
+                              </Button>
+                            )}
                           </div>
                         </Content>
                       </Media.Item>
@@ -129,7 +140,8 @@ class Cart extends React.Component {
 const mapState = state => {
   return {
     cart: state.cart,
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    localCart: state.localCart
   }
 }
 
@@ -137,7 +149,9 @@ const mapDispatch = dispatch => {
   return {
     fetchCart: () => dispatch(fetchCart()),
     removeFromCart: id => dispatch(removeFromCart(id)),
-    checkoutCart: cartId => dispatch(checkoutCart(cartId))
+    checkoutCart: cartId => dispatch(checkoutCart(cartId)),
+    fetchLocal: () => dispatch(fetchLocal()),
+    removeFromLocal: id => dispatch(removeFromLocal(id))
   }
 }
 
