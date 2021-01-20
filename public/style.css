@@ -2,6 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import 'bulma/bulma.sass';
+
 body {
   font-family: sans-serif;
 }
@@ -19,6 +21,7 @@ body {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   color: white;
+  display: flex;
 }
 /* .home-btn {
   margin-top: 50px;
@@ -130,6 +133,7 @@ footer.footer {
 
 #navBar {
   background-color: #226f54;
+  display: flex;
 }
 .user-list {
   margin: 10px;
@@ -206,9 +210,10 @@ h1.cart-heading {
   text-shadow: -1px -1px 0 #226f54, 1px -1px 0 #226f54, -1px 1px 0 #226f54,
     1px 1px #226f54;
   margin-top: 10px;
-  margin-left: 475px;
+  margin-left: 600px;
   margin-bottom: 0px;
   padding: 0px;
+  letter-spacing: 2px;
 }
 /* .home-btn {
   margin-left: 725px;
@@ -239,6 +244,7 @@ h1.cart-heading {
 
 .navbar-menu {
   align-content: center;
+  display: flex;
 }
 
 .nav-appname {
@@ -296,4 +302,16 @@ h1.cart-heading {
 
 .cart-submit-button {
   margin-left: 10px;
+}
+
+.hero {
+  @include until($tablet) {
+    background-image: url('./assets/img/bg/mobile.jpg');
+  }
+  @include from($tablet) {
+    background-image: url('./assets/img/bg/desktop.jpg');
+  }
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
