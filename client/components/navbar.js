@@ -3,8 +3,14 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-import {Icon} from 'react-bulma-components'
 import {fetchCart} from '../store/cart'
+import {
+  Columns,
+  Button,
+  Section,
+  Icon,
+  Navbar as _Navbar
+} from 'react-bulma-components'
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -35,6 +41,58 @@ class Navbar extends React.Component {
       this.setState({
         cartTotal: 0
       })
+
+  navbarRight() {
+    const handleClick = this.props.handleClick
+    const isLoggedIn = this.props.isLoggedIn
+
+    if (isLoggedIn) {
+      return (
+        <div className="navbar-end">
+        {this.props.user.isAdmin && (
+                <Link className="navbar-item" to="/users">
+                  View Users
+                </Link>
+              )}
+          <_Navbar.Item dropdown href="#" hoverable>
+            <_Navbar.Link>
+              <Icon>
+                <i className="fas fa-user" size="2px" />
+              </Icon>
+            </_Navbar.Link>
+            <_Navbar.Dropdown>
+              <Link className="navbar-item" to="/editprofile">
+                Edit Profile
+              </Link>
+              <_Navbar.Item href="#" onClick={handleClick}>
+                Logout
+              </_Navbar.Item>
+            </_Navbar.Dropdown>
+          </_Navbar.Item>
+
+          <Link className="navbar-item" to="/cart">
+            <i className="fas fa-shopping-bag fa-lg" />
+               <div className="cart-total">{this.state.cartTotal}</div>
+          </Link>
+        </div>
+      )
+    } else {
+      return (
+        <div className="navbar-end">
+          <Link className="navbar-item" to="/login">
+            Login
+          </Link>
+          <Link className="navbar-item" to="/signup">
+            Sign Up
+          </Link>
+          <Link className="navbar-item" to="/cart">
+            <Icon>
+              <i className="fas fa-shopping-bag fa-lg" />
+         <div className="cart-total">{this.state.cartTotal}</div>
+            </Icon>
+          </Link>
+        </div>
+      )
     }
   }
 
@@ -42,7 +100,7 @@ class Navbar extends React.Component {
     const {handleClick, isLoggedIn, user} = this.props
 
     return (
-      <nav
+      <_Navbar
         id="navBar"
         className="navbar is-primary"
         role="navigation"
@@ -68,39 +126,9 @@ class Navbar extends React.Component {
           <div className="nav-appname">
             <p align="center">leafly</p>
           </div>
-          {isLoggedIn ? (
-            <div className="navbar-end">
-              {this.props.user.isAdmin && (
-                <Link className="navbar-item" to="/users">
-                  View Users
-                </Link>
-              )}
-              <a className="navbar-item" href="#" onClick={handleClick}>
-                Logout
-              </a>
-              <Link className="navbar-item" to="/cart">
-                <i className="fas fa-shopping-bag fa-lg" />
-                <div className="cart-total">{this.state.cartTotal}</div>
-              </Link>
-            </div>
-          ) : (
-            <div className="navbar-end">
-              <Link className="navbar-item" to="/login">
-                Login
-              </Link>
-              <Link className="navbar-item" to="/signup">
-                Sign Up
-              </Link>
-              <Link className="navbar-item" to="/cart">
-                <Icon>
-                  <i className="fas fa-shopping-bag fa-lg" />
-                </Icon>
-                <div className="cart-total">{this.state.cartTotal}</div>
-              </Link>
-            </div>
-          )}
+        {this.navbarRight()}
         </div>
-      </nav>
+      </_Navbar>
     )
   }
 }

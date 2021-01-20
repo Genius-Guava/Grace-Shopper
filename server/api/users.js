@@ -16,3 +16,44 @@ router.get('/', isAdmin, async (req, res, next) => {
     next(err)
   }
 })
+
+const formatErrors = err => {
+  let errors = err.errors
+  out = {}
+  for (let error of errors) {
+    out[error.path] = error.message
+  }
+
+  return out
+}
+
+router.put('/me', async (req, res, next) => {
+  try {
+    const {firstName, lastName, address1, address2, city, zip, state} = req.body
+    let updates = {
+      firstName,
+      lastName,
+      address1,
+      address2,
+      city,
+      zip,
+      state
+    }
+
+    for (let key in updates) {
+      if (updates[key] === '') {
+        updates[key] = null
+      }
+    }
+    const user = await req.user.update(updates)
+    res.json(user)
+  } catch (err) {
+    console.log(err)
+    if (err.name === 'SequelizeValidationError') {
+      let message = formatErrors(err)
+      res.status(401).send(message)
+    } else {
+      next(err)
+    }
+  }
+})
