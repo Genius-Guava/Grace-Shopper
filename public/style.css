@@ -211,7 +211,7 @@ h1.empty-cart {
 
 .cart-item {
   margin: 10px;
-  height: 150px;
+  height: 175px;
   display: inline-flex;
   justify-content: space-between;
 }
@@ -238,4 +238,9 @@ h1.empty-cart {
   /* text-shadow: -2px -2px 0 rgba(215, 191, 113, 0.878), 2px -2px 0 rgba(215, 191, 113, 0.878),
     -2px 2px 0 rgba(215, 191, 113, 0.878), 2px 2px 0 rgba(215, 191, 113, 0.878); */
   /* margin-top: 75px; */
+}
+
+.plantprice .plantname {
+  margin-top: 0px;
+  margin-bottom: 0px;
 }

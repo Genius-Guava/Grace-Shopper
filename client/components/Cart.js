@@ -3,7 +3,6 @@ import {fetchCart, removeFromCart, checkoutCart} from '../store/cart'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {
-  Tile,
   Button,
   Heading,
   Box,
@@ -20,14 +19,12 @@ class Cart extends React.Component {
 
   render() {
     const {cart} = this.props
-    console.log(cart)
     const total =
       cart.plants &&
       cart.plants.reduce((acc, plant) => {
         acc += plant.price * plant.lineItem.quantity
         return acc
       }, 0)
-    console.log(total)
     return (
       <div className="cart-container">
         <Section align="center">
@@ -77,10 +74,12 @@ class Cart extends React.Component {
                       </Media.Item>
                       <Media.Item>
                         <Content>
-                          <p>
+                          <p className="plantname">
                             <strong>{plant.name} </strong>
-                            <div>${plant.price}</div>
+                          </p>
+                          <p className="plantprice">${plant.price}</p>
 
+                          <p>
                             <strong>Quantity: </strong>
                             {plant.lineItem.quantity}
                           </p>

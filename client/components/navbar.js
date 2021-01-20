@@ -4,13 +4,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import {fetchCart} from '../store/cart'
-import {
-  Columns,
-  Button,
-  Section,
-  Icon,
-  Navbar as _Navbar
-} from 'react-bulma-components'
+import {Icon, Navbar as _Navbar} from 'react-bulma-components'
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -74,7 +68,9 @@ class Navbar extends React.Component {
           </_Navbar.Item>
 
           <Link className="navbar-item" to="/cart">
-            <i className="fas fa-shopping-bag fa-lg" />
+            <Icon>
+              <i className="fas fa-shopping-bag fa-lg" />
+            </Icon>
             <div className="cart-total">{this.state.cartTotal}</div>
           </Link>
         </div>
@@ -91,8 +87,8 @@ class Navbar extends React.Component {
           <Link className="navbar-item" to="/cart">
             <Icon>
               <i className="fas fa-shopping-bag fa-lg" />
-              <div className="cart-total">{this.state.cartTotal}</div>
             </Icon>
+            <div className="cart-total">{this.state.cartTotal}</div>
           </Link>
         </div>
       )
@@ -100,7 +96,7 @@ class Navbar extends React.Component {
   }
 
   render() {
-    const {handleClick, isLoggedIn, user} = this.props
+    const {user} = this.props
 
     return (
       <_Navbar
