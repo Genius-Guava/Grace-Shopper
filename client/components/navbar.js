@@ -65,6 +65,9 @@ class Navbar extends React.Component {
               </Link>
             )}
           </div>
+          <div className="nav-appname">
+            <p align="center">leafly</p>
+          </div>
           {isLoggedIn ? (
             <div className="navbar-end">
               {this.props.user.isAdmin && (

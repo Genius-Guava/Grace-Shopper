@@ -6,11 +6,12 @@ import {Link} from 'react-router-dom'
 const Home = ({isLoggedIn, email}) => {
   return (
     <div className="homePage">
-      <Section align="center">
+      <Section>
         <h1 align="center" className="appName">
-          Leafly
+          leafly
         </h1>
-        <Button className="home-btn" size="small">
+        {/* <button class="button is-success is-light">Success</button> */}
+        <Button className="home-btn button is-success is-light" size="small">
           <Link to="/plants">Shop Now</Link>
         </Button>
       </Section>
