@@ -57,7 +57,10 @@ class Navbar extends React.Component {
             </Icon>
             <div className="cart-total">
               {isLoggedIn && this.props.cart.plants
-                ? this.props.cart.plants.length
+                ? this.props.cart.plants.reduce((acc, plant) => {
+                    acc += plant.lineItem.quantity
+                    return acc
+                  }, 0)
                 : 0}
             </div>
             {/* <div className="cart-total">{this.state.cartTotal}</div> */}
@@ -79,7 +82,10 @@ class Navbar extends React.Component {
             </Icon>
             <div className="cart-total">
               {isLoggedIn && this.props.cart.plants
-                ? this.props.cart.plants.length
+                ? this.props.cart.plants.reduce((acc, plant) => {
+                    acc += plant.lineItem.quantity
+                    return acc
+                  }, 0)
                 : 0}
             </div>
           </Link>
