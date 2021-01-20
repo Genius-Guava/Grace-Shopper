@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 body {
   font-family: sans-serif;
 }
@@ -185,11 +185,14 @@ h1.all-plants-heading {
 h1.cart-heading {
   color: #226f54;
   text-align: center;
-  font-family: 'Sawarabi Mincho', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
-h1.empty-cart {
-  font-family: 'Sawarabi Mincho', sans-serif;
+#cartTxt {
+  font-family: 'Inter', sans-serif;
+  color: #ffffff;
+  text-shadow: 2px 2px #d1b864;
 }
+
 .light-filter {
   margin-bottom: 10px;
 }
@@ -228,6 +231,9 @@ h1.empty-cart {
 
 .cart-item img {
   overflow: hidden;
+}
+#cartIcon {
+  color: #d8d8d8;
 }
 
 .media-left img {
@@ -281,4 +287,16 @@ h1.empty-cart {
 .fa-instagram {
   background: #983b4a;
   color: white;
+}
+
+.promo {
+  display: inline-flex;
+}
+
+.checkout-btn {
+  margin-top: 10px;
+}
+
+.cart-submit-button {
+  margin-left: 10px;
 }

@@ -10,20 +10,34 @@ class Navbar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      cartTotal: props.cart && props.cart.plants ? props.cart.plant.length : 0
+      cartTotal:
+        props.cart && props.cart.plants
+          ? props.cart.plant.reduce((acc, plant) => {
+              acc += plant.lineItem.quantity
+              return acc
+            }, 0)
+          : 0
     }
     this.navbarRight = this.navbarRight.bind(this)
   }
 
-  async componentDidUpdate(prevProps) {
+  async componentDidUpdate(prevProps, prevState) {
     const {cart, isLoggedIn} = this.props
-    if (cart !== prevProps.cart) {
-      this.setState({cartTotal: cart.plants.length})
+    if (cart.plants !== prevProps.cart.plants) {
+      this.setState({
+        cartTotal: this.props.cart.plants.reduce((acc, plant) => {
+          acc += plant.lineItem.quantity
+          return acc
+        }, 0)
+      })
     } else if (isLoggedIn && isLoggedIn !== prevProps.isLoggedIn) {
       await this.props.fetchCart()
       try {
         this.setState({
-          cartTotal: this.props.cart.plants.length
+          cartTotal: this.props.cart.plants.reduce((acc, plant) => {
+            acc += plant.lineItem.quantity
+            return acc
+          }, 0)
         })
       } catch (err) {
         console.error()
@@ -59,10 +73,12 @@ class Navbar extends React.Component {
             </_Navbar.Link>
             <_Navbar.Dropdown>
               <Link className="navbar-item" to="/editprofile">
-                Edit Profile
+                <i className="fas fa-cog fa-1x" />
+                <strong>Edit Profile </strong>
               </Link>
               <_Navbar.Item href="#" onClick={handleClick}>
-                Logout
+                <i className="fas fa-sign-out-alt fa-1x" />
+                <strong>Logout</strong>
               </_Navbar.Item>
             </_Navbar.Dropdown>
           </_Navbar.Item>
@@ -79,10 +95,10 @@ class Navbar extends React.Component {
       return (
         <div className="navbar-end">
           <Link className="navbar-item" to="/login">
-            Login
+            <strong>Login</strong>
           </Link>
           <Link className="navbar-item" to="/signup">
-            Sign Up
+            <strong>Sign Up</strong>
           </Link>
           <Link className="navbar-item" to="/cart">
             <Icon>
@@ -111,14 +127,16 @@ class Navbar extends React.Component {
               <Icon size="large">
                 <i className="fas fa-leaf fa-lg" />
               </Icon>
-              <span>Home</span>
+              <strong>
+                <span>Home</span>
+              </strong>
             </Link>
             <Link className="navbar-item" to="/plants">
-              All Plants
+              <strong>All Plants</strong>
             </Link>
             {user.isAdmin && (
               <Link className="navbar-item" to="/plants/addplant">
-                Add New Plant
+                <strong>Add New Plant</strong>
               </Link>
             )}
           </div>
