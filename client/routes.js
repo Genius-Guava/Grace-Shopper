@@ -33,7 +33,6 @@ class Routes extends Component {
         <Route path="/plants/addplant" component={NewPlant} />
         <Route path="/users" component={Users} />
         <Route path="/plants/:plantId/update" component={UpdatePlant} />
-        <Route path="/users" component={Users} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
         <Route path="/home" component={Home} />
