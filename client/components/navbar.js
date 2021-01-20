@@ -18,6 +18,7 @@ class Navbar extends React.Component {
     this.state = {
       cartTotal: props.cart && props.cart.plants ? props.cart.plant.length : 0
     }
+    this.navbarRight = this.navbarRight.bind(this)
   }
 
   async componentDidUpdate(prevProps) {
@@ -41,6 +42,8 @@ class Navbar extends React.Component {
       this.setState({
         cartTotal: 0
       })
+    }
+  }
 
   navbarRight() {
     const handleClick = this.props.handleClick
@@ -49,11 +52,11 @@ class Navbar extends React.Component {
     if (isLoggedIn) {
       return (
         <div className="navbar-end">
-        {this.props.user.isAdmin && (
-                <Link className="navbar-item" to="/users">
-                  View Users
-                </Link>
-              )}
+          {this.props.user.isAdmin && (
+            <Link className="navbar-item" to="/users">
+              View Users
+            </Link>
+          )}
           <_Navbar.Item dropdown href="#" hoverable>
             <_Navbar.Link>
               <Icon>
@@ -72,7 +75,7 @@ class Navbar extends React.Component {
 
           <Link className="navbar-item" to="/cart">
             <i className="fas fa-shopping-bag fa-lg" />
-               <div className="cart-total">{this.state.cartTotal}</div>
+            <div className="cart-total">{this.state.cartTotal}</div>
           </Link>
         </div>
       )
@@ -88,7 +91,7 @@ class Navbar extends React.Component {
           <Link className="navbar-item" to="/cart">
             <Icon>
               <i className="fas fa-shopping-bag fa-lg" />
-         <div className="cart-total">{this.state.cartTotal}</div>
+              <div className="cart-total">{this.state.cartTotal}</div>
             </Icon>
           </Link>
         </div>
@@ -126,7 +129,7 @@ class Navbar extends React.Component {
           <div className="nav-appname">
             <p align="center">leafly</p>
           </div>
-        {this.navbarRight()}
+          {this.navbarRight()}
         </div>
       </_Navbar>
     )
