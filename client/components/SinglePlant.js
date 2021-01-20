@@ -4,14 +4,9 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {Button, Box, Heading, Section} from 'react-bulma-components'
 import {getSinglePlant} from '../store/singlePlant'
-import axios from 'axios'
 import {editCart} from '../store/cart'
 
 export class SinglePlant extends React.Component {
-  // constructor() {
-  //   super()
-  //   this.addToCart = this.addToCart.bind(this)
-  // }
   componentDidMount() {
     this.props.getSinglePlant(this.props.match.params.plantId)
   }
@@ -33,13 +28,16 @@ export class SinglePlant extends React.Component {
               <b>Light:</b> {plant.light} <i className="far fa-sun" />
             </p>
             {user.id ? (
-              <Button size="small" onClick={() => editCart(plant.id)}>
+              <Button
+                size="small"
+                onClick={() => this.props.editCart(plant.id)}
+              >
                 <strong>Add To Cart</strong>
               </Button>
             ) : (
               <Button size="small">
                 <strong>
-                  <Link to="/login">Log in to add to cart</Link>
+                  <Link to="/login">Log In To Add To Cart</Link>
                 </strong>
               </Button>
             )}
