@@ -9,6 +9,7 @@ import {Icon, Navbar as _Navbar} from 'react-bulma-components'
 class Navbar extends React.Component {
   constructor(props) {
     super(props)
+
     this.navbarRight = this.navbarRight.bind(this)
   }
 
@@ -24,7 +25,7 @@ class Navbar extends React.Component {
         <div className="navbar-end">
           {this.props.user.isAdmin && (
             <Link className="navbar-item" to="/users">
-              <strong>View Users</strong>
+              View Users
             </Link>
           )}
           <_Navbar.Item dropdown href="#" hoverable>
@@ -35,8 +36,9 @@ class Navbar extends React.Component {
             </_Navbar.Link>
             <_Navbar.Dropdown>
               <Link className="navbar-item" to="/editprofile">
+
                 <i className="fas fa-cog fa-1x" />
-                <strong>Edit Profile </strong>
+                <strong> Edit Profile </strong>
               </Link>
               <_Navbar.Item
                 href="#"
@@ -46,7 +48,8 @@ class Navbar extends React.Component {
                 }}
               >
                 <i className="fas fa-sign-out-alt fa-1x" />
-                <strong>Logout</strong>
+                <strong> Logout </strong>
+
               </_Navbar.Item>
             </_Navbar.Dropdown>
           </_Navbar.Item>
@@ -71,10 +74,10 @@ class Navbar extends React.Component {
       return (
         <div className="navbar-end">
           <Link className="navbar-item" to="/login">
-            <strong>Login</strong>
+            Login
           </Link>
           <Link className="navbar-item" to="/signup">
-            <strong>Sign Up</strong>
+            Sign Up
           </Link>
           <Link className="navbar-item" to="/cart">
             <Icon>
@@ -104,22 +107,20 @@ class Navbar extends React.Component {
         role="navigation"
         aria-label="main navigation"
       >
-        <div id="navbarBasicExample" className="navbar-menu">
+        <div id="navMenu" className="navbar-menu">
           <div className="navbar-start">
             <Link className="navbar-item" to="/home">
               <Icon size="large">
                 <i className="fas fa-leaf fa-lg" />
               </Icon>
-              <strong>
-                <span>Home</span>
-              </strong>
+              <span>Home</span>
             </Link>
             <Link className="navbar-item" to="/plants">
-              <strong>All Plants</strong>
+              All Plants
             </Link>
             {user.isAdmin && (
               <Link className="navbar-item" to="/plants/addplant">
-                <strong>Add New Plant</strong>
+                Add New Plant
               </Link>
             )}
           </div>
