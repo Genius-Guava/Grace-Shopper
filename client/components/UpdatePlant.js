@@ -45,10 +45,12 @@ export class UpdatePlant extends React.Component {
     return (
       <div>
         {this.props.user.isAdmin ? (
-          <Columns id="plant-form" breakpoint="mobile" centered>
+          <Columns id="update-plant-form" breakpoint="mobile" centered>
             <Columns.Column className="control" size="half">
-              <Section>
-                <Heading align="center">Update Plant:</Heading>
+              <Section className="pageBox">
+                <Heading align="center" className="plant-form-heading">
+                  Update Plant:
+                </Heading>
                 <form onSubmit={this.handleSubmit}>
                   <Form.Field size="medium">
                     <Form.Label className="form-label">Name</Form.Label>

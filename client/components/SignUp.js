@@ -56,7 +56,7 @@ class SignUp extends React.Component {
       <Columns id="signUp" breakpoint="mobile" centered>
         <Columns.Column className="control" size="half">
           <form onSubmit={this.handleSubmit}>
-            <Section>
+            <Section className="pageBox">
               <Heading className="headerLoginSignUp">Create an account</Heading>
 
               <Form.Field size="medium">
@@ -138,7 +138,7 @@ class SignUp extends React.Component {
                       className="button button is-warning is-focused is-primary"
                       href="/auth/google"
                     >
-                      Login with Google
+                      <strong>Login with Google</strong>
                     </a>
                   </Form.Control>
                   <Form.Control>

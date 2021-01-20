@@ -257,6 +257,12 @@ async function seed() {
     User.create({
       firstName: 'Bob',
       lastName: 'Bob',
+      address1: 'Market str',
+      address2: '5',
+      city: 'Seattle',
+      zip: '98109',
+      state: 'Washington',
+      phone: '14156439757',
       email: 'murphy@email.com',
       password: '123'
     }),

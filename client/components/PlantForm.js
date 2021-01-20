@@ -5,8 +5,10 @@ const PlantForm = props => {
   return (
     <Columns id="plant-form" breakpoint="mobile" centered>
       <Columns.Column className="control" size="half">
-        <Section>
-          <Heading align="center">Add New Plant:</Heading>
+        <Section className="pageBox">
+          <Heading align="center" className="plant-form-heading">
+            Add New Plant:
+          </Heading>
           <form onSubmit={props.handleSubmit}>
             <Form.Field size="small">
               <Form.Label className="form-label">Name</Form.Label>

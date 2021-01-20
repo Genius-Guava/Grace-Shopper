@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 body {
   font-family: sans-serif;
@@ -11,16 +12,16 @@ body {
 } */
 
 .homePage {
-  background-image: url('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/plants1-1551895073.png');
+  background-image: url('https://img.freepik.com/free-psd/tropical-foliage-background_53876-91352.jpg?size=626&ext=jpg&ga=GA1.2.1173566506.1610841600');
   width: 100%;
-  height: 550px;
+  min-height: 550px;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
   color: white;
 }
 .home-btn {
-  margin-top: 385px;
+  margin-top: 75px;
 }
 
 .plant-form {
@@ -61,6 +62,7 @@ footer.footer {
 #signUp {
   background-image: url('baground-signUp.jpg');
   background-position: bottom;
+  background-repeat: no-repeat;
   background-size: 100%;
   margin-top: 0px;
   margin-bottom: 0px;
@@ -78,14 +80,38 @@ footer.footer {
   padding-top: 70px;
 }
 
+#userProfile {
+  background-image: url('userProfile.jpg');
+  background-position: absolute;
+  background-size: 120%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  min-height: 600px;
+  padding-top: 70px;
+}
+
 .pageBox {
   background-color: rgba(255, 255, 255, 0.671);
   border-radius: 30px;
   box-shadow: 5px 5px 15px 5px #b1b1b146;
 }
 
+.pageBox2 {
+  background-color: rgb(255, 255, 255);
+  border-radius: 30px;
+  box-shadow: 5px 5px 15px 5px #b1b1b146;
+}
+
 #plant-form {
   background-image: url('baground-signUp.jpg');
+  background-position: bottom;
+  background-size: 100% 100%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#update-plant-form {
+  background-image: url('logInBackgroun1.jpeg');
   background-position: bottom;
   background-size: 100% 100%;
   margin-top: 0px;
@@ -130,10 +156,33 @@ footer.footer {
 }
 
 h1.headerLoginSignUp {
-  color: rgb(133, 133, 133);
+  color: #226f54;
   text-align: center;
-  font-family: 'Noto Serif JP', serif;
+  font-family: 'Pacifico', cursive;
 }
+
+h1.plant-form-heading {
+  color: #226f54;
+  text-align: center;
+}
+
+h1.all-plants-heading {
+  color: #226f54;
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+}
+
 .light-filter {
   margin-bottom: 10px;
+}
+
+.appName {
+  font-family: 'Pacifico', cursive;
+  /* z-index:; */
+  color: #b39c4fe0;
+  font-size: 7rem;
+  text-shadow: #776838e0;
+  /* text-shadow: -2px -2px 0 rgba(215, 191, 113, 0.878), 2px -2px 0 rgba(215, 191, 113, 0.878),
+    -2px 2px 0 rgba(215, 191, 113, 0.878), 2px 2px 0 rgba(215, 191, 113, 0.878); */
+  margin-top: 75px;
 }
