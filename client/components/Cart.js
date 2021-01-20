@@ -12,6 +12,9 @@ import {
   Image,
   Form,
   Columns
+  Icon,
+  Container,
+  Notification
 } from 'react-bulma-components'
 
 class Cart extends React.Component {
@@ -141,7 +144,23 @@ class Cart extends React.Component {
               )
             })
           ) : (
-            <Heading className="empty-cart">Cart is empty!</Heading>
+            <div>
+              <br />
+              <Section>
+                <Icon>
+                  <i id="cartIcon" className="fas fa-shopping-cart fa-9x" />
+                </Icon>
+              </Section>
+              <Section>
+                <Container>
+                  <Notification color="warning">
+                    <Heading id="cartTxt" className="empty-cart">
+                      Cart is empty!
+                    </Heading>
+                  </Notification>
+                </Container>
+              </Section>
+            </div>
           )}
           {cart.plants !== undefined && cart.plants.length ? (
             <div className="is-one-third is-centered">
