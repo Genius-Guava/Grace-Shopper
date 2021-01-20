@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {login} from '../store'
+import {saveProfile} from '../store/user'
 import {
   Columns,
   Button,
@@ -12,6 +12,7 @@ import {
   Form
 } from 'react-bulma-components'
 import {formReset} from '../store/form'
+import {Redirect} from 'react-router-dom'
 
 class UserProfile extends React.Component {
   constructor() {
@@ -19,18 +20,7 @@ class UserProfile extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this)
     this.onChange = this.onChange.bind(this)
-    this.state = {
-      firstName: '',
-      lastName: '',
-      strAddress: '',
-      apt: '',
-      zip: '',
-      city: '',
-      state: '',
-      phoneNumber: '',
-      email: '',
-      password: ''
-    }
+    this.state = {}
   }
 
   componentDidMount() {
@@ -45,22 +35,29 @@ class UserProfile extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault()
-    this.props.signUp(
-      this.state.firstName,
-      this.state.lastName,
-      this.state.email,
-      this.state.password,
-      this.props.name
-    )
+    this.props.saveProfile(this.state)
+  }
+
+  getValue(field) {
+    if (this.state[field] !== undefined) {
+      return this.state[field]
+    }
+
+    if (this.props.user[field] != null) {
+      return this.props.user[field]
+    }
+
+    return ''
   }
 
   render() {
     const {form} = this.props
+
     return (
       <Columns id="userProfile" breakpoint="mobile" centered>
         <Columns.Column className="control" size="half">
           <form onSubmit={this.handleSubmit}>
-            <Section className="pageBox">
+            <Section className="pageBox2">
               <Heading className="headerLoginSignUp">
                 Your contact information
               </Heading>
@@ -73,7 +70,7 @@ class UserProfile extends React.Component {
                     name="firstName"
                     type="text"
                     onChange={this.onChange}
-                    value={this.state.firstName}
+                    value={this.getValue('firstName')}
                     color={form.errors.firstName && 'danger'}
                   />
                 </Form.Control>
@@ -88,7 +85,7 @@ class UserProfile extends React.Component {
                     name="lastName"
                     type="text"
                     onChange={this.onChange}
-                    value={this.state.lastName}
+                    value={this.getValue('lastName')}
                     color={form.errors.lastName && 'danger'}
                   />
                 </Form.Control>
@@ -96,129 +93,114 @@ class UserProfile extends React.Component {
               </Form.Field>
 
               <Form.Field size="medium">
-                <Form.Label className="form-label">Street Address</Form.Label>
+                <Form.Label className="form-label">Address</Form.Label>
                 <Form.Control>
                   <Form.Input
-                    placeholder="Street Address"
-                    name="lastName"
+                    placeholder="Street"
+                    name="address1"
                     type="text"
                     onChange={this.onChange}
-                    value={this.state.lastName}
-                    color={form.errors.lastName && 'danger'}
+                    value={this.getValue('address1')}
+                    color={form.errors.address1 && 'danger'}
                   />
                 </Form.Control>
-                <Form.Help color="danger">{form.errors.lastName}</Form.Help>
+                <Form.Help color="danger">{form.errors.address1}</Form.Help>
               </Form.Field>
 
               <Form.Field size="medium">
-                <Form.Label className="form-label">APT</Form.Label>
                 <Form.Control>
                   <Form.Input
                     placeholder="Apt, Suite, Building (Optional)"
-                    name="lastName"
+                    name="address2"
                     type="text"
                     onChange={this.onChange}
-                    value={this.state.lastName}
-                    color={form.errors.lastName && 'danger'}
+                    value={this.getValue('address2')}
+                    color={form.errors.address2 && 'danger'}
                   />
                 </Form.Control>
-                <Form.Help color="danger">{form.errors.lastName}</Form.Help>
+                <Form.Help color="danger">{form.errors.address2}</Form.Help>
               </Form.Field>
 
               <Form.Field size="medium">
-                <Form.Label className="form-label">Zip Code</Form.Label>
-                <Form.Control>
-                  <Form.Input
-                    placeholder="Zip Code"
-                    name="lastName"
-                    type="text"
-                    onChange={this.onChange}
-                    value={this.state.lastName}
-                    color={form.errors.lastName && 'danger'}
-                  />
-                </Form.Control>
-                <Form.Help color="danger">{form.errors.lastName}</Form.Help>
-              </Form.Field>
-
-              <Form.Field size="medium">
-                <Form.Label className="form-label">City</Form.Label>
                 <Form.Control>
                   <Form.Input
                     placeholder="City"
-                    name="lastName"
+                    name="city"
                     type="text"
                     onChange={this.onChange}
-                    value={this.state.lastName}
-                    color={form.errors.lastName && 'danger'}
+                    value={this.getValue('city')}
+                    color={form.errors.city && 'danger'}
                   />
                 </Form.Control>
+                <Form.Help color="danger">{form.errors.city}</Form.Help>
               </Form.Field>
 
-              <Form.Field size="medium">
-                <Form.Label className="form-label">State</Form.Label>
+              <Form.Field size="is-small" kind="group">
+                <Form.Control>
+                  <Form.Input
+                    placeholder="Zip Code"
+                    name="zip"
+                    type="text"
+                    onChange={this.onChange}
+                    value={this.getValue('zip')}
+                    color={form.errors.zip && 'danger'}
+                  />
+                </Form.Control>
+
                 <Form.Control>
                   <Form.Input
                     placeholder="State"
-                    name="lastName"
+                    name="state"
                     type="text"
                     onChange={this.onChange}
-                    value={this.state.lastName}
-                    color={form.errors.lastName && 'danger'}
+                    value={this.getValue('state')}
+                    color={form.errors.state && 'danger'}
                   />
                 </Form.Control>
-                <Form.Help color="danger">{form.errors.lastName}</Form.Help>
+                <Form.Help color="danger">{form.errors.state}</Form.Help>
+                <Form.Help color="danger">{form.errors.zip}</Form.Help>
               </Form.Field>
 
-              {/*
-              <div class="col-3">
-        	      <input class="effect-1" type="text" placeholder="Country"/>
-                <span class="focus-border"></span>
-              </div>
-                */}
+              <Form.Field size="medium">
+                <Form.Label className="form-label">Country</Form.Label>
+                <Form.Control>
+                  <Form.Input
+                    disabled
+                    value="United States"
+                    name="country"
+                    type="text"
+                  />
+                </Form.Control>
+              </Form.Field>
 
               <Form.Field size="medium">
                 <Form.Label className="form-label">Phone Number</Form.Label>
                 <Form.Control>
                   <Form.Input
                     placeholder="Phone Number"
-                    name="lastName"
+                    name="phone"
                     type="text"
                     onChange={this.onChange}
-                    value={this.state.lastName}
-                    color={form.errors.lastName && 'danger'}
+                    value={this.getValue('phone')}
+                    color={form.errors.phone && 'danger'}
                   />
                 </Form.Control>
-                <Form.Help color="danger">{form.errors.lastName}</Form.Help>
-              </Form.Field>
-
-              <Form.Field>
-                <Form.Label className="form-label">Email</Form.Label>
-                <Form.Control iconLeft>
-                  <Form.Input
-                    placeholder="Please enter your Email"
-                    name="email"
-                    type="text"
-                    onChange={this.onChange}
-                    value={this.state.email}
-                    color={form.errors.email && 'danger'}
-                  />
-                  <Icon align="left">
-                    <i className="fas fa-envelope" />
-                  </Icon>
-                </Form.Control>
-                <Form.Help color="danger">{form.errors.email}</Form.Help>
+                <Form.Help color="danger">{form.errors.phone}</Form.Help>
               </Form.Field>
 
               <Content className="formButtons">
                 <Form.Field kind="group" align="right">
                   <Form.Control>
                     <Button className="submit-button is-warning is-focused is-primary">
-                      <strong>Save</strong>
+                      <strong>Submit</strong>
                     </Button>
                   </Form.Control>
                 </Form.Field>
 
                 <Form.Help color="danger">{form.errors.other}</Form.Help>
+                {form.success && (
+                  <div className="notification is-primary">Success!</div>
+                )}
               </Content>
             </Section>
           </form>
@@ -230,38 +212,14 @@ class UserProfile extends React.Component {
 
 const mapUserProfile = state => {
   return {
-    form: state.form
+    form: state.form,
+    user: state.user
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    UserProfile: (
-      firstName,
-      lastName,
-      strAddress,
-      apt,
-      zip,
-      city,
-      state,
-      phoneNumber,
-      email,
-      password
-    ) =>
-      dispatch(
-        UserProfile(
-          firstName,
-          lastName,
-          strAddress,
-          apt,
-          zip,
-          city,
-          state,
-          phoneNumber,
-          email,
-          password
-        )
-      ),
+    saveProfile: updates => dispatch(saveProfile(updates)),
 
     formReset: () => dispatch(formReset())
   }

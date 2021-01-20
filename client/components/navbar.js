@@ -3,12 +3,46 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-import {Columns, Button, Section, Icon} from 'react-bulma-components'
+import {fetchCart} from '../store/cart'
+import {
+  Columns,
+  Button,
+  Section,
+  Icon,
+  Navbar as _Navbar
+} from 'react-bulma-components'
 
 class Navbar extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+    this.state = {
+      cartTotal: props.cart && props.cart.plants ? props.cart.plant.length : 0
+    }
     this.navbarRight = this.navbarRight.bind(this)
+  }
+
+  async componentDidUpdate(prevProps) {
+    const {cart, isLoggedIn} = this.props
+    if (cart !== prevProps.cart) {
+      this.setState({cartTotal: cart.plants.length})
+    } else if (isLoggedIn && isLoggedIn !== prevProps.isLoggedIn) {
+      await this.props.fetchCart()
+      try {
+        this.setState({
+          cartTotal: this.props.cart.plants.length
+        })
+      } catch (err) {
+        console.error()
+      }
+    } else if (
+      !isLoggedIn &&
+      isLoggedIn !== prevProps.isLoggedIn &&
+      this.state.cartTotal
+    ) {
+      this.setState({
+        cartTotal: 0
+      })
+    }
   }
 
   navbarRight() {
@@ -18,11 +52,30 @@ class Navbar extends React.Component {
     if (isLoggedIn) {
       return (
         <div className="navbar-end">
-          <a className="navbar-item" href="#" onClick={handleClick}>
-            Logout
-          </a>
+          {this.props.user.isAdmin && (
+            <Link className="navbar-item" to="/users">
+              View Users
+            </Link>
+          )}
+          <_Navbar.Item dropdown href="#" hoverable>
+            <_Navbar.Link>
+              <Icon>
+                <i className="fas fa-user" size="2px" />
+              </Icon>
+            </_Navbar.Link>
+            <_Navbar.Dropdown>
+              <Link className="navbar-item" to="/editprofile">
+                Edit Profile
+              </Link>
+              <_Navbar.Item href="#" onClick={handleClick}>
+                Logout
+              </_Navbar.Item>
+            </_Navbar.Dropdown>
+          </_Navbar.Item>
+
           <Link className="navbar-item" to="/cart">
             <i className="fas fa-shopping-bag fa-lg" />
+            <div className="cart-total">{this.state.cartTotal}</div>
           </Link>
         </div>
       )
@@ -38,6 +91,7 @@ class Navbar extends React.Component {
           <Link className="navbar-item" to="/cart">
             <Icon>
               <i className="fas fa-shopping-bag fa-lg" />
+              <div className="cart-total">{this.state.cartTotal}</div>
             </Icon>
           </Link>
         </div>
@@ -46,9 +100,10 @@ class Navbar extends React.Component {
   }
 
   render() {
-    const user = this.props.user
+    const {handleClick, isLoggedIn, user} = this.props
+
     return (
-      <nav
+      <_Navbar
         id="navBar"
         className="navbar is-primary"
         role="navigation"
@@ -57,10 +112,9 @@ class Navbar extends React.Component {
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
             <Link className="navbar-item" to="/home">
-              {' '}
               <Icon size="large">
                 <i className="fas fa-leaf fa-lg" />
-              </Icon>{' '}
+              </Icon>
               <span>Home</span>
             </Link>
             <Link className="navbar-item" to="/plants">
@@ -72,10 +126,12 @@ class Navbar extends React.Component {
               </Link>
             )}
           </div>
-
+          <div className="nav-appname">
+            <p align="center">leafly</p>
+          </div>
           {this.navbarRight()}
         </div>
-      </nav>
+      </_Navbar>
     )
   }
 }
@@ -86,7 +142,8 @@ class Navbar extends React.Component {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    user: state.user
+    user: state.user,
+    cart: state.cart
   }
 }
 
@@ -94,7 +151,8 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
-    }
+    },
+    fetchCart: () => dispatch(fetchCart())
   }
 }
 
