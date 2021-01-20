@@ -60,6 +60,15 @@ footer.footer {
   padding: 1rem 1rem;
 }
 
+#sticky-footer {
+  flex-shrink: none;
+  text-align: center;
+  margin: 10px;
+  padding: 5px;
+  background-color: #f8f8f800;
+  position: relative;
+}
+
 #signUp {
   background-image: url('baground-signUp.jpg');
   background-position: bottom;
@@ -190,9 +199,10 @@ h1.cart-heading {
 
 .appName {
   font-family: 'Sawarabi Mincho', sans-serif;
+  /* font-family: 'Pacifico', cursive; */
   /* z-index:; */
   color: rgb(255, 255, 255);
-  font-size: 15rem;
+  font-size: 12rem;
   text-shadow: -1px -1px 0 #226f54, 1px -1px 0 #226f54, -1px 1px 0 #226f54,
     1px 1px #226f54;
   margin-top: 10px;
@@ -249,6 +259,34 @@ h1.cart-heading {
 .plantprice .plantname {
   margin-top: 0px;
   margin-bottom: 0px;
+}
+
+.fa {
+  padding: 30px;
+  font-size: 20px;
+  width: 3px;
+  height: 3px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+}
+
+.fa:hover {
+  opacity: 0.7;
+}
+
+.fa-twitter {
+  background: #55acee;
+  color: white;
+}
+
+.fa-facebook {
+  background: #3b5998;
+  color: white;
+}
+.fa-instagram {
+  background: #983b4a;
+  color: white;
 }
 
 .promo {
