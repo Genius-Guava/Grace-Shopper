@@ -5,10 +5,36 @@ import {Link} from 'react-router-dom'
 import {Button, Box, Heading, Section} from 'react-bulma-components'
 import {getSinglePlant} from '../store/singlePlant'
 import {editCart} from '../store/cart'
+import {UpdatePlant} from './UpdatePlant'
 
 export class SinglePlant extends React.Component {
+  constructor(props) {
+    super(props)
+    this.addToLocalCart = this.addToLocalCart.bind(this)
+    this.cart = JSON.parse(localStorage.getItem('cart'))
+  }
+
   componentDidMount() {
     this.props.getSinglePlant(this.props.match.params.plantId)
+  }
+
+  addToLocalCart(cart, plant) {
+    let inCart = false
+    for (let i = 0; i < cart.plants.length; i++) {
+      if (cart.plants[i].id === plant.id) {
+        inCart = true
+        console.log(cart.plants[i].lineItem)
+        cart.plants[i].lineItem.quantity = cart.plants[i].lineItem.quantity + 1
+      }
+    }
+    if (!inCart) {
+      plant.lineItem = {}
+      plant.lineItem.quantity = 1
+      console.log(plant.lineItem.quantity)
+      cart.plants.push(plant)
+    }
+    localStorage.setItem('cart', JSON.stringify(cart))
+    console.log(cart.plants)
   }
 
   render() {
@@ -35,10 +61,16 @@ export class SinglePlant extends React.Component {
                 <strong>Add To Cart</strong>
               </Button>
             ) : (
-              <Button size="small">
-                <strong>
-                  <Link to="/login">Log In To Add To Cart</Link>
-                </strong>
+              // <Button size="small">
+              //   <strong>
+              //     <Link to="/login">Log In To Add To Cart</Link>
+              //   </strong>
+              // </Button>
+              <Button
+                size="small"
+                onClick={() => this.addToLocalCart(this.cart, plant)}
+              >
+                <strong>Add To Cart</strong>
               </Button>
             )}
           </div>

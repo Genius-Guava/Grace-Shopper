@@ -59,7 +59,10 @@ class Cart extends React.Component {
   }
 
   render() {
-    const {cart} = this.props
+    
+    let {cart, isLoggedIn} = this.props
+    if (!isLoggedIn) cart = JSON.parse(localStorage.getItem('cart'))
+    console.log(cart)
     let total =
       cart.plants &&
       cart.plants.reduce((acc, plant) => {
@@ -182,7 +185,9 @@ class Cart extends React.Component {
               </Columns.Column>
               <p className="total">
                 <strong>Cart Total: </strong> $
-                {(this.state.total > 0 ? this.state.total : total).toFixed(2)}
+                <strong>
+                  {(this.state.total > 0 ? this.state.total : total).toFixed(2)}
+                </strong>
               </p>
               <Button
                 size="small"
@@ -204,7 +209,8 @@ class Cart extends React.Component {
 
 const mapState = state => {
   return {
-    cart: state.cart
+    cart: state.cart,
+    isLoggedIn: !!state.user.id
   }
 }
 
