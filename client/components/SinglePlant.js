@@ -16,17 +16,9 @@ export class SinglePlant extends React.Component {
     this.props.getSinglePlant(this.props.match.params.plantId)
   }
 
-  // async addToCart(id) {
-  //   try {
-  //     await axios.put('/api/cart', {id: id})
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
-
   render() {
-    const {plant, user, editCart} = this.props
-
+    const {plant, user} = this.props
+    console.log('the user is', user)
     return (
       <Section className="columns is-centered">
         <Box className="column is-half single-plant-container is-centered">
@@ -41,7 +33,7 @@ export class SinglePlant extends React.Component {
             <p className="light single-plant-text">
               <b>Light:</b> {plant.light} <i className="far fa-sun" />
             </p>
-            {user.password ? (
+            {user.id ? (
               <Button size="small" onClick={() => editCart(plant.id)}>
                 <strong>Add To Cart</strong>
               </Button>
