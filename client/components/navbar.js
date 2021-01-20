@@ -59,10 +59,10 @@ class Navbar extends React.Component {
             </_Navbar.Link>
             <_Navbar.Dropdown>
               <Link className="navbar-item" to="/editprofile">
-                Edit Profile
+                <strong>Edit Profile</strong>
               </Link>
               <_Navbar.Item href="#" onClick={handleClick}>
-                Logout
+                <strong>Logout</strong>
               </_Navbar.Item>
             </_Navbar.Dropdown>
           </_Navbar.Item>
