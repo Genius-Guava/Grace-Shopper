@@ -11,7 +11,7 @@ import {
   Content,
   Image,
   Form,
-  Columns
+  Columns,
   Icon,
   Container,
   Notification
