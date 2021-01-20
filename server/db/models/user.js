@@ -23,6 +23,46 @@ const User = db.define('user', {
     }
   },
 
+  address1: {
+    type: Sequelize.STRING,
+    allowNull: true
+  },
+
+  address2: {
+    type: Sequelize.STRING,
+    allowNull: true
+  },
+
+  city: {
+    type: Sequelize.STRING,
+    allowNull: true
+  },
+
+  zip: {
+    type: Sequelize.STRING,
+    allowNull: true,
+    validate: {
+      isNumeric: {
+        msg: 'Zip code must be a number'
+      } // don't allow empty strings
+    }
+  },
+
+  state: {
+    type: Sequelize.STRING,
+    allowNull: true
+  },
+
+  phone: {
+    type: Sequelize.STRING,
+    allowNull: true,
+    validate: {
+      isNumeric: {
+        msg: 'Zip code must be a number'
+      }
+    }
+  },
+
   email: {
     type: Sequelize.STRING,
     unique: true,

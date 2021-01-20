@@ -3,7 +3,13 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-import {Columns, Button, Section, Icon} from 'react-bulma-components'
+import {
+  Columns,
+  Button,
+  Section,
+  Icon,
+  Navbar as _Navbar
+} from 'react-bulma-components'
 
 class Navbar extends React.Component {
   constructor() {
@@ -18,9 +24,22 @@ class Navbar extends React.Component {
     if (isLoggedIn) {
       return (
         <div className="navbar-end">
-          <a className="navbar-item" href="#" onClick={handleClick}>
-            Logout
-          </a>
+          <_Navbar.Item dropdown href="#" hoverable>
+            <_Navbar.Link>
+              <Icon>
+                <i className="fas fa-user" size="2px" />
+              </Icon>
+            </_Navbar.Link>
+            <_Navbar.Dropdown>
+              <Link className="navbar-item" to="/editprofile">
+                Edit Profile
+              </Link>
+              <_Navbar.Item href="#" onClick={handleClick}>
+                Logout
+              </_Navbar.Item>
+            </_Navbar.Dropdown>
+          </_Navbar.Item>
+
           <Link className="navbar-item" to="/cart">
             <i className="fas fa-shopping-bag fa-lg" />
           </Link>
@@ -48,7 +67,7 @@ class Navbar extends React.Component {
   render() {
     const user = this.props.user
     return (
-      <nav
+      <_Navbar
         id="navBar"
         className="navbar is-primary"
         role="navigation"
@@ -75,7 +94,7 @@ class Navbar extends React.Component {
 
           {this.navbarRight()}
         </div>
-      </nav>
+      </_Navbar>
     )
   }
 }

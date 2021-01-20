@@ -31,6 +31,18 @@ export const me = () => async dispatch => {
   }
 }
 
+export const saveProfile = updates => async dispatch => {
+  let result
+  try {
+    result = await axios.put('/api/users/me', updates)
+  } catch (authError) {
+    return dispatch(formErrors(authError.response.data))
+  }
+
+  dispatch(getUser(result.data))
+  dispatch(formSuccess())
+}
+
 export const login = (email, password) => async dispatch => {
   let res
   try {
