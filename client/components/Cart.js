@@ -59,7 +59,10 @@ class Cart extends React.Component {
   }
 
   render() {
-    const {cart} = this.props
+    
+    let {cart, isLoggedIn} = this.props
+    if (!isLoggedIn) cart = JSON.parse(localStorage.getItem('cart'))
+    console.log(cart)
     let total =
       cart.plants &&
       cart.plants.reduce((acc, plant) => {
@@ -208,7 +211,8 @@ class Cart extends React.Component {
 
 const mapState = state => {
   return {
-    cart: state.cart
+    cart: state.cart,
+    isLoggedIn: !!state.user.id
   }
 }
 
