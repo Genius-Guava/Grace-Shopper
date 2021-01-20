@@ -139,7 +139,9 @@ class Cart extends React.Component {
                           <p className="plantname">
                             <strong>{plant.name} </strong>
                           </p>
-                          <p className="plantprice">${plant.price}</p>
+                          <p className="plantprice total">
+                            <strong>${plant.price}</strong>
+                          </p>
 
                           <p>
                             <strong>Quantity: </strong>
@@ -193,9 +195,11 @@ class Cart extends React.Component {
                   </Button>
                 </form>
               </Columns.Column>
-              <p className="total">
-                <strong>Cart Total: </strong> $
-                <strong>
+              <p>
+                <strong>Cart Total: </strong>
+
+                <strong className="total">
+                  ${' '}
                   {(this.state.total > 0 ? this.state.total : total).toFixed(2)}
                 </strong>
               </p>
