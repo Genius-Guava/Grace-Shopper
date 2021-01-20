@@ -1,6 +1,7 @@
 import React from 'react'
 import {Button, Spinner, Card, Container} from 'react-bootstrap'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 
 export default class EditUser extends React.Component {
   constructor() {
@@ -29,7 +30,9 @@ export default class EditUser extends React.Component {
                 {currentUser.firstName} {currentUser.lastName}
               </Card.Text>
               <Card.Text>{currentUser.email}</Card.Text>
-              <Button variant="success">Edit</Button>
+              <Button variant="success">
+                <Link to="/users">Edit</Link>
+              </Button>
             </Card.Body>
           </Card>
         ))}

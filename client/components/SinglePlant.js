@@ -41,9 +41,17 @@ export class SinglePlant extends React.Component {
             <p className="light single-plant-text">
               <b>Light:</b> {plant.light} <i className="far fa-sun" />
             </p>
-            <Button size="small" onClick={() => editCart(plant.id)}>
-              <strong>Add To Cart</strong>
-            </Button>
+            {user.password ? (
+              <Button size="small" onClick={() => editCart(plant.id)}>
+                <strong>Add To Cart</strong>
+              </Button>
+            ) : (
+              <Button size="small">
+                <strong>
+                  <Link to="/login">Log in to add to cart</Link>
+                </strong>
+              </Button>
+            )}
           </div>
           <br />
           {user.isAdmin && (
