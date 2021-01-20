@@ -7,7 +7,6 @@ const isLoggedIn = (req, res, next) =>
 
 //localhost:8080/api/cart
 router.get('/', isLoggedIn, async (req, res, next) => {
-  // console.log(req.user)
   const cart = await Order.findOne({
     include: {
       model: Plant
@@ -17,19 +16,15 @@ router.get('/', isLoggedIn, async (req, res, next) => {
       userId: req.user.id
     }
   })
-  // console.log('CART',cart)
   if (cart) {
     res.json(cart)
   } else {
-    console.log('Cart is currently empty.')
     res.json('Cart is currently empty.')
   }
 })
 
 router.put('/', async (req, res, next) => {
-  console.log('try not working')
   try {
-    console.log('attempting to add')
     const cart = await Order.findOrCreate({
       where: {
         status: 'In Cart',
@@ -53,17 +48,16 @@ router.put('/', async (req, res, next) => {
         orderId: cart[0].id
       })
     }
-    // the blink doesnt happen if I do newOrder but happens if I do cart - why? (ask during code review)
-    // const newCart= await Order.findOne({
-    //   where: {
-    //     status: 'In Cart',
-    //     userId: req.user.id
-    //   },
-    //   include: {
-    //     model: Plant
-    //   }
-    // })
-    res.json(cart)
+    const newCart = await Order.findOne({
+      where: {
+        status: 'In Cart',
+        userId: req.user.id
+      },
+      include: {
+        model: Plant
+      }
+    })
+    res.json(newCart)
   } catch (err) {
     next(err)
   }
