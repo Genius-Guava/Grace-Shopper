@@ -3,46 +3,23 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-import {fetchCart} from '../store/cart'
+import {fetchCart, clearCart} from '../store/cart'
 import {Icon, Navbar as _Navbar} from 'react-bulma-components'
 
 class Navbar extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      cartTotal: props.cart && props.cart.plants ? props.cart.plant.length : 0
-    }
+
     this.navbarRight = this.navbarRight.bind(this)
   }
 
-  async componentDidUpdate(prevProps) {
-    const {cart, isLoggedIn} = this.props
-    if (cart !== prevProps.cart) {
-      this.setState({cartTotal: cart.plants.length})
-    } else if (isLoggedIn && isLoggedIn !== prevProps.isLoggedIn) {
-      await this.props.fetchCart()
-      try {
-        this.setState({
-          cartTotal: this.props.cart.plants.length
-        })
-      } catch (err) {
-        console.error()
-      }
-    } else if (
-      !isLoggedIn &&
-      isLoggedIn !== prevProps.isLoggedIn &&
-      this.state.cartTotal
-    ) {
-      this.setState({
-        cartTotal: 0
-      })
-    }
+  componentDidMount() {
+    this.props.fetchCart()
   }
 
   navbarRight() {
     const handleClick = this.props.handleClick
     const isLoggedIn = this.props.isLoggedIn
-
     if (isLoggedIn) {
       return (
         <div className="navbar-end">
@@ -63,7 +40,13 @@ class Navbar extends React.Component {
                 <i className="fas fa-cog fa-1x" />
                 <strong> Edit Profile </strong>
               </Link>
-              <_Navbar.Item href="#" onClick={handleClick}>
+              <_Navbar.Item
+                href="#"
+                onClick={() => {
+                  this.props.handleClick()
+                  this.props.clearCart()
+                }}
+              >
                 <i className="fas fa-sign-out-alt fa-1x" />
                 <strong> Logout </strong>
 
@@ -75,7 +58,15 @@ class Navbar extends React.Component {
             <Icon>
               <i className="fas fa-shopping-bag fa-lg" />
             </Icon>
-            <div className="cart-total">{this.state.cartTotal}</div>
+            <div className="cart-total">
+              {isLoggedIn && this.props.cart.plants
+                ? this.props.cart.plants.reduce((acc, plant) => {
+                    acc += plant.lineItem.quantity
+                    return acc
+                  }, 0)
+                : 0}
+            </div>
+            {/* <div className="cart-total">{this.state.cartTotal}</div> */}
           </Link>
         </div>
       )
@@ -92,7 +83,14 @@ class Navbar extends React.Component {
             <Icon>
               <i className="fas fa-shopping-bag fa-lg" />
             </Icon>
-            <div className="cart-total">{this.state.cartTotal}</div>
+            <div className="cart-total">
+              {isLoggedIn && this.props.cart.plants
+                ? this.props.cart.plants.reduce((acc, plant) => {
+                    acc += plant.lineItem.quantity
+                    return acc
+                  }, 0)
+                : 0}
+            </div>
           </Link>
         </div>
       )
@@ -152,7 +150,8 @@ const mapDispatch = dispatch => {
     handleClick() {
       dispatch(logout())
     },
-    fetchCart: () => dispatch(fetchCart())
+    fetchCart: () => dispatch(fetchCart()),
+    clearCart: () => dispatch(clearCart())
   }
 }
 

@@ -74,6 +74,17 @@ export const editCart = plantId => {
     }
   }
 }
+const CLEAR_CART = 'CLEAR_CART'
+const clear = () => {
+  return {
+    type: CLEAR_CART
+  }
+}
+export const clearCart = () => {
+  return dispatch => {
+    dispatch(clear())
+  }
+}
 
 const initialState = {}
 
@@ -90,6 +101,8 @@ export default (state = initialState, action) => {
       return {...state, status: 'Past'}
     case ADD_TO_CART:
       return action.cart
+    case CLEAR_CART:
+      return initialState
     default:
       return state
   }
