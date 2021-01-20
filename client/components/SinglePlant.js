@@ -4,29 +4,15 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {Button, Box, Heading, Section} from 'react-bulma-components'
 import {getSinglePlant} from '../store/singlePlant'
-import axios from 'axios'
 import {editCart} from '../store/cart'
 
 export class SinglePlant extends React.Component {
-  // constructor() {
-  //   super()
-  //   this.addToCart = this.addToCart.bind(this)
-  // }
   componentDidMount() {
     this.props.getSinglePlant(this.props.match.params.plantId)
   }
 
-  // async addToCart(id) {
-  //   try {
-  //     await axios.put('/api/cart', {id: id})
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
-
   render() {
-    const {plant, user, editCart} = this.props
-
+    const {plant, user} = this.props
     return (
       <Section className="columns is-centered">
         <Box className="column is-half single-plant-container is-centered">
@@ -41,9 +27,20 @@ export class SinglePlant extends React.Component {
             <p className="light single-plant-text">
               <b>Light:</b> {plant.light} <i className="far fa-sun" />
             </p>
-            <Button size="small" onClick={() => editCart(plant.id)}>
-              <strong>Add To Cart</strong>
-            </Button>
+            {user.id ? (
+              <Button
+                size="small"
+                onClick={() => this.props.editCart(plant.id)}
+              >
+                <strong>Add To Cart</strong>
+              </Button>
+            ) : (
+              <Button size="small">
+                <strong>
+                  <Link to="/login">Log In To Add To Cart</Link>
+                </strong>
+              </Button>
+            )}
           </div>
           <br />
           {user.isAdmin && (
