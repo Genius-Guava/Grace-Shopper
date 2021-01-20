@@ -55,9 +55,7 @@ export class AllPlants extends React.Component {
                       <Link to={`/plants/${plant.id}`}>
                         <img src={plant.imageUrl} />
                         <br />
-                        <p>
-                          <h4>{plant.name}</h4>
-                        </p>
+                        <h4>{plant.name}</h4>
                         <p className="total">
                           <strong>${plant.price}</strong>
                         </p>

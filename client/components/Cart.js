@@ -61,15 +61,15 @@ class Cart extends React.Component {
   }
 
   render() {
-
     let {cart, isLoggedIn, localCart} = this.props
 
-
+    let total =
       cart.plants &&
       cart.plants.reduce((acc, plant) => {
         acc += plant.price * plant.lineItem.quantity
         return acc
       }, 0)
+
     return (
       <div className="cart-container background">
         <Section align="center">
@@ -120,12 +120,21 @@ class Cart extends React.Component {
                       <Media.Item>
                         <Content>
                           <div align="right">
-                            <a
-                              className="delete is-medium"
-                              onClick={() =>
-                                this.props.removeFromCart(plant.id)
-                              }
-                            />
+                            {isLoggedIn ? (
+                              <a
+                                className="delete is-medium"
+                                onClick={() =>
+                                  this.props.removeFromCart(plant.id)
+                                }
+                              />
+                            ) : (
+                              <a
+                                className="delete is-medium"
+                                onClick={() =>
+                                  this.props.removeFromLocal(plant.id)
+                                }
+                              />
+                            )}
                           </div>
                           <p className="plantname">
                             <strong>{plant.name} </strong>
@@ -136,30 +145,6 @@ class Cart extends React.Component {
                             <strong>Quantity: </strong>
                             {plant.lineItem.quantity}
                           </p>
-
-
-                          <div className="content">
-                            {isLoggedIn ? (
-                              <Button
-                                size="small"
-                                onClick={() =>
-                                  this.props.removeFromCart(plant.id)
-                                }
-                              >
-                                <strong>Remove From Cart</strong>
-                              </Button>
-                            ) : (
-                              <Button
-                                size="small"
-                                onClick={() =>
-                                  this.props.removeFromLocal(plant.id)
-                                }
-                              >
-                                <strong>Remove From Cart</strong>
-                              </Button>
-                            )}
-                          </div>
-
                         </Content>
                       </Media.Item>
                     </Media>
