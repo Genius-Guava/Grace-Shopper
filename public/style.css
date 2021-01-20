@@ -173,9 +173,8 @@ h1.empty-cart {
   /* z-index:; */
   color: rgb(255, 255, 255);
   font-size: 7rem;
-
-  text-shadow: -2px -2px 0 #226f54, 2px -2px 0 #226f54, -2px 2px 0 #226f54,
-    2px 2px #226f54;
+  text-shadow: -1px -1px 0 #226f54, 1px -1px 0 #226f54, -1px 1px 0 #226f54,
+    1px 1px #226f54;
   margin-top: 25px;
   margin-left: 450px;
   margin-bottom: 0px;
