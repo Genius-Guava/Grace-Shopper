@@ -9,7 +9,6 @@ class Users extends React.Component {
   }
   render() {
     const {users, user} = this.props
-    console.log(users)
     return (
       <div>
         <Section>
@@ -46,7 +45,6 @@ class Users extends React.Component {
 }
 
 const mapState = state => {
-  console.log(state)
   return {
     users: state.users,
     user: state.user
