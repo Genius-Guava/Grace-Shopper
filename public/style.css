@@ -250,3 +250,15 @@ h1.cart-heading {
   margin-top: 0px;
   margin-bottom: 0px;
 }
+
+.promo {
+  display: inline-flex;
+}
+
+.checkout-btn {
+  margin-top: 10px;
+}
+
+.cart-submit-button {
+  margin-left: 10px;
+}

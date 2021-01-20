@@ -10,20 +10,34 @@ class Navbar extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      cartTotal: props.cart && props.cart.plants ? props.cart.plant.length : 0
+      cartTotal:
+        props.cart && props.cart.plants
+          ? props.cart.plant.reduce((acc, plant) => {
+              acc += plant.lineItem.quantity
+              return acc
+            }, 0)
+          : 0
     }
     this.navbarRight = this.navbarRight.bind(this)
   }
 
-  async componentDidUpdate(prevProps) {
+  async componentDidUpdate(prevProps, prevState) {
     const {cart, isLoggedIn} = this.props
-    if (cart !== prevProps.cart) {
-      this.setState({cartTotal: cart.plants.length})
+    if (cart.plants !== prevProps.cart.plants) {
+      this.setState({
+        cartTotal: this.props.cart.plants.reduce((acc, plant) => {
+          acc += plant.lineItem.quantity
+          return acc
+        }, 0)
+      })
     } else if (isLoggedIn && isLoggedIn !== prevProps.isLoggedIn) {
       await this.props.fetchCart()
       try {
         this.setState({
-          cartTotal: this.props.cart.plants.length
+          cartTotal: this.props.cart.plants.reduce((acc, plant) => {
+            acc += plant.lineItem.quantity
+            return acc
+          }, 0)
         })
       } catch (err) {
         console.error()

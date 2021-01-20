@@ -41,7 +41,7 @@ router.put('/', async (req, res, next) => {
 
     if (item) {
       const newQuant = item.quantity + 1
-      item.update({quantity: newQuant})
+      await item.update({quantity: newQuant})
     } else {
       await LineItem.create({
         plantId: req.body.id,
