@@ -5,7 +5,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 @import 'bulma/bulma.sass';
 
-
 body {
   font-family: sans-serif;
 }
@@ -190,15 +189,14 @@ h1.all-plants-heading {
 h1.cart-heading {
   color: #226f54;
   text-align: center;
-  font-family: 'Sawarabi Mincho', sans-serif;
 }
 #cartTxt {
-  font-family: 'Sawarabi Mincho', sans-serif;
   color: #ffffff;
   text-shadow: 1px 2px #d1b864;
   font-size: 28px;
 }
-.total {
+.total,
+.plantprice strong {
   color: #aa2525;
 }
 
@@ -272,7 +270,6 @@ h1.cart-heading {
   margin-bottom: 0px;
 }
 
-
 .a .allPlantSaturation {
   color: #226f54;
 }
@@ -322,16 +319,10 @@ h1.cart-heading {
 
 .description {
   font-family: 'PT Serif', serif;
-  }
+}
 .hero {
-  @include until($tablet) {
-    background-image: url('./assets/img/bg/mobile.jpg');
-  }
-  @include from($tablet) {
-    background-image: url('./assets/img/bg/desktop.jpg');
-  }
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+}
 
+.editColor {
+  color: #226f54;
 }

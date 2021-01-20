@@ -119,27 +119,12 @@ class Cart extends React.Component {
                       </Media.Item>
                       <Media.Item>
                         <Content>
-                          <div align="right">
-                            {isLoggedIn ? (
-                              <a
-                                className="delete is-medium"
-                                onClick={() =>
-                                  this.props.removeFromCart(plant.id)
-                                }
-                              />
-                            ) : (
-                              <a
-                                className="delete is-medium"
-                                onClick={() =>
-                                  this.props.removeFromLocal(plant.id)
-                                }
-                              />
-                            )}
-                          </div>
                           <p className="plantname">
                             <strong>{plant.name} </strong>
                           </p>
-                          <p className="plantprice">${plant.price}</p>
+                          <p className="plantprice price">
+                            <strong>${plant.price}</strong>
+                          </p>
 
                           <p>
                             <strong>Quantity: </strong>
@@ -148,6 +133,19 @@ class Cart extends React.Component {
                         </Content>
                       </Media.Item>
                     </Media>
+                    <div align="right">
+                      {isLoggedIn ? (
+                        <a
+                          className="delete is-medium"
+                          onClick={() => this.props.removeFromCart(plant.id)}
+                        />
+                      ) : (
+                        <a
+                          className="delete is-medium"
+                          onClick={() => this.props.removeFromLocal(plant.id)}
+                        />
+                      )}
+                    </div>
                   </Box>
                 </div>
               )
@@ -162,7 +160,7 @@ class Cart extends React.Component {
               </Section>
               <Section>
                 <Container>
-                  <Notification color="warning">
+                  <Notification color="warning" size="small">
                     <Heading id="cartTxt" className="empty-cart">
                       Cart is empty!
                     </Heading>
@@ -193,9 +191,11 @@ class Cart extends React.Component {
                   </Button>
                 </form>
               </Columns.Column>
-              <p className="total">
-                <strong>Cart Total: </strong> $
-                <strong>
+              <p>
+                <strong>Cart Total: </strong>
+
+                <strong className="total">
+                  ${' '}
                   {(this.state.total > 0 ? this.state.total : total).toFixed(2)}
                 </strong>
               </p>
