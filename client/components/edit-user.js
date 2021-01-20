@@ -30,9 +30,7 @@ export default class EditUser extends React.Component {
                 {currentUser.firstName} {currentUser.lastName}
               </Card.Text>
               <Card.Text>{currentUser.email}</Card.Text>
-              <Button variant="success">
-                <Link to="/users">Edit</Link>
-              </Button>
+              <Button variant="success">Edit</Button>
             </Card.Body>
           </Card>
         ))}
