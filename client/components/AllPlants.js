@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {fetchPlants, deletePlant} from '../store/plants'
-import {Box, Button, Section, Heading} from 'react-bulma-components'
+import {Box, Button, Section, Heading, Content} from 'react-bulma-components'
 
 export class AllPlants extends React.Component {
   constructor() {
@@ -29,7 +29,7 @@ export class AllPlants extends React.Component {
       plants = plants.filter(plant => plant.light === 'Low to Partial')
     }
     return (
-      <div>
+      <div className="background">
         <Section align="center">
           <Heading className="all-plants-heading">All Plants:</Heading>
           <div className="select is-small light-filter">
@@ -51,23 +51,31 @@ export class AllPlants extends React.Component {
               return (
                 <div className="plant-option" key={plant.id}>
                   <Box>
-                    <Link to={`/plants/${plant.id}`}>
-                      <img src={plant.imageUrl} />
-                      <h4>{plant.name}</h4>
-                      <p>${plant.price}</p>
-                    </Link>
-                    {user.isAdmin && (
-                      <Button
-                        className="remove-btn"
-                        size="small"
-                        renderAs="span"
-                        color="danger"
-                        type="button"
-                        onClick={() => this.props.deletePlant(plant.id)}
-                      >
-                        Remove Plant
-                      </Button>
-                    )}
+                    <Content>
+                      <Link to={`/plants/${plant.id}`}>
+                        <img src={plant.imageUrl} />
+                        <br />
+                        <p>
+                          <h4>{plant.name}</h4>
+                        </p>
+                        <p className="total">
+                          <strong>${plant.price}</strong>
+                        </p>
+                      </Link>
+
+                      {user.isAdmin && (
+                        <Button
+                          className="remove-btn"
+                          size="small"
+                          renderAs="span"
+                          color="danger"
+                          type="button"
+                          onClick={() => this.props.deletePlant(plant.id)}
+                        >
+                          Remove Plant
+                        </Button>
+                      )}
+                    </Content>
                   </Box>
                 </div>
               )

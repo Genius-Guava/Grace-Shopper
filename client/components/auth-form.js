@@ -11,6 +11,7 @@ import {
   Heading,
   Form
 } from 'react-bulma-components'
+import {fetchCart} from '../store/cart'
 import {formReset} from '../store/form'
 /**
  * COMPONENT
@@ -31,9 +32,10 @@ class AuthForm extends React.Component {
     this.props.formReset()
   }
 
-  handleSubmit(evt) {
+  async handleSubmit(evt) {
     evt.preventDefault()
-    this.props.login(this.state.email, this.state.password)
+    await this.props.login(this.state.email, this.state.password)
+    await this.props.fetchCart()
   }
 
   onChange(event) {
@@ -129,7 +131,8 @@ const mapLogin = state => {
 const mapDispatch = dispatch => {
   return {
     login: (email, password) => dispatch(login(email, password)),
-    formReset: () => dispatch(formReset())
+    formReset: () => dispatch(formReset()),
+    fetchCart: () => dispatch(fetchCart())
   }
 }
 

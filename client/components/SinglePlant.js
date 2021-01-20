@@ -38,14 +38,14 @@ export class SinglePlant extends React.Component {
   render() {
     const {plant, user} = this.props
     return (
-      <Section className="columns is-centered">
+      <Section className="columns is-centered background">
         <Box className="column is-half single-plant-container is-centered">
           <div>
             <Heading align="center">{plant.name}</Heading>
             <img className="plant-image" src={plant.imageUrl} />
             <br />
             <b>
-              <p className="single-plant-text">${plant.price}</p>
+              <p className="single-plant-text total">${plant.price}</p>
             </b>
             <p className="single-plant-text">{plant.description}</p>
             <p className="light single-plant-text">

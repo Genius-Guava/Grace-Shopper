@@ -199,7 +199,9 @@ class UserProfile extends React.Component {
 
                 <Form.Help color="danger">{form.errors.other}</Form.Help>
                 {form.success && (
-                  <div className="notification is-primary">Success!</div>
+                  <div className="notification is-primary">
+                    <strong>Success!</strong>
+                  </div>
                 )}
               </Content>
             </Section>

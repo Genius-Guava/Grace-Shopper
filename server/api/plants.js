@@ -32,7 +32,7 @@ router.post('/', isAdmin, async (req, res, next) => {
       light,
       quantity
     })
-    res.json(plant)
+    return res.json(plant)
   } catch (err) {
     next(err)
   }
@@ -55,7 +55,7 @@ router.put('/:plantId', isAdmin, async (req, res, next) => {
   try {
     const {name, imageUrl, price, description, light, quantity} = req.body
     const plant = await Plant.findByPk(req.params.plantId)
-    await plant.update({
+    const updatedPlant = await plant.update({
       name,
       imageUrl,
       price,
@@ -63,7 +63,7 @@ router.put('/:plantId', isAdmin, async (req, res, next) => {
       light,
       quantity
     })
-    res.json(plant)
+    return res.json(updatedPlant)
   } catch (err) {
     next(err)
   }
