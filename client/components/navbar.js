@@ -62,7 +62,7 @@ class Navbar extends React.Component {
         <div className="navbar-end">
           {this.props.user.isAdmin && (
             <Link className="navbar-item" to="/users">
-              View Users
+              <strong>View Users</strong>
             </Link>
           )}
           <_Navbar.Item dropdown href="#" hoverable>
