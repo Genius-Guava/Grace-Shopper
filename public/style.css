@@ -170,3 +170,9 @@ h1.all-plants-heading {
     -2px 2px 0 rgba(215, 191, 113, 0.878), 2px 2px 0 rgba(215, 191, 113, 0.878); */
   margin-top: 75px;
 }
+
+.cart-total {
+  font-size: 15px;
+  margin-left: 5px;
+  margin-bottom: 20px;
+}

@@ -3,50 +3,44 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-import {Columns, Button, Section, Icon} from 'react-bulma-components'
+import {Icon} from 'react-bulma-components'
+import {fetchCart} from '../store/cart'
 
 class Navbar extends React.Component {
-  constructor() {
-    super()
-    this.navbarRight = this.navbarRight.bind(this)
+  constructor(props) {
+    super(props)
+    this.state = {
+      cartTotal: props.cart && props.cart.plants ? props.cart.plant.length : 0
+    }
   }
 
-  navbarRight() {
-    const handleClick = this.props.handleClick
-    const isLoggedIn = this.props.isLoggedIn
-
-    if (isLoggedIn) {
-      return (
-        <div className="navbar-end">
-          <a className="navbar-item" href="#" onClick={handleClick}>
-            Logout
-          </a>
-          <Link className="navbar-item" to="/cart">
-            <i className="fas fa-shopping-bag fa-lg" />
-          </Link>
-        </div>
-      )
-    } else {
-      return (
-        <div className="navbar-end">
-          <Link className="navbar-item" to="/login">
-            Login
-          </Link>
-          <Link className="navbar-item" to="/signup">
-            Sign Up
-          </Link>
-          <Link className="navbar-item" to="/cart">
-            <Icon>
-              <i className="fas fa-shopping-bag fa-lg" />
-            </Icon>
-          </Link>
-        </div>
-      )
+  async componentDidUpdate(prevProps) {
+    const {cart, isLoggedIn} = this.props
+    if (cart !== prevProps.cart) {
+      this.setState({cartTotal: cart.plants.length})
+    } else if (isLoggedIn && isLoggedIn !== prevProps.isLoggedIn) {
+      await this.props.fetchCart()
+      try {
+        this.setState({
+          cartTotal: this.props.cart.plants.length
+        })
+      } catch (err) {
+        console.error()
+      }
+    } else if (
+      !isLoggedIn &&
+      isLoggedIn !== prevProps.isLoggedIn &&
+      this.state.cartTotal
+    ) {
+      this.setState({
+        cartTotal: 0
+      })
     }
   }
 
   render() {
-    const user = this.props.user
+    const {handleClick, isLoggedIn, user} = this.props
+
     return (
       <nav
         id="navBar"
@@ -57,10 +51,9 @@ class Navbar extends React.Component {
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
             <Link className="navbar-item" to="/home">
-              {' '}
               <Icon size="large">
                 <i className="fas fa-leaf fa-lg" />
-              </Icon>{' '}
+              </Icon>
               <span>Home</span>
             </Link>
             <Link className="navbar-item" to="/plants">
@@ -72,8 +65,37 @@ class Navbar extends React.Component {
               </Link>
             )}
           </div>
-
-          {this.navbarRight()}
+          {isLoggedIn ? (
+            <div className="navbar-end">
+              {this.props.user.isAdmin && (
+                <Link className="navbar-item" to="/users">
+                  View Users
+                </Link>
+              )}
+              <a className="navbar-item" href="#" onClick={handleClick}>
+                Logout
+              </a>
+              <Link className="navbar-item" to="/cart">
+                <i className="fas fa-shopping-bag fa-lg" />
+                <div className="cart-total">{this.state.cartTotal}</div>
+              </Link>
+            </div>
+          ) : (
+            <div className="navbar-end">
+              <Link className="navbar-item" to="/login">
+                Login
+              </Link>
+              <Link className="navbar-item" to="/signup">
+                Sign Up
+              </Link>
+              <Link className="navbar-item" to="/cart">
+                <Icon>
+                  <i className="fas fa-shopping-bag fa-lg" />
+                </Icon>
+                <div className="cart-total">{this.state.cartTotal}</div>
+              </Link>
+            </div>
+          )}
         </div>
       </nav>
     )
@@ -86,7 +108,8 @@ class Navbar extends React.Component {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    user: state.user
+    user: state.user,
+    cart: state.cart
   }
 }
 
@@ -94,7 +117,8 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
-    }
+    },
+    fetchCart: () => dispatch(fetchCart())
   }
 }
 

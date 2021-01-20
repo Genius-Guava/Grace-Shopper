@@ -9,6 +9,7 @@ class Users extends React.Component {
   }
   render() {
     const {users, user} = this.props
+    console.log(users)
     return (
       <div>
         <Section>
@@ -20,6 +21,9 @@ class Users extends React.Component {
                   return (
                     <div key={mappedUser.id}>
                       <List className="user-list">
+                        <List.Item>
+                          Name: {mappedUser.firstName} {mappedUser.lastName}
+                        </List.Item>
                         <List.Item>UserID: {mappedUser.id}</List.Item>
                         <List.Item>Email: {mappedUser.email}</List.Item>
                         <List.Item>
