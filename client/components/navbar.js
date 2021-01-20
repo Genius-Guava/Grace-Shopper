@@ -34,7 +34,7 @@ class Navbar extends React.Component {
                 <i className="fas fa-user" size="2px" />
               </Icon>
             </_Navbar.Link>
-            <_Navbar.Dropdown className>
+            <_Navbar.Dropdown>
               <Link className="navbar-item" to="/editprofile">
                 <i className="fas fa-cog fa-1x" />
                 <strong> Edit Profile </strong>
