@@ -176,10 +176,10 @@ h1.all-plants-heading {
 h1.cart-heading {
   color: #226f54;
   text-align: center;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Sawarabi Mincho', sans-serif;
 }
 #cartTxt {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Sawarabi Mincho', sans-serif;
   color: #ffffff;
   text-shadow: 2px 2px #d1b864;
 }
@@ -219,9 +219,6 @@ h1.cart-heading {
   justify-content: space-between;
 }
 
-.cart-item img {
-  overflow: hidden;
-}
 #cartIcon {
   color: #d8d8d8;
 }

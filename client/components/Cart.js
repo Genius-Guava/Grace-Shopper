@@ -186,7 +186,9 @@ class Cart extends React.Component {
               </Columns.Column>
               <p>
                 <strong>Cart Total: </strong> $
-                {(this.state.total > 0 ? this.state.total : total).toFixed(2)}
+                <strong>
+                  {(this.state.total > 0 ? this.state.total : total).toFixed(2)}
+                </strong>
               </p>
               <Button
                 size="small"
