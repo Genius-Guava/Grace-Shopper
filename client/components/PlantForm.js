@@ -51,7 +51,9 @@ const PlantForm = props => {
               </Form.Control>
             </Form.Field>
             <Form.Field>
-              <Form.Label className="form-label">Description</Form.Label>
+              <Form.Label className="form-label description">
+                Description
+              </Form.Label>
               <Form.Control>
                 <Form.Input
                   size="small"

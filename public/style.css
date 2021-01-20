@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 @import 'bulma/bulma.sass';
+
 
 body {
   font-family: sans-serif;
@@ -144,8 +146,7 @@ footer.footer {
 }
 
 .single-plant-text {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin: 1rem 1rem 1rem 1rem;
 }
 
 .plant-image {
@@ -194,7 +195,11 @@ h1.cart-heading {
 #cartTxt {
   font-family: 'Sawarabi Mincho', sans-serif;
   color: #ffffff;
-  text-shadow: 2px 2px #d1b864;
+  text-shadow: 1px 2px #d1b864;
+  font-size: 28px;
+}
+.total {
+  color: #aa2525;
 }
 
 .light-filter {
@@ -237,6 +242,9 @@ h1.cart-heading {
 #cartIcon {
   color: #d8d8d8;
 }
+#cartIcon2 {
+  color: #226f54ee;
+}
 
 .media-left img {
   height: auto;
@@ -264,6 +272,10 @@ h1.cart-heading {
   margin-bottom: 0px;
 }
 
+
+.a .allPlantSaturation {
+  color: #226f54;
+}
 .fa {
   padding: 30px;
   font-size: 20px;
@@ -304,6 +316,13 @@ h1.cart-heading {
   margin-left: 10px;
 }
 
+.background {
+  background-color: #fafafa;
+}
+
+.description {
+  font-family: 'PT Serif', serif;
+  }
 .hero {
   @include until($tablet) {
     background-image: url('./assets/img/bg/mobile.jpg');
@@ -314,4 +333,5 @@ h1.cart-heading {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+
 }

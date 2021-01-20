@@ -70,7 +70,7 @@ class Cart extends React.Component {
         return acc
       }, 0)
     return (
-      <div className="cart-container">
+      <div className="cart-container background">
         <Section align="center">
           <Heading className="cart-heading">Cart</Heading>
           {cart.plants !== undefined && cart.plants.length ? (
@@ -118,6 +118,14 @@ class Cart extends React.Component {
                       </Media.Item>
                       <Media.Item>
                         <Content>
+                          <div align="right">
+                            <a
+                              className="delete is-medium"
+                              onClick={() =>
+                                this.props.removeFromCart(plant.id)
+                              }
+                            />
+                          </div>
                           <p className="plantname">
                             <strong>{plant.name} </strong>
                           </p>
@@ -127,18 +135,6 @@ class Cart extends React.Component {
                             <strong>Quantity: </strong>
                             {plant.lineItem.quantity}
                           </p>
-
-                          <div className="content">
-                            <Button
-                              className="button is-danger is-outlined"
-                              size="small"
-                              onClick={() =>
-                                this.props.removeFromCart(plant.id)
-                              }
-                            >
-                              <strong>Remove From Cart</strong>
-                            </Button>
-                          </div>
                         </Content>
                       </Media.Item>
                     </Media>
@@ -151,7 +147,7 @@ class Cart extends React.Component {
               <br />
               <Section>
                 <Icon>
-                  <i id="cartIcon" className="fas fa-shopping-cart fa-9x" />
+                  <i id="cartIcon" className="fas fa-shopping-cart fa-7x" />
                 </Icon>
               </Section>
               <Section>
@@ -187,7 +183,7 @@ class Cart extends React.Component {
                   </Button>
                 </form>
               </Columns.Column>
-              <p>
+              <p className="total">
                 <strong>Cart Total: </strong> $
                 <strong>
                   {(this.state.total > 0 ? this.state.total : total).toFixed(2)}

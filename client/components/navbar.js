@@ -59,10 +59,14 @@ class Navbar extends React.Component {
             </_Navbar.Link>
             <_Navbar.Dropdown>
               <Link className="navbar-item" to="/editprofile">
-                Edit Profile
+
+                <i className="fas fa-cog fa-1x" />
+                <strong> Edit Profile </strong>
               </Link>
               <_Navbar.Item href="#" onClick={handleClick}>
-                Logout
+                <i className="fas fa-sign-out-alt fa-1x" />
+                <strong> Logout </strong>
+
               </_Navbar.Item>
             </_Navbar.Dropdown>
           </_Navbar.Item>
