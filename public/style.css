@@ -232,10 +232,10 @@ h1.empty-cart {
   align-self: center;
   font-family: 'Sawarabi Mincho', sans-serif;
   font-size: 30px;
-  color: #b39c4fe0;
-  font-size: 7rem;
-  text-shadow: #776838e0;
+  color: #ffffffe0;
+  font-size: 2rem;
+  text-shadow: #ffffffe0;
   /* text-shadow: -2px -2px 0 rgba(215, 191, 113, 0.878), 2px -2px 0 rgba(215, 191, 113, 0.878),
     -2px 2px 0 rgba(215, 191, 113, 0.878), 2px 2px 0 rgba(215, 191, 113, 0.878); */
-  margin-top: 75px;
+  /* margin-top: 75px; */
 }
