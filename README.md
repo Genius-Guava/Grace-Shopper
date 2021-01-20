@@ -1,4 +1,4 @@
-# :seedling: leafly :seedling:
+# :leaves: leafly :leaves:
 
 [![Build Status](https://travis-ci.com/Genius-Guava/Grace-Shopper.svg?branch=master)](https://travis-ci.com/Genius-Guava/Grace-Shopper)
 
@@ -36,7 +36,7 @@ npm run test
 
 ## Dev Team Group Members
 
-:leaves: Carly Dispasquela
-:leaves: Elijah Meshnick
-:leaves: Khrystyna Tsiupa
-:leaves: Jenny Zeng
+:seedling: Carly Dispasquela <br>
+:seedling: Elijah Meshnick <br>
+:seedling: Khrystyna Tsiupa <br>
+:seedling: Jenny Zeng <br>
