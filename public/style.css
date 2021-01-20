@@ -172,16 +172,17 @@ h1.empty-cart {
   font-family: 'Sawarabi Mincho', sans-serif;
   /* z-index:; */
   color: rgb(255, 255, 255);
-  font-size: 7rem;
+  font-size: 15rem;
   text-shadow: -1px -1px 0 #226f54, 1px -1px 0 #226f54, -1px 1px 0 #226f54,
     1px 1px #226f54;
-  margin-top: 25px;
-  margin-left: 450px;
+  margin-top: 10px;
+  margin-left: 475px;
   margin-bottom: 0px;
+  padding: 0px;
 }
-.home-btn {
+/* .home-btn {
   margin-left: 725px;
-}
+} */
 .home-btn a {
   color: rgba(0, 0, 0, 0.495);
 }

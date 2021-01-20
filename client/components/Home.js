@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 const Home = ({isLoggedIn, email}) => {
   return (
     <div className="homePage">
-      <Section>
+      <Section align="center">
         <h1 align="center" className="appName">
           leafly
         </h1>
