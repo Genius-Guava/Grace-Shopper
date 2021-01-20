@@ -29,6 +29,7 @@ export class NewPlant extends Component {
     evt.preventDefault()
     this.props.addNewPlant(this.state)
     this.setState(() => this.initialState)
+    this.props.history.push(`/plants`)
   }
 
   render() {
