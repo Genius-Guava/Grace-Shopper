@@ -18,7 +18,6 @@ export class SinglePlant extends React.Component {
 
   render() {
     const {plant, user} = this.props
-    console.log('the user is', user)
     return (
       <Section className="columns is-centered">
         <Box className="column is-half single-plant-container is-centered">
