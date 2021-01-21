@@ -330,3 +330,10 @@ h1.cart-heading {
 .editColor {
   color: #226f54;
 }
+
+.homeSlider .slick-slide > div {
+  text-align: center;
+  padding: 0;
+  width: 100%;
+  max-height: 600px;
+}
