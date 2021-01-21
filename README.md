@@ -18,7 +18,7 @@ Javascript, Node.js, React, Redux, Express, Sequelize, PostgreSQL, Heroku, Travi
 
 ```
 // Create database using PostgreSQL:
-createdb grace-shopper
+createdb graceshopper
 
 // Install all node.js dependencies:
 npm install
