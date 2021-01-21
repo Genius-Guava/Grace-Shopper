@@ -112,9 +112,8 @@ class Navbar extends React.Component {
               <Icon size="large">
                 <i className="fas fa-leaf fa-lg" />
               </Icon>
-              <strong>
-                <span>Home</span>
-              </strong>
+
+              <span>Home</span>
             </Link>
             <Link className="navbar-item" to="/plants">
               All Plants
