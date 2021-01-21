@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import {fetchCart, clearCart} from '../store/cart'
+import {fetchLocal} from '../store/localCart'
 import {Icon, Navbar as _Navbar} from 'react-bulma-components'
 
 class Navbar extends React.Component {
@@ -37,7 +38,7 @@ class Navbar extends React.Component {
             <_Navbar.Dropdown>
               <Link className="navbar-item" to="/editprofile">
                 <i className="fas fa-cog fa-1x" />
-                <strong> Edit Profile </strong>
+                Edit Profile
               </Link>
               <_Navbar.Item
                 href="#"
@@ -47,7 +48,7 @@ class Navbar extends React.Component {
                 }}
               >
                 <i className="fas fa-sign-out-alt fa-1x" />
-                <strong> Logout </strong>
+                Logout
               </_Navbar.Item>
             </_Navbar.Dropdown>
           </_Navbar.Item>
@@ -57,7 +58,7 @@ class Navbar extends React.Component {
               <i className="fas fa-shopping-bag fa-lg" />
             </Icon>
             <div className="cart-total">
-              {isLoggedIn && this.props.cart.plants
+              {this.props.cart.plants
                 ? this.props.cart.plants.reduce((acc, plant) => {
                     acc += plant.lineItem.quantity
                     return acc
@@ -82,8 +83,8 @@ class Navbar extends React.Component {
               <i className="fas fa-shopping-bag fa-lg" />
             </Icon>
             <div className="cart-total">
-              {isLoggedIn && this.props.cart.plants
-                ? this.props.cart.plants.reduce((acc, plant) => {
+              {this.props.localCart.plants
+                ? this.props.localCart.plants.reduce((acc, plant) => {
                     acc += plant.lineItem.quantity
                     return acc
                   }, 0)
@@ -111,16 +112,15 @@ class Navbar extends React.Component {
               <Icon size="large">
                 <i className="fas fa-leaf fa-lg" />
               </Icon>
-              <strong>
-                <span>Home</span>
-              </strong>
+
+              <span>Home</span>
             </Link>
             <Link className="navbar-item" to="/plants">
-              <strong>All Plants</strong>
+              All Plants
             </Link>
             {user.isAdmin && (
               <Link className="navbar-item" to="/plants/addplant">
-                <strong>Add New Plant</strong>
+                Add New Plant
               </Link>
             )}
           </div>
@@ -141,7 +141,8 @@ const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
     user: state.user,
-    cart: state.cart
+    cart: state.cart,
+    localCart: state.localCart
   }
 }
 
@@ -151,7 +152,8 @@ const mapDispatch = dispatch => {
       dispatch(logout())
     },
     fetchCart: () => dispatch(fetchCart()),
-    clearCart: () => dispatch(clearCart())
+    clearCart: () => dispatch(clearCart()),
+    fetchLocal: () => dispatch(fetchLocal())
   }
 }
 

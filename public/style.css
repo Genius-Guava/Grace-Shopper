@@ -24,11 +24,6 @@ body {
   color: white;
   display: flex;
 }
-/* .home-btn {
-  margin-top: 50px;
-  margin-left: 375px;
-} */
-
 .plant-form {
   margin: 1em;
   display: flex;
@@ -213,14 +208,14 @@ h1.cart-heading {
   text-shadow: -1px -1px 0 #226f54, 1px -1px 0 #226f54, -1px 1px 0 #226f54,
     1px 1px #226f54;
   margin-top: 10px;
-  margin-left: 600px;
+  margin-left: 500px;
   margin-bottom: 0px;
   padding: 0px;
   letter-spacing: 2px;
 }
-/* .home-btn {
-  margin-left: 725px;
-} */
+.home-btn {
+  margin-left: 500px;
+}
 .home-btn a {
   color: rgba(0, 0, 0, 0.495);
 }
@@ -260,9 +255,6 @@ h1.cart-heading {
   color: #ffffffe0;
   font-size: 2rem;
   text-shadow: #ffffffe0;
-  /* text-shadow: -2px -2px 0 rgba(215, 191, 113, 0.878), 2px -2px 0 rgba(215, 191, 113, 0.878),
-    -2px 2px 0 rgba(215, 191, 113, 0.878), 2px 2px 0 rgba(215, 191, 113, 0.878); */
-  /* margin-top: 75px; */
 }
 
 .plantprice .plantname {
@@ -319,8 +311,6 @@ h1.cart-heading {
 
 .description {
   font-family: 'PT Serif', serif;
-}
-.hero {
 }
 
 .editColor {

@@ -51,12 +51,17 @@ class Cart extends React.Component {
   }
   handlePromo() {
     this.setState({
-      total:
-        this.props.cart.plants &&
-        this.props.cart.plants.reduce((acc, plant) => {
-          acc += plant.price * plant.lineItem.quantity
-          return acc
-        }, 0) / 2
+      total: this.props.isLoggedIn
+        ? this.props.cart.plants &&
+          this.props.cart.plants.reduce((acc, plant) => {
+            acc += plant.price * plant.lineItem.quantity
+            return acc
+          }, 0) / 2
+        : this.props.localCart.plants &&
+          this.props.localCart.plants.reduce((acc, plant) => {
+            acc += plant.price * plant.lineItem.quantity
+            return acc
+          }, 0) / 2
     })
   }
 
