@@ -7,7 +7,7 @@
 
 body {
   font-family: sans-serif;
-  height: 90vh;
+  height: 100vh;
   background-color: #ffffff;
 }
 
@@ -26,6 +26,10 @@ body {
   width: 100%;
 }
 
+.homeSlider img {
+  width: 100% !important;
+  height: 75vh;
+}
 .homePage {
   background-image: url('https://images.unsplash.com/photo-1487700160041-babef9c3cb55?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OHx8bWluaW1hbCUyMHBsYW50fGVufDB8fDB8&ixlib=rb-1.2.1&w=1000&q=80');
   width: 100%;
