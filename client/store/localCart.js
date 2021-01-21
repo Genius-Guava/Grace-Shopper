@@ -28,6 +28,7 @@ export const removeFromLocal = plantId => {
 export const addToLocal = plant => {
   let inCart = false
   const cart = JSON.parse(localStorage.getItem('cart'))
+  cart.status = 'In Cart'
   for (let i = 0; i < cart.plants.length; i++) {
     if (cart.plants[i].id === plant.id) {
       inCart = true
@@ -46,20 +47,21 @@ export const addToLocal = plant => {
   }
 }
 
-const checkOutLocal = () => {
-  return {
-    type: CHECKOUT_LOCAL
+export const checkOutLocal = () => {
+  localStorage.setItem(
+    'cart',
+    JSON.stringify({
+      plants: [],
+      status: 'Past'
+    })
+  )
+  const cart = {
+    plants: [],
+    status: 'Past'
   }
-}
-
-export const checkoutLocal = cart => {
-  return async dispatch => {
-    try {
-      await axios.put('/api/cart/login', {cartId: cart})
-      dispatch(checkedOutCart())
-    } catch (err) {
-      console.error(err)
-    }
+  return {
+    type: CHECKOUT_LOCAL,
+    cart
   }
 }
 
@@ -70,6 +72,10 @@ export default (state = initialState, action) => {
     case FETCH_LOCAL:
       return action.cart
     case ADD_TO_LOCAL:
+      return action.cart
+    case REMOVE_FROM_LOCAL:
+      return action.cart
+    case CHECKOUT_LOCAL:
       return action.cart
     default:
       return state
