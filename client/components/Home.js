@@ -17,7 +17,7 @@ class Home extends React.Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
-      speed: 2000,
+      speed: 3000,
       autoplaySpeed: 2000,
       cssEase: 'linear',
       pauseOnHover: true,
