@@ -106,7 +106,7 @@ class Navbar extends React.Component {
         role="navigation"
         aria-label="main navigation"
       >
-        <div id="navMenu" className="navbar-menu">
+        <div id="navMenu" className="navbar-menu is-active">
           <div className="navbar-start">
             <Link className="navbar-item" to="/home">
               <Icon size="large">
