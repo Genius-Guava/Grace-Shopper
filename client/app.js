@@ -5,13 +5,13 @@ import Routes from './routes'
 import Footer from './components/Footer'
 
 const App = () => {
-  localStorage.setItem(
-    'cart',
+  const cart =
+    localStorage.getItem('cart') ||
     JSON.stringify({
       plants: [],
       status: 'In Cart'
     })
-  )
+  localStorage.setItem('cart', cart)
   return (
     <div>
       <Navbar />

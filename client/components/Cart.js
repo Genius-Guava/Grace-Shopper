@@ -62,7 +62,7 @@ class Cart extends React.Component {
 
   render() {
     let {cart, isLoggedIn, localCart} = this.props
-
+    if (!isLoggedIn) cart = localCart
     let total =
       cart.plants &&
       cart.plants.reduce((acc, plant) => {

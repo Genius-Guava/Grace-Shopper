@@ -1,28 +1,56 @@
 import React from 'react'
 import {checkoutCart} from '../store/cart'
 import {connect} from 'react-redux'
-import {Button} from 'react-bulma-components'
+import {
+  Button,
+  Heading,
+  Section,
+  Container,
+  Notification
+} from 'react-bulma-components'
+import {checkOutLocal} from '../store/localCart'
 
 class Checkout extends React.Component {
   render() {
-    const {cart} = this.props
+    let {cart, localCart, isLoggedIn} = this.props
+    if (!isLoggedIn) cart = localCart
 
     return (
       <div>
-        {cart.status === 'In Cart' ? (
-          <div>
-            <h3>Would you like to checkout?</h3>
-            <Button
-              onClick={() => {
-                this.props.checkoutCart(cart.id)
-              }}
-            >
-              <strong>Confirm Checkout</strong>
-            </Button>
-          </div>
-        ) : (
-          <h3>You've successfully checked out!</h3>
-        )}
+        <Section align="center">
+          {cart.status === 'In Cart' ? (
+            <div>
+              <Heading>Would you like to checkout?</Heading>
+              {isLoggedIn ? (
+                <Button
+                  onClick={() => {
+                    this.props.checkoutCart(cart.id)
+                  }}
+                >
+                  <strong>Confirm Checkout</strong>
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => {
+                    this.props.checkOutLocal()
+                  }}
+                >
+                  <strong>Confirm Checkout</strong>
+                </Button>
+              )}
+            </div>
+          ) : (
+            <Section>
+              <Container>
+                <Notification color="warning">
+                  <Heading id="cartTxt" className="empty-cart">
+                    You have successfully checked out!
+                  </Heading>
+                </Notification>
+              </Container>
+            </Section>
+          )}
+        </Section>
       </div>
     )
   }
@@ -30,13 +58,16 @@ class Checkout extends React.Component {
 
 const mapState = state => {
   return {
-    cart: state.cart
+    cart: state.cart,
+    localCart: state.localCart,
+    isLoggedIn: !!state.user.id
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    checkoutCart: cartId => dispatch(checkoutCart(cartId))
+    checkoutCart: cartId => dispatch(checkoutCart(cartId)),
+    checkOutLocal: () => dispatch(checkOutLocal())
   }
 }
 
