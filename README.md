@@ -6,9 +6,9 @@
 
 leafly is a Fullstack ecommerce web application.
 
-When the application is ran on local server or as deployed application, users are able to log in to their account or sign up for an account and then add and remove products (plants) to their cart and then proceed to checkout. When checking out, they can also enter a promocode for 50% off their total amount. Users also have the capability of editing their personal profile if needed, such as updating their addresses and phone numbers.
+When the application is ran on local server or as a deployed application, users are able to add and remove products to their cart as either a guest, or a logged in user. If a user does not have an account, they can sign up for one, either through the website, or through Google. A benefit of logged in users is that their carts will be saved for if they were to leave the website. When checking out, they can also enter a promocode for 50% off their total amount. Users also have the capability of editing their personal profile if needed, such as updating their addresses and phone numbers.
 
-Along with the user features, this application also has admins only features, such as adding, editting, or updating the products shown on the page.
+Along with the great user features, this application also has admins only features, such as adding, editting, or updating the products shown on the page as well as viewing all registered users in the database.
 
 # Technologies
 
@@ -35,9 +35,19 @@ npm run test
 
 ## Screenshots
 
+Homepage:
+![Image](github-screenshots/Home.png)
+
+All products view:
 ![Image](github-screenshots/All-Plants.png)
+
+Single product view:
 ![Image](github-screenshots/Single-Plant.png)
+
+Cart view:
 ![Image](github-screenshots/Cart.png)
+
+Sign-in view:
 ![Image](github-screenshots/Sign-In.png)
 
 ## Dev Team Group Members
