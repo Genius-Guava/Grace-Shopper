@@ -4,6 +4,12 @@
 
 # Overview
 
+leafly is a Fullstack ecommerce web application.
+
+When the application is ran on local server or as deployed application, users are able to log in to their account or sign up for an account and then add and remove products (plants) to their cart and then proceed to checkout. When checking out, they can also enter a promocode for 50% off their total amount. Users also have the capability of editing their personal profile if needed, such as updating their addresses and phone numbers.
+
+Along with the user features, this application also has admins only features, such as adding, editting, or updating the products shown on the page.
+
 # Technologies
 
 Javascript, Node.js, React, Redux, Express, Sequelize, PostgreSQL, Heroku, Travis, Bulma, HTML, CSS

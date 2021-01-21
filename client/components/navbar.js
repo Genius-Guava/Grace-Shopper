@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 import {fetchCart, clearCart} from '../store/cart'
+import {fetchLocal} from '../store/localCart'
 import {Icon, Navbar as _Navbar} from 'react-bulma-components'
 
 class Navbar extends React.Component {
@@ -57,7 +58,7 @@ class Navbar extends React.Component {
               <i className="fas fa-shopping-bag fa-lg" />
             </Icon>
             <div className="cart-total">
-              {isLoggedIn && this.props.cart.plants
+              {this.props.cart.plants
                 ? this.props.cart.plants.reduce((acc, plant) => {
                     acc += plant.lineItem.quantity
                     return acc
@@ -82,8 +83,8 @@ class Navbar extends React.Component {
               <i className="fas fa-shopping-bag fa-lg" />
             </Icon>
             <div className="cart-total">
-              {isLoggedIn && this.props.cart.plants
-                ? this.props.cart.plants.reduce((acc, plant) => {
+              {this.props.localCart.plants
+                ? this.props.localCart.plants.reduce((acc, plant) => {
                     acc += plant.lineItem.quantity
                     return acc
                   }, 0)
@@ -141,7 +142,8 @@ const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
     user: state.user,
-    cart: state.cart
+    cart: state.cart,
+    localCart: state.localCart
   }
 }
 
@@ -151,7 +153,8 @@ const mapDispatch = dispatch => {
       dispatch(logout())
     },
     fetchCart: () => dispatch(fetchCart()),
-    clearCart: () => dispatch(clearCart())
+    clearCart: () => dispatch(clearCart()),
+    fetchLocal: () => dispatch(fetchLocal())
   }
 }
 
