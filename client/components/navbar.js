@@ -38,7 +38,7 @@ class Navbar extends React.Component {
             <_Navbar.Dropdown>
               <Link className="navbar-item" to="/editprofile">
                 <i className="fas fa-cog fa-1x" />
-                <strong> Edit Profile </strong>
+                Edit Profile
               </Link>
               <_Navbar.Item
                 href="#"
@@ -48,7 +48,7 @@ class Navbar extends React.Component {
                 }}
               >
                 <i className="fas fa-sign-out-alt fa-1x" />
-                <strong> Logout </strong>
+                Logout
               </_Navbar.Item>
             </_Navbar.Dropdown>
           </_Navbar.Item>
@@ -117,11 +117,11 @@ class Navbar extends React.Component {
               </strong>
             </Link>
             <Link className="navbar-item" to="/plants">
-              <strong>All Plants</strong>
+              All Plants
             </Link>
             {user.isAdmin && (
               <Link className="navbar-item" to="/plants/addplant">
-                <strong>Add New Plant</strong>
+                Add New Plant
               </Link>
             )}
           </div>
